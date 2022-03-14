@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "node server/index.js",
+    "dev": "node src/server/index.js",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=production node src/server/index.js",
     "type-check": "tsc"
   },
   "dependencies": {

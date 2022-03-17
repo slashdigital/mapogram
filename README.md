@@ -26,6 +26,27 @@ yarn create next-app --example with-typescript with-typescript-app
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
+## If you're using Docker
+
+After pull the project, find out the .env.example file in the `root directory`.
+
+If you found the file, do this command:
+
+```bash
+cp .env.example .env
+```
+
+After copy the file, there are some configuration that you need to concern, but it's up to you, I mean the `.env` file has default value for configuration.
+
+If the `.env` file seems right to you, do this command:
+
+```bash
+docker-compose up 
+```
+Let's waiting for the process, and voila!
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
 ## Notes
 
 This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.

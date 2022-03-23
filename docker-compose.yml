@@ -10,7 +10,7 @@ services:
     volumes:
       - ${PROJECT_DIRECTORY}:/usr/src/app
       - /usr/src/app/node_modules
-      - /usr/src/app/.next
+      - /usr/src/app/src/client/.next
   db:
     image: postgres
     restart: always

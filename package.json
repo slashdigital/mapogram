@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "node src/server/index.js",
-    "build": "node scripts/build.js",
+    "build": "node --unhandled-rejections=strict scripts/build.js",
     "start": "cross-env NODE_ENV=production node src/server/index.js",
     "type-check": "tsc"
   },
@@ -19,6 +19,6 @@
     "@types/react-dom": "^17.0.1",
     "postcss-preset-env": "^7.4.2",
     "tailwindcss": "^3.0.23",
-    "typescript": "4.0"
+    "typescript": "4.3.2"
   }
 }

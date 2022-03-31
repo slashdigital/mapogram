@@ -10,7 +10,7 @@ const IndexPage = () => (
       </div>
       <div className={Styles.homepage__vertical_line}/>
       <div className={Styles.homepage__right}>
-        <p>Generate me a map over of:</p>
+        <p className={Styles.homepage__right_header}>Generate me a map over of:</p>
         <div className={Styles.homepage__right_form}>
           <div className={Styles.homepage__right_form_group}>
             <div className={Styles.homepage__right_form_label}>

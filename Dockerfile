@@ -15,4 +15,4 @@ COPY . .
 RUN yarn run build
 
 # Running the app
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]

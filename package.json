@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "node src/server/index.js",
-    "build": "node --unhandled-rejections=strict scripts/build.js",
+    "build": "node scripts/build.js",
     "start": "cross-env NODE_ENV=production node src/server/index.js",
     "type-check": "tsc"
   },
@@ -18,8 +18,10 @@
     "@types/node": "^12.12.21",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "autoprefixer": "^10.4.4",
+    "postcss": "^8.4.12",
     "postcss-preset-env": "^7.4.2",
     "tailwindcss": "^3.0.23",
-    "typescript": "4.3.2"
+    "typescript": "4.6.3"
   }
 }

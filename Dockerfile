@@ -16,7 +16,7 @@ COPY . .
 # Building app
 RUN yarn build
 
-EXPOSE 80
+EXPOSE 80 1337
 
 # Running the app
 CMD ["yarn", "start"]

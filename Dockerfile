@@ -1,6 +1,6 @@
 FROM node:17.8-alpine
 
-ENV PORT 80
+ENV PORT 1337
 
 # Create app directory
 RUN mkdir -p /usr/src/app

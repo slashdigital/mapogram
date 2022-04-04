@@ -1,5 +1,7 @@
 FROM node:17.8-alpine
 
+ENV PORT 80
+
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -12,7 +14,9 @@ RUN yarn install
 COPY . .
 
 # Building app
-RUN yarn run build
+RUN yarn build
+
+EXPOSE 80
 
 # Running the app
 CMD ["yarn", "start"]

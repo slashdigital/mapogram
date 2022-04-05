@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from "next/image"
 import Logo from '../assets/logo.png'
 import styles from './Layout.module.css'
-import { Icon } from '@iconify/react';
+// import { Icon } from '@iconify/react';
 
 type Props = {
   children?: ReactNode
@@ -30,7 +30,8 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
             <button className={styles.header__button_about}>About Us</button>
           </Link>
           <Link href="/users">
-            <button className={styles.header__button_gallery}>Visit Map Gallery <Icon icon="akar-icons:arrow-right" className={styles.header__button_gallery_icon}/></button>
+            Testing
+            {/* <button className={styles.header__button_gallery}>Visit Map Gallery <Icon icon="akar-icons:arrow-right" className={styles.header__button_gallery_icon}/></button> */}
           </Link>
         </nav>
       </div>

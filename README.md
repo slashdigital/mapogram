@@ -26,6 +26,70 @@ yarn create next-app --example with-typescript with-typescript-app
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
+## Database Migration
+
+### How to Create Migration
+
+Add `"migrate": "node-pg-migrate"` to scripts section of package.json so you are able to quickly run commands.
+
+Run `npm run migrate create my first migration`. It will create file xxx_my-first-migration.js in migrations folder. Open it and change contents to:
+
+```
+exports.up = (pgm) => {
+  pgm.createTable('users', {
+    id: 'id',
+    name: { type: 'varchar(1000)', notNull: true },
+    createdAt: {
+      type: 'timestamp',
+      notNull: true,
+      default: pgm.func('current_timestamp'),
+    },
+  })
+  pgm.createTable('posts', {
+    id: 'id',
+    userId: {
+      type: 'integer',
+      notNull: true,
+      references: '"users"',
+      onDelete: 'cascade',
+    },
+    body: { type: 'text', notNull: true },
+    createdAt: {
+      type: 'timestamp',
+      notNull: true,
+      default: pgm.func('current_timestamp'),
+    },
+  })
+  pgm.createIndex('posts', 'userId')
+}
+```
+Save migration file.
+
+### How to Run Migration
+
+Now you should put your DB connection string to `DATABASE_URL` environment variable and run `npm run migrate up`. (e.g. `DATABASE_URL=postgres://test:test@localhost:5432/test` and `npm run migrate up`)
+
+You should now have two tables in your DB!
+
+### How to Rollback Migration
+
+If you want to rollback migration table, you should change content of migration file in migrations directory, change its content to:
+
+```
+exports.down = pgm => {
+    pgm.dropTable('users', {
+        ifExists: true,
+        cascade: true,
+    })
+
+    pgm.dropTable('posts', {
+        ifExists: true,
+        cascade: true
+    })
+};
+```
+Now you should run `npm run migrate` down for rollback migration.
+
 ## If you're using Docker
 
 After pull the project, find out the .env.example file in the `root directory`.

@@ -9,6 +9,7 @@ type Props = {
 };
 
 const MapListPage = (props: Props) => {
+
   const { maps = [] } = props;
   return (
     <Layout title="Map List | Mapogram">

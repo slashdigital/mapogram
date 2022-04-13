@@ -8,7 +8,11 @@ import MapService from "../services/MapService";
 const IndexPage = () => {
   const generateMap = async () => {
     console.log('Generate maps');
+    // get value from input
+    // pass as params
     const data = await MapService.generateMap('');
+    console.log(data);
+    // redirect to the loading page
     Router.push(`/maps/${data.mapId}/status`);
   };
 

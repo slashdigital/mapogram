@@ -27,7 +27,7 @@ const MapListPage = (props: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getServerSideProps() {
   // Example for including static props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.

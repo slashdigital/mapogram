@@ -7,6 +7,7 @@ console.log(process.env);
 
 module.exports = {
   dev,
+  distDir: 'build',
   dir: path.resolve(__dirname, "../../src/client"), // changing page client directory
   config: require("../../tsconfig.json"),
   

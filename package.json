@@ -2,8 +2,10 @@
   "private": true,
   "scripts": {
     "dev": "ts-node src/server/server.ts",
-    "build": "node --unhandled-rejections=strict scripts/build.js",
-    "start": "cross-env NODE_ENV=production node src/server/index.js",
+    "build": "yarn build:client && yarn build:server",
+    "build:client": "node --unhandled-rejections=strict scripts/build.js",
+    "build:server": "tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/server/server.js",
     "type-check": "tsc",
     "migrate": "node-pg-migrate"
   },

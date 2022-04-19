@@ -1,14 +1,20 @@
+import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../../components/Layout";
 import MapModel from "../../../shared/models/map.model";
 import { GetStaticProps } from "next";
 import MapService from "../../services/MapService";
 
-type Props = {
+interface WithRouterProps {
+  router: NextRouter
+}
+
+interface MapListPageProps extends WithRouterProps {
+
   maps: [MapModel],
   items: []
-};
+}
 
-const MapListPage = (props: Props) => {
+const MapListPage = (props: MapListPageProps) => {
 
   const { maps = [] } = props;
   return (
@@ -35,4 +41,4 @@ export async function getServerSideProps() {
   return { props: { maps } }
 }
 
-export default MapListPage;
+export default withRouter(MapListPage);

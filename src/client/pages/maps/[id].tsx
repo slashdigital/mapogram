@@ -1,14 +1,19 @@
+import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../../components/Layout";
 import MapModel from "../../../shared/models/map.model";
 import MapService from "../../services/MapService";
-import { GetStaticProps } from "next";
 
-type Props = {
-  map: MapModel;
-  items: [];
-};
+interface WithRouterProps {
+  router: NextRouter
+}
 
-const MapGenerationPage = (props: Props) => {
+interface MapPageProps extends WithRouterProps {
+
+  map: MapModel,
+  items: []
+}
+
+const MapGenerationPage = (props: MapPageProps) => {
   const { map = { mapId: "", staticMapUrl: "" } } = props;
   return (
     <Layout title="Users List | Next.js + TypeScript Example">
@@ -41,4 +46,4 @@ export async function getServerSideProps() {
 //   return { map: {}}
 // }
 
-export default MapGenerationPage;
+export default withRouter(MapGenerationPage);

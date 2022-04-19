@@ -1,11 +1,18 @@
 
-import Router from 'next/router'
+
+import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../components/Layout";
 import Button from "@mui/material/Button";
 import Styles from "./pages.module.css";
 import MapService from "../services/MapService";
 
-const IndexPage = () => {
+interface WithRouterProps {
+  router: NextRouter
+}
+
+interface IndexPageProps extends WithRouterProps {}
+
+const IndexPage = (props: IndexPageProps) => {
   const generateMap = async () => {
     console.log('Generate maps');
     // get value from input
@@ -13,7 +20,7 @@ const IndexPage = () => {
     const data = await MapService.generateMap('');
     console.log(data);
     // redirect to the loading page
-    Router.push(`/maps/${data.mapId}/status`);
+    props.router.push(`/maps/${data.mapId}/status`);
   };
 
   return (
@@ -86,4 +93,4 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+export default withRouter(IndexPage);

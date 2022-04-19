@@ -7,9 +7,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    volumes:
-      - ${PROJECT_DIRECTORY}:/usr/src/app
-      - /usr/src/app/node_modules
   db:
     image: postgres
     restart: always

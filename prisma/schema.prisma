@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model MapType {
+  id         Int          @id @default(autoincrement())
+  name       String
+  layout     String?
+  Generation Generation[]
+}
+
+model Generation {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  title      String?
+  outputPath String?
+  zoomLevel  String?
+  command    String?
+  layout     String?
+  lat        String
+  lng        String
+  sessionId  String?
+  submitted  Boolean  @default(false)
+  status     String?
+  mapType    MapType? @relation(fields: [mapTypeId], references: [id])
+  mapTypeId  Int?
+}

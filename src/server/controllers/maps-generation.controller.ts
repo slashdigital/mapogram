@@ -3,6 +3,7 @@ import logger from '../utils/log';
 import response from '../utils/response';
 import { MapStatus } from '../utils/constants';
 import MapModel from '../../shared/models/map.model';
+import { requestMap, queryOutput, RequestMapParams } from "../services/powerautomate";
 
 class MapGenerationController {
   handler: RequestHandler;
@@ -11,12 +12,23 @@ class MapGenerationController {
     this.handler = _handler;
   }
 
-  public doGenerateMap = (req, res) => {
+  public doGenerateMap = async (req, res) => {
     logger.info('Pages::home page - render');
     let map = new MapModel();
     map.mapId = '1';
     map.staticMapUrl = 'https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg';
     map.status = MapStatus.Draft;
+    const result = await requestMap({ 
+      dataSource: '',
+      zoomLevel: '',
+      latLng: [0 ,1]
+    });
+    console.log('request result', result);
+    const resultOutput = await queryOutput({ 
+      outputPath: '',
+      id: ''
+    });
+    console.log('request result output', resultOutput);
     return response.success(res, map);
   };
   public getGeneratedMap = (req, res) => {

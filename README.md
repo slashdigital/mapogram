@@ -30,6 +30,17 @@ Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&ut
 
 ### How to Create Migration
 
+
+Command for prisma
+
+ ./node_modules/.bin/prisma init  
+
+ ./node_modules/.bin/prisma format   
+
+./node_modules/.bin/prisma generate   
+
+./node_modules/.bin/prisma migrate dev  
+
 Add `"migrate": "node-pg-migrate"` to scripts section of package.json so you are able to quickly run commands.
 
 Run `npm run migrate create my first migration`. It will create file xxx_my-first-migration.js in migrations folder. Open it and change contents to:
@@ -88,7 +99,7 @@ exports.down = pgm => {
     })
 };
 ```
-Now you should run `npm run migrate` down for rollback migration.
+Now you should run `npm run migrate down` for rollback migration.
 
 ## If you're using Docker
 
@@ -130,3 +141,4 @@ When we run `next dev` the next time, Next.js will start looking for any `.ts` o
 Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
 
 A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+

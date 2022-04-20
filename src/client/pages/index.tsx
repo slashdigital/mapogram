@@ -10,17 +10,20 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Styles from "./pages.module.css";
+import MapTypeModel from "../models/MapType";
 import MapService from "../services/MapService";
 import PlaceAutocomplete from "../components/forms/PlaceAutocomplete";
 interface WithRouterProps {
   router: NextRouter
 }
 
-interface IndexPageProps extends WithRouterProps {}
+interface IndexPageProps extends WithRouterProps {
+  mapTypes: MapTypeModel[]
+}
 
 const IndexPage = (props: IndexPageProps) => {
 
-  const [dataSource, setDataSource] = useState('fire-template');
+  const [dataSource, setDataSource] = useState('');
   const [zoomLevel, setZoomLevel] = useState('default');
   const [location, setLocation] = useState(null);
   // const [dataSource, setDataSource] = useState('');
@@ -34,7 +37,14 @@ const IndexPage = (props: IndexPageProps) => {
     props.router.push(`/maps/${data.mapId}/status`);
   };
 
+  console.log(props.mapTypes);
+
+
   React.useEffect(() => {
+
+    if (props.mapTypes.length && dataSource == '') {
+      setDataSource(props.mapTypes[0].layout.toString());
+    }
     console.log(location);
   });
 
@@ -68,8 +78,8 @@ const IndexPage = (props: IndexPageProps) => {
                   onChange={e => setDataSource(e.target.value)}
                 >
                   {
-                    [{value: 'fire-template', label: 'Fire Data Source'}].map((item) => (
-                      <MenuItem value={item.value}>{item.label}</MenuItem>
+                    props.mapTypes.map((item) => (
+                      <MenuItem value={item.layout.toString()}>{item.name}</MenuItem>
                     ))
                   }
                 </TextField>
@@ -114,5 +124,14 @@ const IndexPage = (props: IndexPageProps) => {
     </Layout>
   );
 };
+
+
+export async function getServerSideProps() {
+  // Example for including static props in a Next.js function component page.
+  // Don't forget to include the respective types for any props passed into
+  // the component.
+  const mapTypes: MapTypeModel[] = await MapService.getMapTypes();
+  return { props: { mapTypes } }
+}
 
 export default withRouter(IndexPage);

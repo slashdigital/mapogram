@@ -3,6 +3,7 @@
 
 import getConfig from 'next/config'
 import MapModel from "../../shared/models/map.model";
+import MapTypeModel from '../models/MapType';
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -46,6 +47,16 @@ class MapService {
     });
     const data = await res.json();
     console.log(data);
+    return data;
+  };
+  public getMapTypes = async ():Promise<[MapTypeModel]> => {
+    const res = await fetch(`${apiUrl}api/map-types`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+    const data = await res.json();
     return data;
   };
 }

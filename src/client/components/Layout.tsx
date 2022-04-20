@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+import { ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from "next/image"
@@ -6,12 +7,15 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import Logo from '../assets/logo.png'
 import styles from './Layout.module.css'
 
+import theme from "../themes/theme";
+
 type Props = {
   children?: ReactNode
   title?: string
 }
 
 const Layout = ({ children, title = 'Mapogram' }: Props) => (
+  <ThemeProvider theme={theme}>
   <div>
     <Head>
       <title>{title}</title>
@@ -50,6 +54,7 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
       <span className={styles.footer__text}>Mapogram 2022. Supported Slash.co and Sponsored by ADPC Grant</span>
     </footer>
   </div>
+  </ThemeProvider>
 )
 
 export default Layout

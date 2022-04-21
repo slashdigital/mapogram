@@ -33,6 +33,9 @@ class PagesController {
   public showMapListPage = (req, res) => {
     return this.handler(req, res);
   };
+  public showMapErrorPage = (req, res) => {
+    return this.handler(req, res);
+  };
 }
 
 export default PagesController;

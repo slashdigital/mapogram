@@ -1,14 +1,28 @@
-import { RequestHandler } from 'next/dist/server/next';
-import { PrismaClient, Prisma } from '@prisma/client'
+import Joi from "joi";
+import { RequestHandler } from "next/dist/server/next";
+import { PrismaClient, Prisma } from "@prisma/client";
 
-import logger from '../utils/log';
-import response from '../utils/response';
-import { MapStatus } from '../utils/constants';
-import MapModel from '../../shared/models/map.model';
-import { requestMap, queryOutput, RequestMapParams } from "../services/powerautomate";
+import logger from "../utils/log";
+import response from "../utils/response";
+import { MapStatus } from "../utils/constants";
+import MapModel from "../../shared/models/map.model";
+import {
+  requestMap,
+  queryOutput,
+  RequestMapParams,
+} from "../services/powerautomate";
+import { verifyRecaptcha } from "../services/recaptcha";
 
+const schema = Joi.object({
+  token: Joi.string().required(),
 
-const prisma = new PrismaClient()
+  layout: Joi.string(),
+  lat: Joi.string(),
+  lng: Joi.string(),
+  zoom: Joi.string(),
+});
+
+const prisma = new PrismaClient();
 class MapGenerationController {
   handler: RequestHandler;
   render: Function;
@@ -17,47 +31,64 @@ class MapGenerationController {
   }
 
   public doGenerateMap = async (req, res) => {
-    logger.info('Pages::home page - render');
-    let map = new MapModel();
-    map.mapId = '1';
-    map.staticMapUrl = 'https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg';
-    map.status = MapStatus.Draft;
-    const result = await requestMap({ 
-      dataSource: '',
-      zoomLevel: '',
-      latLng: [0 ,1]
-    });
-    console.log('request result', result);
-    const resultOutput = await queryOutput({ 
-      outputPath: '',
-      id: ''
-    });
-    console.log('request result output', resultOutput);
-    return response.success(res, map);
+    logger.info("Pages::home page - render, ", req.body);
+
+    const params = req.body;
+
+    try {
+      await schema.validateAsync(params);
+      // Verify recaptcha
+      const recaptchaResult = await verifyRecaptcha(params.token);
+      if (!recaptchaResult) {
+        throw new Error('Error - failed to verify recaptcha');
+      }
+      let map = new MapModel();
+      map.mapId = "1";
+      map.staticMapUrl =
+        "https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg";
+      map.status = MapStatus.Draft;
+      const result = await requestMap({
+        dataSource: "",
+        zoomLevel: "",
+        latLng: [0, 1],
+      });
+      console.log("request result", result);
+      const resultOutput = await queryOutput({
+        outputPath: "",
+        id: "",
+      });
+      console.log("request result output", resultOutput);
+      return response.success(res, map);
+    } catch (e) {
+      return response.error(res, "Cannot Generate Map",);
+    }
   };
   public getGeneratedMap = (req, res) => {
-    logger.info('API::map - get generated map');
+    logger.info("API::map - get generated map");
     let map = new MapModel();
-    map.mapId = '1';
-    map.staticMapUrl = 'https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg';
+    map.mapId = "1";
+    map.staticMapUrl =
+      "https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg";
     map.status = MapStatus.Generating;
     return response.success(res, map);
   };
   public getGeneratedMapGallery = (req, res) => {
-    logger.info('API::map - get generated map gallery');
+    logger.info("API::map - get generated map gallery");
     let map = new MapModel();
-    map.mapId = '1';
-    map.staticMapUrl = 'https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg';
+    map.mapId = "1";
+    map.staticMapUrl =
+      "https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg";
     let map2 = new MapModel();
-    map2.mapId = '2';
-    map2.staticMapUrl = 'https://images.unsplash.com/photo-1649771993311-4a59eb0b0458?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1956&q=80';
+    map2.mapId = "2";
+    map2.staticMapUrl =
+      "https://images.unsplash.com/photo-1649771993311-4a59eb0b0458?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1956&q=80";
     map2.status = MapStatus.Generating;
     return response.success(res, [map, map2]);
   };
 
   public getMapTypes = async (req, res) => {
     const mapTypes = await prisma.mapType.findMany();
-    console.log('Created map type with id:', mapTypes);
+    console.log("Created map type with id:", mapTypes);
     return response.success(res, mapTypes);
   };
 }

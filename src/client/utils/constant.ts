@@ -1,0 +1,2 @@
+export const RECAPTCHA_SITE_KEY = '6LefJ40fAAAAAOSsD4A30Xmu6kzYqywCXRFxnF7u';
+export const GOOGLE_MAPS_API_KEY = 'AIzaSyAg23Q7kbLFY9DptJaUt-edqkQXB4uGC_I';

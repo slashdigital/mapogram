@@ -7,6 +7,7 @@ import MapModel from "../../../../shared/models/map.model";
 import GenerationProgress from '../../../components/maps/GenerationProgress';
 import GenerationFailed from '../../../components/maps/GenerationFailed';
 import GenerationSuccess from '../../../components/maps/GenerationSuccess';
+import Ribbon from '../../../components/Ribbon';
 import MapService from '../../../services/MapService';
 import { GetStaticProps } from 'next';
 
@@ -25,10 +26,7 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
   const { map = { mapId: "", staticMapUrl: "", status: 0 } } = props;
   return (
     <Layout title="Users List | Next.js + TypeScript Example">
-      <h1>Map Generating - Id: {map.mapId }</h1>
-      <p>
-        Please wait while map is generating
-      </p>
+      <Ribbon />
       { map.status == 2 && <GenerationProgress mapId={map.mapId} router={props.router} /> }
       { map.status == 0 && <GenerationFailed /> }
       { map.status == 3 && <GenerationSuccess /> }

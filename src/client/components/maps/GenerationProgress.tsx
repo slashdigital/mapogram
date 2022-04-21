@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { NextRouter, useRouter } from 'next/router'
 import LinearProgress from '@mui/material/LinearProgress';
+import Styles from './GenerationProgress.module.css';
 
 
 type Props = {
@@ -12,10 +13,16 @@ const GenerationProgress = (props: Props) => {
 
       props.router.push(`/maps/${props.mapId}`);
     }, 2000);
-  // TODO: update content of the map progress
   return <div>
-      <h4>Will redirecting in 2s</h4>
-      <LinearProgress />
+      <div className={Styles.GenerationProgress}>
+        <p className={Styles.GenerationProgress_header}>Hold on tight, we are generating the map for you....</p>
+        <p className={Styles.GenerationProgress_subheader}>Please wait</p>
+        <p className={Styles.GenerationProgress_req_id}>Request ID: xh3481f</p>
+        <LinearProgress />
+        <div className={Styles.GenerationProgress_refresh}>
+          <button>Refresh if you don’t see progress</button>
+        </div>
+      </div>
     </div>;
 };
 

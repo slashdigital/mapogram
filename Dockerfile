@@ -13,6 +13,8 @@ RUN yarn install
 # Copying source files
 COPY . .
 
+RUN yarn prisma:generate
+
 # Building app
 RUN yarn build
 

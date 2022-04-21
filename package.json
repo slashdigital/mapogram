@@ -7,9 +7,10 @@
     "build:server": "tsc --project tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node dist/server/server.js",
     "type-check": "tsc",
-    "migrate": "./node_modules/.bin/prisma migrate dev",
-    "migrate:deploy": "./node_modules/.bin/prisma migrate deploy",
-    "seed": "./node_modules/.bin/prisma db seed"
+    "prisma:generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "migrate:deploy": "prisma migrate deploy",
+    "seed": "prisma db seed"
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",

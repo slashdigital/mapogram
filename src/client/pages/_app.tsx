@@ -1,9 +1,9 @@
 import React from 'react'
-import { AppProps } from 'next/app'
+import { createTheme } from '@mui/material/styles';
 
 import '../styles/index.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />
 }
 

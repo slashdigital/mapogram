@@ -8,5 +8,6 @@ const mapController = new MapGenerationController(handler, render);
 router.post('/maps/generate', mapController.doGenerateMap);
 router.get('/maps/list', mapController.getGeneratedMapGallery);
 router.get('/maps/:id', mapController.getGeneratedMap);
+router.get('/map-types', mapController.getMapTypes);
 
 export default router;

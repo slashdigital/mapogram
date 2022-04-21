@@ -7,11 +7,13 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Installing dependencies
-COPY package*.json ./
+COPY package.json ./
 RUN yarn install
 
 # Copying source files
 COPY . .
+
+RUN yarn prisma:generate
 
 # Building app
 RUN yarn build

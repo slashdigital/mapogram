@@ -1,5 +1,6 @@
 
-import LinearProgress from '@mui/material/LinearProgress';
+
+import { withRouter, NextRouter, Router } from 'next/router'
 
 import Layout from "../../../components/Layout";
 import MapModel from "../../../../shared/models/map.model";
@@ -9,12 +10,18 @@ import GenerationSuccess from '../../../components/maps/GenerationSuccess';
 import MapService from '../../../services/MapService';
 import { GetStaticProps } from 'next';
 
-type Props = {
+
+interface WithRouterProps {
+  router: NextRouter
+}
+
+interface MapStatusPageProps extends WithRouterProps {
+
   map: MapModel,
   items: []
-};
+}
 
-const MapGenerationStatusPage = (props: Props) => {
+const MapGenerationStatusPage = (props: MapStatusPageProps) => {
   const { map = { mapId: "", staticMapUrl: "", status: 0 } } = props;
   return (
     <Layout title="Users List | Next.js + TypeScript Example">
@@ -22,7 +29,7 @@ const MapGenerationStatusPage = (props: Props) => {
       <p>
         Please wait while map is generating
       </p>
-      { map.status == 2 && <GenerationProgress mapId={map.mapId} /> }
+      { map.status == 2 && <GenerationProgress mapId={map.mapId} router={props.router} /> }
       { map.status == 0 && <GenerationFailed /> }
       { map.status == 3 && <GenerationSuccess /> }
       
@@ -30,19 +37,14 @@ const MapGenerationStatusPage = (props: Props) => {
   );
 };
 
-export async function getStaticPaths() {
-  return {
-    paths: [
-      // String variant:
-      '/maps/first-id/status',
-      // Object variant:
-      { params: { id: 'second-id' } },
-    ],
-    fallback: true,
-  }
-}
+// export async function getStaticPaths() {
+//   return {
+//     paths: [],
+//     fallback: false,
+//   };
+// }
 
-export const getStaticProps: GetStaticProps = async () => {
+export async function getServerSideProps() {
   // Example for including static props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.
@@ -51,4 +53,4 @@ export const getStaticProps: GetStaticProps = async () => {
   return { props: { map } }
 }
 
-export default MapGenerationStatusPage;
+export default withRouter(MapGenerationStatusPage);

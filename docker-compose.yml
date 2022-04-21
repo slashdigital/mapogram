@@ -3,13 +3,13 @@ services:
   mapogram:
     restart: always
     ports:
-      - ${PORT}:80
+      - ${PORT}:${PORT}
     build:
       context: ./
       dockerfile: Dockerfile
-    volumes:
-      - ${PROJECT_DIRECTORY}:/usr/src/app
-      - /usr/src/app/node_modules
+    environment:
+      - API_URL=${API_URL}
+      - PORT=${PORT}
   db:
     image: postgres
     restart: always

@@ -1,16 +1,52 @@
 
-import Router from 'next/router'
+
+import React, { useState } from 'react'
+import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../components/Layout";
 import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import Styles from "./pages.module.css";
+import MapTypeModel from "../models/MapType";
 import MapService from "../services/MapService";
+import PlaceAutocomplete from "../components/forms/PlaceAutocomplete";
+interface WithRouterProps {
+  router: NextRouter
+}
 
-const IndexPage = () => {
+interface IndexPageProps extends WithRouterProps {
+  mapTypes: MapTypeModel[]
+}
+
+const IndexPage = (props: IndexPageProps) => {
+
+  const [dataSource, setDataSource] = useState('');
+  const [zoomLevel, setZoomLevel] = useState('default');
+  const [location, setLocation] = useState(null);
+  // const [dataSource, setDataSource] = useState('');
   const generateMap = async () => {
     console.log('Generate maps');
+    // get value from input
+    // pass as params
     const data = await MapService.generateMap('');
-    Router.push(`/maps/${data.mapId}/status`);
+    console.log(data);
+    // redirect to the loading page
+    props.router.push(`/maps/${data.mapId}/status`);
   };
+
+  console.log(props.mapTypes);
+
+
+  React.useEffect(() => {
+
+    if (props.mapTypes.length && dataSource == '') {
+      setDataSource(props.mapTypes[0].layout.toString());
+    }
+    console.log(location);
+  });
 
   return (
     <Layout title="Mapogram">
@@ -21,6 +57,7 @@ const IndexPage = () => {
             <b>PowerAutomate</b> to provide map generation service for the map
             they needed to deal with natural disaster like Forest fire, Flood
             event etc...
+            
           </p>
         </div>
         <div className={Styles.homepage__vertical_line} />
@@ -31,50 +68,56 @@ const IndexPage = () => {
               <div className={Styles.homepage__right_form_label}>
                 <label htmlFor="source">Source:</label>
               </div>
-              <input
-                className={`${Styles.homepage__right_form_input} placeholder-blue-400`}
-                type="text"
-                id="source"
-                name="source"
-                placeholder="Fire data source"
-                required
-              />
+              <FormControl fullWidth>
+                <TextField
+                select
+                  id="form-data-source"
+                  label="Data Source"
+                  value={dataSource}
+                  color="contrast"
+                  onChange={e => setDataSource(e.target.value)}
+                >
+                  {
+                    props.mapTypes.map((item) => (
+                      <MenuItem value={item.layout.toString()}>{item.name}</MenuItem>
+                    ))
+                  }
+                </TextField>
+              </FormControl>
             </div>
+            
+            <div className={Styles.homepage__right_form_group}>
+              <div className={Styles.homepage__right_form_label}>
+                <label htmlFor="source">Zoom:</label>
+              </div>
+
+              <FormControl fullWidth>
+                  <TextField
+                    select
+                    id="form-zoom-level"
+                    value={zoomLevel}
+                    label="Zoom Level"
+                    inputProps={{
+                      color: "contrast" 
+                    }}
+                    color="contrast"
+                    onChange={e => setZoomLevel(e.target.value)}
+                  >
+                    <MenuItem value={'default'}>Default</MenuItem>
+                  </TextField>
+                </FormControl>
+            </div>
+
             <div className={Styles.homepage__right_form_group}>
               <div className={Styles.homepage__right_form_label}>
                 <label htmlFor="location">Location:</label>
               </div>
-              <input
-                className={`${Styles.homepage__right_form_input} placeholder-blue-400`}
-                type="text"
-                id="location"
-                name="location"
-                placeholder="Search for map location"
-                required
-              />
-            </div>
-            <div className={Styles.homepage__right_form_group}>
-              <div className={Styles.homepage__right_form_label}>
-                <label htmlFor="date">Date:</label>
-              </div>
-              <div className={Styles.homepage__right_form_input}>
-                <input
-                  className={Styles.homepage__right_form_input_date}
-                  type="date"
-                />
-                <span className={Styles.homepage__right_form_input_separator}>
-                  to
-                </span>
-                <input
-                  className={Styles.homepage__right_form_input_date}
-                  type="date"
-                />
-              </div>
+              <PlaceAutocomplete onChange={value => setLocation(value)}/>
             </div>
           </div>
           <div className={Styles.homepage__right_button}>
-          <Button className={Styles.homepage__right_button_generate} variant="contained" onClick={generateMap}>Generate a map</Button>
-          <Button className={Styles.homepage__right_button_clear} variant="contained">Clear</Button>
+          <Button sx={{height: '50px'}} variant="contained" onClick={generateMap}>Generate a map</Button>
+          <Button sx={{height: '50px', ml: 2}} color="contrast" variant="outlined">Clear</Button>
           </div>
         </div>
       </div>
@@ -82,4 +125,13 @@ const IndexPage = () => {
   );
 };
 
-export default IndexPage;
+
+export async function getServerSideProps() {
+  // Example for including static props in a Next.js function component page.
+  // Don't forget to include the respective types for any props passed into
+  // the component.
+  const mapTypes: MapTypeModel[] = await MapService.getMapTypes();
+  return { props: { mapTypes } }
+}
+
+export default withRouter(IndexPage);

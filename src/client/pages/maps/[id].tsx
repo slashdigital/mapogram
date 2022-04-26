@@ -2,6 +2,7 @@ import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../../components/Layout";
 import MapModel from "../../../shared/models/map.model";
 import MapService from "../../services/MapService";
+import Ribbon from '../../components/Ribbon';
 
 interface WithRouterProps {
   router: NextRouter
@@ -17,6 +18,7 @@ const MapGenerationPage = (props: MapPageProps) => {
   const { map = { mapId: "", staticMapUrl: "" } } = props;
   return (
     <Layout title="Users List | Next.js + TypeScript Example">
+      <Ribbon />
       <h1>Map Generating - Id: {map.mapId}</h1>
       <p>Getting the map final output :-)</p>
       <p>You are currently on: /users</p>

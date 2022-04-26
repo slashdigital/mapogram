@@ -1,0 +1,27 @@
+.Ribbon {
+    padding: 0 183px;
+    display: flex;
+    background-color: #3BA9E7;
+    height: 100px;
+    font-size: 14px;
+    color: white;
+    align-items: center;
+}
+
+.Ribbon_left {
+    width: 80%;
+    padding-right: 10px;
+}
+
+.Ribbon_right {
+    width: 20%;
+    padding-left: 10px;
+}
+
+.Ribbon_right_button {
+    background-color: white;
+    color: #55B4EA;
+    width: 139px;
+    height: 35px;
+    ;
+}

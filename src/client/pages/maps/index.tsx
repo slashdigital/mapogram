@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import MapModel from "../../../shared/models/map.model";
 import { GetStaticProps } from "next";
 import MapService from "../../services/MapService";
+import Ribbon from '../../components/Ribbon';
 
 interface WithRouterProps {
   router: NextRouter
@@ -19,6 +20,7 @@ const MapListPage = (props: MapListPageProps) => {
   const { maps = [] } = props;
   return (
     <Layout title="Map List | Mapogram">
+      <Ribbon />
       <h1>Map Listing:</h1>
       <p>You are currently on: Map List</p>
       <ul>

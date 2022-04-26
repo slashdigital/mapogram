@@ -63,7 +63,7 @@ class MapService {
       },
     });
     const data = await res.json();
-    return data;
+    return data.data;
   };
   public getMapGallery = async ():Promise<[MapModel]> => {
     console.log(process.env);

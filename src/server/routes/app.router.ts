@@ -7,6 +7,7 @@ const pageController = new PageController(handler, render);
 
 router.get('/', pageController.showHomePage);
 router.get('/maps', pageController.showMapListPage);
+router.get('/maps/error', pageController.showMapErrorPage);
 router.get('/maps/:id', pageController.showMapGeneration);
 router.get('/maps/:id/status', pageController.showMapGenerationStatus);
 

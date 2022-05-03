@@ -9,15 +9,11 @@ type Props = {
   router: NextRouter
 };
 const GenerationProgress = (props: Props) => {
-    // setTimeout(() => {
-
-    //   props.router.push(`/maps/${props.mapId}`);
-    // }, 2000);
   return <div>
       <div className={Styles.GenerationProgress}>
         <p className={Styles.GenerationProgress_header}>Hold on tight, we are generating the map for you....</p>
         <p className={Styles.GenerationProgress_subheader}>Please wait</p>
-        <p className={Styles.GenerationProgress_req_id}>Request ID: xh3481f</p>
+        <p className={Styles.GenerationProgress_req_id}>Request ID: {props.mapId}</p>
         <LinearProgress />
         <div className={Styles.GenerationProgress_refresh}>
           <button>Refresh if you don’t see progress</button>

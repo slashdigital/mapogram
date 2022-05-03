@@ -21,8 +21,8 @@ export default function ButtonWithCaptcha (props: Props) {
     const token = await executeRecaptcha('generateMap');
     // Do whatever you want with the token
     props.onClick(token);
-  }, [executeRecaptcha]);
+  }, [executeRecaptcha, props]);
   
-  return <Button sx={{height: '50px'}} variant="contained" onClick={handleReCaptchaVerify}>{props.label}</Button>;
+  return <Button type='button' sx={{height: '50px'}} variant="contained" onClick={handleReCaptchaVerify}>{props.label}</Button>;
 
 }

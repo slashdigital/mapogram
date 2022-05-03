@@ -1,6 +1,6 @@
 import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../../components/Layout";
-import MapModel from "../../../shared/models/map.model";
+import { MapModel } from "../../services/MapService";
 import { GetStaticProps } from "next";
 import MapService from "../../services/MapService";
 import Ribbon from '../../components/Ribbon';
@@ -25,9 +25,9 @@ const MapListPage = (props: MapListPageProps) => {
       <p>You are currently on: Map List</p>
       <ul>
       {maps.map((map) => (
-      <li key={`${map.mapId}`}>
-        <div> Map Id {map.mapId }</div>
-      <img width={300} src={`${map.staticMapUrl}`} />
+      <li key={`${map.sessionId}`}>
+        <div> Map Id {map.sessionId }</div>
+      <img width={300} src={`${map.outputPath}`} />
       </li>
     ))}
     </ul>

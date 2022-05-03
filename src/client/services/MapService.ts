@@ -12,22 +12,24 @@ const apiUrl = process.env.API_URL;
 interface RequestGenerateMapParams {
   token: String,
   layout: String,
-  lat: String
-  lng: String,
+  address: String
   zoom: String
 }
 
-interface MapModel {
-
-  source: String,
-  location: String,
-  latLng: Array<Number>, 
-  startDate: String,
-  endDate: String,
-  staticMapUrl: String,
-  mapId: String,
-  status: Number,
-  
+export interface MapModel {
+  id: Number,
+  createdAt: Date,
+  updatedAt: Date,
+  title: String,
+  outputPath: String,
+  zoomLevel: String,
+  command: String,
+  layout: String,
+  lat: String,
+  lng: String,
+  sessionId: String,
+  submitted: boolean,
+  status: String,
 }
 class MapModelResponse {
   data?: MapModel;
@@ -55,8 +57,8 @@ class MapService {
     const data = await res.json();
     return data;
   };
-  public getMapById = async (id: String):Promise<MapModel> => {
-    const res = await fetch(`${apiUrl}api/maps/${id}`, {
+  public getMapById = async (id: String, baseUrl: String  = apiUrl):Promise<MapModel> => {
+    const res = await fetch(`${baseUrl}api/maps/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

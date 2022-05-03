@@ -1,4 +1,6 @@
 import Joi from "joi";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { RequestHandler } from "next/dist/server/next";
 import { PrismaClient, Prisma } from "@prisma/client";
 
@@ -6,19 +8,18 @@ import logger from "../utils/log";
 import response from "../utils/response";
 import { MapStatus } from "../utils/constants";
 import MapModel from "../../shared/models/map.model";
-import {
-  requestMap,
-  queryOutput,
-  RequestMapParams,
-} from "../services/powerautomate";
+import { requestMap, RequestMapParams } from "../services/powerautomate";
+import { geocodeAddress, buildParameters } from "../services/map";
 import { verifyRecaptcha } from "../services/recaptcha";
+import { pushQueue } from "../services/queues/queues";
+
+dayjs.extend(utc);
 
 const schema = Joi.object({
   token: Joi.string().required(),
 
   layout: Joi.string(),
-  lat: Joi.string(),
-  lng: Joi.string(),
+  address: Joi.string(),
   zoom: Joi.string(),
 });
 
@@ -40,50 +41,60 @@ class MapGenerationController {
       // Verify recaptcha
       const recaptchaResult = await verifyRecaptcha(params.token);
       if (!recaptchaResult) {
-        throw new Error('Error - failed to verify recaptcha');
+        throw new Error("Error - failed to verify recaptcha");
       }
-      let map = new MapModel();
-      map.mapId = "1";
-      map.staticMapUrl =
-        "https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg";
-      map.status = MapStatus.Draft;
-      const result = await requestMap({
-        dataSource: "",
-        zoomLevel: "",
-        latLng: [0, 1],
+      const data = await geocodeAddress(params.address);
+
+      const mapParams = await buildParameters(data, params.layout);
+      console.log(mapParams);
+
+      pushQueue(mapParams.payload);
+      const currentDate = dayjs.utc().toDate();
+      const output = await prisma.generation.create({
+        data: {
+          createdAt: currentDate,
+          updatedAt: currentDate,
+          title: params.address,
+          outputPath: `${mapParams.payload.az_blob_url}/${mapParams.payload.output_filename}`,
+          zoomLevel: "default",
+          command: JSON.stringify(mapParams.payload),
+          layout: params.layout,
+          lat: "",
+          lng: "",
+          sessionId: mapParams.uniqueId.toString(),
+          submitted: true,
+          status: "pending",
+        },
       });
-      console.log("request result", result);
-      const resultOutput = await queryOutput({
-        outputPath: "",
-        id: "",
-      });
-      console.log("request result output", resultOutput);
-      return response.success(res, map);
+      return response.success(res, output);
     } catch (e) {
-      return response.error(res, "Cannot Generate Map",);
+      console.log(e);
+      return response.error(res, "Cannot Generate Map");
     }
   };
-  public getGeneratedMap = (req, res) => {
+  public getGeneratedMap = async (req, res) => {
     logger.info("API::map - get generated map");
-    let map = new MapModel();
-    map.mapId = "1";
-    map.staticMapUrl =
-      "https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg";
-    map.status = MapStatus.Generating;
-    return response.success(res, map);
+    const output = await prisma.generation.findFirst({
+      where: {
+        id: req.params.id * 1
+      }
+    });
+    return response.success(res, output);
   };
-  public getGeneratedMapGallery = (req, res) => {
+  public getGeneratedMapGallery = async (req, res) => {
     logger.info("API::map - get generated map gallery");
-    let map = new MapModel();
-    map.mapId = "1";
-    map.staticMapUrl =
-      "https://devops.com/wp-content/uploads/2020/04/Software-Testing.jpg";
-    let map2 = new MapModel();
-    map2.mapId = "2";
-    map2.staticMapUrl =
-      "https://images.unsplash.com/photo-1649771993311-4a59eb0b0458?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1956&q=80";
-    map2.status = MapStatus.Generating;
-    return response.success(res, [map, map2]);
+
+    const listing = await prisma.generation.findMany({
+      where: {
+        id: req.params.id * 1
+      },
+      take: 10,
+      orderBy: {
+        createdAt: 'desc'
+      }
+      
+    });
+    return response.success(res, listing);
   };
 
   public getMapTypes = async (req, res) => {

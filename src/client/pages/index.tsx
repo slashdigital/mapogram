@@ -26,25 +26,29 @@ interface IndexPageProps extends WithRouterProps {
 const IndexPage = (props: IndexPageProps) => {
   const [dataSource, setDataSource] = useState("");
   const [zoomLevel, setZoomLevel] = useState("default");
-  const [location, setLocation] = useState(null);
+  const [address, setAddress] = useState("");
   // const [dataSource, setDataSource] = useState('');
   const generateMap = async (token) => {
-    console.log("Generate maps");
+    console.log("Generate maps",  {
+      layout: dataSource,
+      zoom: zoomLevel,
+      address:address,
+      token: token,
+    });
     // get value from input
     // pass as params
     const data = await MapService.generateMap("", {
       layout: dataSource,
       zoom: zoomLevel,
-      lat: "dataSource",
-      lng: "dataSource",
+      address: address,
       token: token,
     });
     console.log(data);
-    if (!data.error && data.data && data.data.mapId) {
+    if (!data.error && data.data && data.data.id) {
       // redirect to the loading page
-      props.router.push(`/maps/${data.data.mapId}/status`);
+      props.router.push(`/maps/${data.data.id}/status`);
     } else {
-      props.router.push("/maps/error");
+      props.router.push(`/maps/${data.data.id}/error`);
     }
   };
 
@@ -54,7 +58,7 @@ const IndexPage = (props: IndexPageProps) => {
     if (props.mapTypes.length && dataSource == "") {
       setDataSource(props.mapTypes[0].layout.toString());
     }
-    console.log(location);
+    console.log('effect', address, dataSource);
   });
 
   return (
@@ -71,7 +75,7 @@ const IndexPage = (props: IndexPageProps) => {
           </div>
           <div className={Styles.homepage__vertical_line} />
           <div className={Styles.homepage__right}>
-            <p>Generate me a map over of:</p>
+            <p>Generate me a map over of {address} :</p>
             <div className={Styles.homepage__right_form}>
               <div className={Styles.homepage__right_form_group}>
                 <div className={Styles.homepage__right_form_label}>
@@ -121,7 +125,12 @@ const IndexPage = (props: IndexPageProps) => {
                 <div className={Styles.homepage__right_form_label}>
                   <label htmlFor="location">Location:</label>
                 </div>
-                <PlaceAutocomplete onChange={(value) => setLocation(value)} />
+                <PlaceAutocomplete onChange={(value) => {
+                  console.log('Set location', value);
+                  if (value != null) {
+                    setAddress(value.description);
+                  }
+                }} />
               </div>
             </div>
             <div className={Styles.homepage__right_button}>
@@ -140,8 +149,8 @@ const IndexPage = (props: IndexPageProps) => {
           </div>
         </div>
       </Layout>
-    </GoogleReCaptchaProvider>
-  );
+    </GoogleReCaptchaProvider>)
+ ;
 };
 
 export async function getServerSideProps() {

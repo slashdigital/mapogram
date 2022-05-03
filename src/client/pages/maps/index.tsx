@@ -1,4 +1,6 @@
 import { withRouter, NextRouter, Router } from 'next/router'
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -12,6 +14,7 @@ import Ribbon from '../../components/Ribbon';
 
 import Placeholder from '../../assets/placeholder.jpeg'
 
+dayjs.extend(utc);
 interface WithRouterProps {
   router: NextRouter
 }
@@ -23,8 +26,11 @@ interface MapListPageProps extends WithRouterProps {
 }
 
 const MapListPage = (props: MapListPageProps) => {
-
   const { maps = [] } = props;
+  const getDate = (item) => {
+    return dayjs.utc(item.createdAt).local().format('YYYY/MM/DD HH:mm');
+  }
+
   return (
     <Layout title="Map List | Mapogram">
       <Ribbon />
@@ -52,7 +58,7 @@ const MapListPage = (props: MapListPageProps) => {
                     whiteSpace: 'wordwrap'
                   }}
                 title={item.title}
-                subtitle={<span>#: {item.sessionId}</span>}
+                subtitle={<span>#: {getDate(item)}</span>}
                 position="below"
               />
             </ImageListItem>

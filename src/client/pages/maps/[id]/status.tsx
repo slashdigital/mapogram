@@ -30,18 +30,21 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
       clearInterval(timeout);
     }
     timeout = setInterval(() => {
-      // More than 1 hours
-      if (timeWaited > 1 * 60 * 60 * 100) {
+      // More than 20min
+      if (timeWaited > 20 * 60 * 100) {
         clearInterval(timeout);
         props.router.push(`/maps/${map.id}/error`);
       }
       MapService.getMapById(map.id.toString(), "/")
         .then((result) => {
-          if (result.status != "success") {
-            setTimeWaited(timeWaited + delay);
-          } else {
+          if (result.status == "failed") {
+            clearInterval(timeout);
+            props.router.push(`/maps/${map.id}/error`);
+          } else if (result.status == "success") {
             clearInterval(timeout);
             props.router.push(`/maps/${map.id}`);
+          } else {
+            setTimeWaited(timeWaited + delay);
           }
         })
         .catch((e) => {

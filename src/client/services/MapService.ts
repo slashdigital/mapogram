@@ -68,7 +68,6 @@ class MapService {
     return data.data;
   };
   public getMapGallery = async ():Promise<[MapModel]> => {
-    console.log(process.env);
     console.log(`${apiUrl}api/maps`);
     const res = await fetch(`${apiUrl}api/maps/list`, {
       method: 'GET',

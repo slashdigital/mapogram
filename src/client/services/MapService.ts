@@ -2,6 +2,8 @@
 // This file for service to backend
 
 import getConfig from 'next/config'
+
+
 import MapTypeModel from '../models/MapType';
 
 const { publicRuntimeConfig } = getConfig();
@@ -76,7 +78,7 @@ class MapService {
       },
     });
     const data = await res.json();
-    return data;
+    return data.data;
   };
   public getMapTypes = async ():Promise<Array<MapTypeModel>> => {
     try {

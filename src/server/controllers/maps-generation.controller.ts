@@ -86,7 +86,7 @@ class MapGenerationController {
 
     const listing = await prisma.generation.findMany({
       where: {
-        id: req.params.id * 1
+        status: 'success'
       },
       take: 10,
       orderBy: {

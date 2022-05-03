@@ -1,9 +1,16 @@
 import { withRouter, NextRouter, Router } from 'next/router'
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import Container from '@mui/material/Container';
 import Layout from "../../components/Layout";
 import { MapModel } from "../../services/MapService";
 import { GetStaticProps } from "next";
 import MapService from "../../services/MapService";
 import Ribbon from '../../components/Ribbon';
+
+
+import Placeholder from '../../assets/placeholder.jpeg'
 
 interface WithRouterProps {
   router: NextRouter
@@ -21,16 +28,37 @@ const MapListPage = (props: MapListPageProps) => {
   return (
     <Layout title="Map List | Mapogram">
       <Ribbon />
-      <h1>Map Listing:</h1>
-      <p>You are currently on: Map List</p>
-      <ul>
-      {maps.map((map) => (
-      <li key={`${map.sessionId}`}>
-        <div> Map Id {map.sessionId }</div>
-      <img width={300} src={`${map.outputPath}`} />
-      </li>
-    ))}
-    </ul>
+      <Container>
+        <ImageList sx={{ width: '100%', height: '100%' }} variant="masonry" cols={3} gap={5}>
+          {maps.map((item) => (
+            <ImageListItem key={item.img}>
+              <img
+                src={item.outputPath}
+                srcSet={item.outputPath}
+                alt={item.title}
+                onError={(error) => {
+                  console.log(error.currentTarget);
+                  const { currentTarget } = error;
+                  currentTarget.onerror = null; // prevents looping
+                  currentTarget.src = Placeholder.src;
+                  currentTarget.srcset = Placeholder.src;
+                }}
+                loading="lazy"
+              />
+              <ImageListItemBar
+                  sx={{
+                    background:
+                      'grey',
+                    whiteSpace: 'wordwrap'
+                  }}
+                title={item.title}
+                subtitle={<span>#: {item.sessionId}</span>}
+                position="below"
+              />
+            </ImageListItem>
+          ))}
+        </ImageList>
+      </Container>
     </Layout>
   );
 };
@@ -40,6 +68,7 @@ export async function getServerSideProps() {
   // Don't forget to include the respective types for any props passed into
   // the component.
   const maps: MapModel[] = await MapService.getMapGallery();
+  console.log(maps);
   return { props: { maps } }
 }
 

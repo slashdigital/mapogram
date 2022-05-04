@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import Styles from "./Ribbon.module.css";
 
 const Ribbon = () => {
@@ -7,7 +8,9 @@ const Ribbon = () => {
       <p>Mapogram is a platform powered by <b>Cloud-based QGIS</b> and <b>PowerAutomate</b> to provide map generation service for the map they needed to deal with natural disaster like Forest fire, Flood event etc...</p>
     </div>
     <div className={Styles.Ribbon_right}>
-      <button className={Styles.Ribbon_right_button}>Generate more</button>
+        <Link href="/">
+          <button className={Styles.Ribbon_right_button}>Generate more</button>
+        </Link>
     </div>
   </div>
 };

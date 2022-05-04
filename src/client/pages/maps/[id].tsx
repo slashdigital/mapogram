@@ -1,8 +1,10 @@
 import { withRouter, NextRouter, Router } from 'next/router'
 import Layout from "../../components/Layout";
+import Container from '@mui/material/Container';
 import { MapModel } from "../../services/MapService";
 import MapService from "../../services/MapService";
 import Ribbon from '../../components/Ribbon';
+import CardMap from '../../components/maps/CardMap';
 
 interface WithRouterProps {
   router: NextRouter
@@ -17,22 +19,14 @@ interface MapPageProps extends WithRouterProps {
 const MapGenerationPage = (props: MapPageProps) => {
   const { map } = props;
   return (
-    <Layout title="Users List | Next.js + TypeScript Example">
+    <Layout title={`${map.title} - Mapogram`}>
       <Ribbon />
-      <h1>Map Generating - Id: {map.sessionId}</h1>
-      <p>Getting the map final output :-)</p>
-      <p>You are currently on: /users</p>
-      <img src={`${map.outputPath }`} />
+      <Container sx={{mt: 10, mb: 10}} maxWidth="sm">
+        <CardMap map={map} />
+      </Container>
     </Layout>
   );
 };
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: false,
-//   };
-// }
 
 export async function getServerSideProps(context) {
   // Example for including static props in a Next.js function component page.
@@ -41,7 +35,6 @@ export async function getServerSideProps(context) {
 
   const id = context.params.id;
   const map: MapModel = await MapService.getMapById(id);
-  console.log(map, "dfdf");
   return { props: { map } };
 };
 

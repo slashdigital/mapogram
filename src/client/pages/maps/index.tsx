@@ -13,6 +13,7 @@ import Ribbon from '../../components/Ribbon';
 
 
 import Placeholder from '../../assets/placeholder.jpeg'
+import { Typography } from '@mui/material';
 
 dayjs.extend(utc);
 interface WithRouterProps {
@@ -34,8 +35,10 @@ const MapListPage = (props: MapListPageProps) => {
   return (
     <Layout title="Map List | Mapogram">
       <Ribbon />
-      <Container>
-        <ImageList sx={{ width: '100%', height: '100%' }} variant="masonry" cols={3} gap={5}>
+      <Container sx={{mt: 10, mb: 10, width: '100%'}} maxWidth="lg">
+        <Typography variant='h4'>Map Gallery</Typography>
+        <Typography variant='p'>Map Gallery</Typography>
+        <ImageList  sx={{mt: 5, }} variant="masonry" cols={3} gap={10}>
           {maps.map((item) => (
             <ImageListItem key={item.img}>
               <img

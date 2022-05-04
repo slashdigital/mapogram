@@ -15,6 +15,11 @@ import PlaceAutocomplete from "../components/forms/PlaceAutocomplete";
 import ButtonWithCaptcha from "../components/forms/ButtonWithCaptcha";
 import { RECAPTCHA_SITE_KEY } from "../utils/constant";
 
+import { useInputWhiteStyles } from "../themes/input";
+import { WhiteMainButton } from "../themes/button";
+import { Typography } from "@mui/material";
+import ErrorModal from "../components/modal/ErrorModal";
+
 interface WithRouterProps {
   router: NextRouter;
 }
@@ -24,15 +29,29 @@ interface IndexPageProps extends WithRouterProps {
 }
 
 const IndexPage = (props: IndexPageProps) => {
+  const [hasError, setHasError] = useState(false);
   const [dataSource, setDataSource] = useState("");
   const [zoomLevel, setZoomLevel] = useState("default");
   const [address, setAddress] = useState("");
-  // const [dataSource, setDataSource] = useState('');
+
+  const validate = (token) => {
+    const valid = !!dataSource && !!zoomLevel && !!address && !!token;
+    if (!valid) {
+      setHasError(true);
+    }
+    return valid;
+  };
+
   const generateMap = async (token) => {
-    console.log("Generate maps",  {
+    const isValid = validate(token);
+    console.log(isValid);
+    if (!isValid) {
+      return false;
+    }
+    console.log("Generate maps", {
       layout: dataSource,
       zoom: zoomLevel,
-      address:address,
+      address: address,
       token: token,
     });
     // get value from input
@@ -58,8 +77,10 @@ const IndexPage = (props: IndexPageProps) => {
     if (props.mapTypes.length && dataSource == "") {
       setDataSource(props.mapTypes[0].layout.toString());
     }
-    console.log('effect', address, dataSource);
+    console.log("effect", address, dataSource);
   });
+
+  const classes = useInputWhiteStyles();
 
   return (
     <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
@@ -79,15 +100,16 @@ const IndexPage = (props: IndexPageProps) => {
             <div className={Styles.homepage__right_form}>
               <div className={Styles.homepage__right_form_group}>
                 <div className={Styles.homepage__right_form_label}>
-                  <label htmlFor="source">Source:</label>
+                  <Typography variant="body1">Source:</Typography>
                 </div>
                 <FormControl fullWidth>
                   <TextField
                     select
+                    variant="filled"
+                    className={classes.root}
                     id="form-data-source"
                     label="Data Source"
                     value={dataSource}
-                    color="contrast"
                     onChange={(e) => setDataSource(e.target.value)}
                   >
                     {props.mapTypes.map((item, index) => (
@@ -101,19 +123,20 @@ const IndexPage = (props: IndexPageProps) => {
 
               <div className={Styles.homepage__right_form_group}>
                 <div className={Styles.homepage__right_form_label}>
-                  <label htmlFor="source">Zoom:</label>
+                  <Typography variant="body1">Zoom:</Typography>
                 </div>
 
                 <FormControl fullWidth>
                   <TextField
                     select
+                    variant="filled"
+                    className={classes.root}
                     id="form-zoom-level"
                     value={zoomLevel}
                     label="Zoom Level"
                     inputProps={{
                       color: "contrast",
                     }}
-                    color="contrast"
                     onChange={(e) => setZoomLevel(e.target.value)}
                   >
                     <MenuItem value={"default"}>Default</MenuItem>
@@ -123,14 +146,16 @@ const IndexPage = (props: IndexPageProps) => {
 
               <div className={Styles.homepage__right_form_group}>
                 <div className={Styles.homepage__right_form_label}>
-                  <label htmlFor="location">Location:</label>
+                  <Typography variant="body1">Location:</Typography>
                 </div>
-                <PlaceAutocomplete onChange={(value) => {
-                  console.log('Set location', value);
-                  if (value != null) {
-                    setAddress(value.description);
-                  }
-                }} />
+                <PlaceAutocomplete
+                  onChange={(value) => {
+                    console.log("Set location", value);
+                    if (value != null) {
+                      setAddress(value.description);
+                    }
+                  }}
+                />
               </div>
             </div>
             <div className={Styles.homepage__right_button}>
@@ -148,9 +173,15 @@ const IndexPage = (props: IndexPageProps) => {
             </div>
           </div>
         </div>
+        <ErrorModal
+          open={hasError}
+          onClose={() => setHasError(false)}
+          title="Error Generating Map"
+          description="There was a request or validation error. Please, check all the field properly."
+        />
       </Layout>
-    </GoogleReCaptchaProvider>)
- ;
+    </GoogleReCaptchaProvider>
+  );
 };
 
 export async function getServerSideProps() {

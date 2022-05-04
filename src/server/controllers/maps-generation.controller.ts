@@ -84,11 +84,13 @@ class MapGenerationController {
   public getGeneratedMapGallery = async (req, res) => {
     logger.info("API::map - get generated map gallery");
 
+    const limit = (req.query.limit * 1) || 10;
+
     const listing = await prisma.generation.findMany({
       where: {
         status: 'success'
       },
-      take: 10,
+      take: limit,
       orderBy: {
         createdAt: 'desc'
       }

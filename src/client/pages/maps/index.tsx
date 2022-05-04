@@ -16,6 +16,8 @@ import Placeholder from '../../assets/placeholder.jpeg'
 import { Typography } from '@mui/material';
 
 dayjs.extend(utc);
+
+const MAP_LIMIT = 10;
 interface WithRouterProps {
   router: NextRouter
 }
@@ -37,10 +39,10 @@ const MapListPage = (props: MapListPageProps) => {
       <Ribbon />
       <Container sx={{mt: 10, mb: 10, width: '100%'}} maxWidth="lg">
         <Typography variant='h4'>Map Gallery</Typography>
-        <Typography variant='p'>Map Gallery</Typography>
+        <Typography variant='caption'>All the recent {MAP_LIMIT} generated map are being shown here.</Typography>
         <ImageList  sx={{mt: 5, }} variant="masonry" cols={3} gap={10}>
           {maps.map((item) => (
-            <ImageListItem key={item.img}>
+            <ImageListItem key={item.img} sx={{ border: '1px solid #f4f4f4;', overflow: 'hidden', width: '300px'}}>
               <img
                 src={item.outputPath}
                 srcSet={item.outputPath}
@@ -57,7 +59,7 @@ const MapListPage = (props: MapListPageProps) => {
               <ImageListItemBar
                   sx={{
                     background:
-                      'grey',
+                      '#f4f4f4',
                     whiteSpace: 'wordwrap'
                   }}
                 title={item.title}
@@ -76,7 +78,7 @@ export async function getServerSideProps() {
   // Example for including static props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.
-  const maps: MapModel[] = await MapService.getMapGallery();
+  const maps: MapModel[] = await MapService.getMapGallery(MAP_LIMIT);
   console.log(maps);
   return { props: { maps } }
 }

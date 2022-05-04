@@ -69,9 +69,9 @@ class MapService {
     const data = await res.json();
     return data.data;
   };
-  public getMapGallery = async ():Promise<[MapModel]> => {
+  public getMapGallery = async (limit: Number):Promise<[MapModel]> => {
     console.log(`${apiUrl}api/maps`);
-    const res = await fetch(`${apiUrl}api/maps/list`, {
+    const res = await fetch(`${apiUrl}api/maps/list?limit=${limit}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

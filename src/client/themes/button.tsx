@@ -7,7 +7,7 @@ import { purple } from '@mui/material/colors';
 
 export const WhiteMainButton = styled(Button)<ButtonProps>(({ theme }) => ({
  
-  backgroundColor: '#ffffff',
+  backgroundColor: '#2697d7',
   borderColor: '#2697d7',
   border: '1px solid',
   color: 'white',

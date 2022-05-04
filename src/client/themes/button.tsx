@@ -27,34 +27,18 @@ export const WhiteMainButton = styled(Button)<ButtonProps>(({ theme }) => ({
 }));
 
 export const MainButton = styled(Button)({
-  // boxShadow: 'none',
-  // textTransform: 'none',
-  // fontSize: 16,
-  // padding: '6px 12px',
   border: '1px solid',
-  // lineHeight: 1.5,
-  backgroundColor: '#55b4ea',
+  color: '#55b4ea',
   borderColor: '#55b4ea',
-  fontFamily: [
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Roboto',
-    '"Helvetica Neue"',
-    'Arial',
-    'sans-serif',
-    '"Apple Color Emoji"',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
   '&:hover': {
     backgroundColor: '#3da6e2',
     borderColor: '#2697d7',
+    color: '#fff',
     boxShadow: 'none',
   },
   '&:active': {
     boxShadow: 'none',
-    backgroundColor: '#3da6e2',
+    backgroundColor: '#3da6e2',color: '#fff',
     borderColor: '#2697d7',
   },
   '&:focus': {

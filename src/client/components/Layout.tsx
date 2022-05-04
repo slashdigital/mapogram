@@ -3,7 +3,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from "next/image"
+
+import Button from "@mui/material/Button";
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import { MainButton } from "../themes/button";
 import Logo from '../assets/logo.png'
 import styles from './Layout.module.css'
 
@@ -40,10 +43,11 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
       <div className={styles.header__right}>
         <nav>
           <Link href="/about">
-            <button className={styles.header__button_about}>About Us</button>
+            <MainButton variant="outlined" >About Us</MainButton>
           </Link>
           <Link href="/maps" as="/maps">
-            <button className={styles.header__button_gallery}>Visit Map Gallery <ArrowForwardIosOutlinedIcon /></button>
+
+            <MainButton color='primary' sx={{ml: 2}}>Visit Map Gallery <ArrowForwardIosOutlinedIcon fontSize='small' /></MainButton>
           </Link>
         </nav>
       </div>

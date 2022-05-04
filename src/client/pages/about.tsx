@@ -1,16 +1,19 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Link from "next/link";
+import Layout from "../components/Layout";
 
 const AboutPage = () => (
-  <Layout title="About | Next.js + TypeScript Example">
-    <h1>About</h1>
-    <p>This is the about page</p>
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-  </Layout>
-)
+  <Layout title="About | Mapogram">
+    <Container sx={{ mt: 5, mb: 5, width: "100%", height: '400px' }} maxWidth="lg">
 
-export default AboutPage
+    <Typography variant='h4'>About Mapogram</Typography>
+        <Typography variant='body2'>  Mapogram is a platform powered by <b>Cloud-based QGIS</b> and 
+              <b> PowerAutomate</b> to provide map generation service for the map
+              they needed to deal with natural disaster like Forest fire, Flood
+              event etc...</Typography>
+    </Container>
+  </Layout>
+);
+
+export default AboutPage;

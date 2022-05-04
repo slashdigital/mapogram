@@ -4,18 +4,15 @@
 }
 
 .GenerationProgress_header {
-    font-size: 24px;
     color: #3BA9E7;
-    ;
+    
 }
 
 .GenerationProgress_subheader {
-    font-size: 18px;
     color: #B5B5B5;
 }
 
 .GenerationProgress_req_id {
-    font-size: 14px;
     color: #B5B5B5;
 }
 
@@ -33,7 +30,6 @@
 }
 
 .GenerationProgress_refresh {
-    font-size: 14px;
     color: #3BA9E7;
     text-align: center;
 }

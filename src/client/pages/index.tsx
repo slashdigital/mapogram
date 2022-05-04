@@ -5,7 +5,6 @@ import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import TextField from "@mui/material/TextField";
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Styles from "./pages.module.css";
 import Layout from "../components/Layout";
@@ -16,7 +15,6 @@ import ButtonWithCaptcha from "../components/forms/ButtonWithCaptcha";
 import { RECAPTCHA_SITE_KEY } from "../utils/constant";
 
 import { useInputWhiteStyles } from "../themes/input";
-import { WhiteMainButton } from "../themes/button";
 import { Typography } from "@mui/material";
 import ErrorModal from "../components/modal/ErrorModal";
 
@@ -44,16 +42,9 @@ const IndexPage = (props: IndexPageProps) => {
 
   const generateMap = async (token) => {
     const isValid = validate(token);
-    console.log(isValid);
     if (!isValid) {
       return false;
     }
-    console.log("Generate maps", {
-      layout: dataSource,
-      zoom: zoomLevel,
-      address: address,
-      token: token,
-    });
     // get value from input
     // pass as params
     const data = await MapService.generateMap("", {
@@ -62,7 +53,6 @@ const IndexPage = (props: IndexPageProps) => {
       address: address,
       token: token,
     });
-    console.log(data);
     if (!data.error && data.data && data.data.id) {
       // redirect to the loading page
       props.router.push(`/maps/${data.data.id}/status`);
@@ -77,7 +67,6 @@ const IndexPage = (props: IndexPageProps) => {
     if (props.mapTypes.length && dataSource == "") {
       setDataSource(props.mapTypes[0].layout.toString());
     }
-    console.log("effect", address, dataSource);
   });
 
   const classes = useInputWhiteStyles();
@@ -87,16 +76,19 @@ const IndexPage = (props: IndexPageProps) => {
       <Layout title="Mapogram">
         <div className={Styles.homepage}>
           <div className={Styles.homepage__left}>
-            <p>
-              Mapogram is a platform powered by <b>Cloud-based QGIS</b> and{" "}
-              <b>PowerAutomate</b> to provide map generation service for the map
+            <Typography variant="h6" sx={{ lineHeight: "2", fontWeight: 'normal' }}>
+              Mapogram is a platform powered by <b>Cloud-based QGIS</b> and 
+              <b> PowerAutomate</b> to provide map generation service for the map
               they needed to deal with natural disaster like Forest fire, Flood
               event etc...
-            </p>
+            </Typography>
           </div>
           <div className={Styles.homepage__vertical_line} />
           <div className={Styles.homepage__right}>
-            <p>Generate me a map over of {address} :</p>
+            <Typography variant="body1">
+              I would like to generate a map of:{" "}
+            </Typography>
+            <Typography variant="caption">{address}</Typography>
             <div className={Styles.homepage__right_form}>
               <div className={Styles.homepage__right_form_group}>
                 <div className={Styles.homepage__right_form_label}>

@@ -37,7 +37,7 @@ const MapListPage = (props: MapListPageProps) => {
   return (
     <Layout title="Map List | Mapogram">
       <Ribbon />
-      <Container sx={{mt: 10, mb: 10, width: '100%'}} maxWidth="lg">
+      <Container sx={{mt: 5, mb: 5, width: '100%'}} maxWidth="lg">
         <Typography variant='h4'>Map Gallery</Typography>
         <Typography variant='caption'>All the recent {MAP_LIMIT} generated map are being shown here.</Typography>
         <ImageList  sx={{mt: 5, }} variant="masonry" cols={3} gap={10}>

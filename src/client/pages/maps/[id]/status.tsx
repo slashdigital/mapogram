@@ -7,11 +7,11 @@ import Grid from "@mui/material/Grid";
 
 import Layout from "../../../components/Layout";
 import { MapModel } from "../../../services/MapService";
+import MapService from "../../../services/MapService";
 import GenerationProgress from "../../../components/maps/GenerationProgress";
 import GenerationFailed from "../../../components/maps/GenerationFailed";
 import GenerationSuccess from "../../../components/maps/GenerationSuccess";
 import Ribbon from "../../../components/Ribbon";
-import MapService from "../../../services/MapService";
 
 import Styles from "./status.module.css";
 
@@ -80,7 +80,7 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
                     router={props.router}
                   />
                 )}
-                {map.status == "failed" && <GenerationFailed />}
+                {map.status == "failed" && <GenerationFailed id={map.sessionId}/>}
                 {map.status == "success" && <GenerationSuccess />}
               </Container>
             </Grid>

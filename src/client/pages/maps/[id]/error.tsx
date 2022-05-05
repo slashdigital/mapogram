@@ -9,6 +9,9 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Ribbon from '../../../components/Ribbon';
 
+import { MapModel } from "../../../services/MapService";
+import MapService from "../../../services/MapService";
+
 import Styles from "./status.module.css";
 
 interface WithRouterProps {
@@ -17,6 +20,8 @@ interface WithRouterProps {
 
 interface MapStatusPageProps extends WithRouterProps {
 
+  map: MapModel;
+  
 }
 
 const MapGenerationErrorPage = (props: MapStatusPageProps) => {
@@ -31,7 +36,7 @@ const MapGenerationErrorPage = (props: MapStatusPageProps) => {
           <Grid container spacing={2}>
             <Grid item xs={12} sx={{ alignItems: "center", display: "flex" }}>
               <Container maxWidth="lg">
-                <GenerationFailed />
+                <GenerationFailed id={props.map.sessionId} />
               </Container>
             </Grid>
           </Grid>
@@ -43,8 +48,11 @@ const MapGenerationErrorPage = (props: MapStatusPageProps) => {
 };
 
 
-export async function getServerSideProps() {
-  return { props: {  } }
+export async function getServerSideProps(context) {
+  
+  const id = context.params.id;
+  const map: MapModel = await MapService.getMapById(id);
+  return { props: { map } };
 }
 
 export default withRouter(MapGenerationErrorPage);

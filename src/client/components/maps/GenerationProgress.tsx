@@ -12,24 +12,26 @@ const GenerationProgress = (props: Props) => {
   return (
     <div>
       <div className={Styles.GenerationProgress}>
-        <Typography variant="h5" sx={{ color: "grey" }}>
-          <span className={Styles.GenerationProgress_header}>
-            Hold on tight, we are generating the map for you....
-          </span>
-        </Typography>
-
-        <Typography variant="body1" sx={{ color: "grey" }}>
-          <span className={Styles.GenerationProgress_subheader}>
-            Please wait
-          </span>
-        </Typography>
-
-        <Typography variant="caption">Request ID: {props.mapId}</Typography>
-        <LinearProgress />
-        <div className={Styles.GenerationProgress_refresh}>
-          <Typography variant="caption">
-            Refresh if you don’t see progress
+        <div>
+          <Typography variant="h5" sx={{ color: "grey" }}>
+            <span className={Styles.GenerationProgress_header}>
+              Hold on tight, we are generating the map for you....
+            </span>
           </Typography>
+
+          <Typography variant="body1" sx={{ color: "grey" }}>
+            <span className={Styles.GenerationProgress_subheader}>
+              Please wait
+            </span>
+          </Typography>
+
+          <Typography variant="caption">Request ID: {props.mapId}</Typography>
+          <LinearProgress />
+          <div className={Styles.GenerationProgress_refresh}>
+            <Typography variant="caption">
+              Refresh if you don’t see progress
+            </Typography>
+          </div>
         </div>
       </div>
     </div>

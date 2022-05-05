@@ -25,10 +25,10 @@ const Ribbon = () => {
             item
             xs={2}
             sx={{
-              alignContent: "flex-end",
+              justifyContent: "flex-end",
               alignItems: "center",
               display: "flex",
-              textAlign: "right"
+              textAlign: "right",
             }}
           >
             <Link href="/">

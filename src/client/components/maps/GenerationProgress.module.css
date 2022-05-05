@@ -1,6 +1,7 @@
 .GenerationProgress {
-    padding: 97px 183px;
-    height: 68vh;
+    /* height: 108vh;
+    display: flex;
+    align-items: center; */
 }
 
 .GenerationProgress_header {

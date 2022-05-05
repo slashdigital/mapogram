@@ -52,7 +52,7 @@ const Layout = ({ children, title = "Mapogram" }: Props) => (
                 item
                 xs={4}
                 sx={{
-                  alignContent: "flex-end",
+                  justifyContent: "flex-end",
                   alignItems: "center",
                   display: "flex",
                   textAlign: "right",

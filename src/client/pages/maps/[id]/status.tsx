@@ -1,6 +1,10 @@
 import React from "react";
 import { withRouter, NextRouter, Router } from "next/router";
 
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+
 import Layout from "../../../components/Layout";
 import { MapModel } from "../../../services/MapService";
 import GenerationProgress from "../../../components/maps/GenerationProgress";
@@ -8,7 +12,8 @@ import GenerationFailed from "../../../components/maps/GenerationFailed";
 import GenerationSuccess from "../../../components/maps/GenerationSuccess";
 import Ribbon from "../../../components/Ribbon";
 import MapService from "../../../services/MapService";
-import { GetStaticProps } from "next";
+
+import Styles from "./status.module.css";
 
 interface WithRouterProps {
   router: NextRouter;
@@ -61,13 +66,27 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
   }, [map]);
 
   return (
-    <Layout title="Users List | Next.js + TypeScript Example">
+    <Layout title="Generating Map | Mapogram">
       <Ribbon />
-      {map.status == "pending" && (
-        <GenerationProgress mapId={map.sessionId} router={props.router} />
-      )}
-      {map.status == "failed" && <GenerationFailed />}
-      {map.status == "success" && <GenerationSuccess />}
+
+      <Box className={Styles.status_page}>
+        <Container maxWidth="lg">
+          <Grid container spacing={2}>
+            <Grid item xs={12} sx={{ alignItems: "center", display: "flex" }}>
+              <Container maxWidth="lg">
+                {map.status == "pending" && (
+                  <GenerationProgress
+                    mapId={map.sessionId}
+                    router={props.router}
+                  />
+                )}
+                {map.status == "failed" && <GenerationFailed />}
+                {map.status == "success" && <GenerationSuccess />}
+              </Container>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
     </Layout>
   );
 };

@@ -42,7 +42,7 @@ const MapListPage = (props: MapListPageProps) => {
         <Typography variant='caption'>All the recent {MAP_LIMIT} generated map are being shown here.</Typography>
         <ImageList  sx={{mt: 5, }} variant="masonry" cols={3} gap={10}>
           {maps.map((item) => (
-            <ImageListItem key={item.img} sx={{ border: '1px solid #f4f4f4;', overflow: 'hidden', width: '300px'}}>
+            <ImageListItem key={item.id} sx={{ border: '1px solid #f4f4f4;', overflow: 'hidden', width: '300px'}}>
               <img
                 src={item.outputPath}
                 srcSet={item.outputPath}

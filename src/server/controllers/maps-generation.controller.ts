@@ -85,10 +85,14 @@ class MapGenerationController {
     logger.info("API::map - get generated map gallery");
 
     const limit = (req.query.limit * 1) || 10;
+    const lastDay = dayjs().utc().add(-30, 'days').toDate();
 
     const listing = await prisma.generation.findMany({
       where: {
-        status: 'success'
+        status: 'success',
+        createdAt: {
+          gte: lastDay,
+        }
       },
       take: limit,
       orderBy: {

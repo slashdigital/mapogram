@@ -2,26 +2,13 @@
     background-color: #3BA9E7;
     display: flex;
     height: 680px;
-    padding: 140px 175px;
+    align-items: center;
     color: white;
-}
-
-.homepage__left {
-    width: 50%;
-    font-size: 24px;
-    line-height: 44.57px;
-    margin: 35px 30px;
 }
 
 .homepage__vertical_line {
     border-left: 1px solid white;
     height: 217px;
-}
-
-.homepage__right {
-    width: 50%;
-    margin: 0px 44px;
-    font-size: 18px;
 }
 
 .homepage__right_header {

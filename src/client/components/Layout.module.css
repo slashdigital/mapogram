@@ -4,21 +4,11 @@
     min-height: 80px;
     max-height: 80px;
     background-color: #F3F7F8;
-    padding: 0 185px;
-}
-
-.header__left {
-    width: 900px;
+    width: 100%;
 }
 
 .header__left_image {
     margin: 0 !important;
-}
-
-.header__right {
-    width: 500px;
-    margin: 18px 0;
-    text-align: right;
 }
 
 .header__button_about {
@@ -48,14 +38,10 @@
 .footer {
     color: #3BA9E7;
     font-size: 14px;
-    height: 66px;
+    height: 66px;;
 }
 
 .footer__line {
     background: #55B4EA;
     border-top: 1px solid #55B4EA;
-}
-
-.footer__text {
-    margin: 25px 185px;
 }

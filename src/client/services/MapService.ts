@@ -47,7 +47,6 @@ class MapTypeResponse {
 // TODO: update api call
 class MapService {
   public generateMap = async (baseUrl: String  = apiUrl, params: RequestGenerateMapParams ):Promise<MapModelResponse> => {
-    console.log(apiUrl, process.env, publicRuntimeConfig);
     const res = await fetch(`${baseUrl}api/maps/generate`, {
       method: 'POST',
       headers: {
@@ -55,7 +54,6 @@ class MapService {
       },
       body: JSON.stringify(params)
     });
-    console.log(res);
     const data = await res.json();
     return data;
   };
@@ -70,7 +68,6 @@ class MapService {
     return data.data;
   };
   public getMapGallery = async (limit: Number):Promise<[MapModel]> => {
-    console.log(`${apiUrl}api/maps`);
     const res = await fetch(`${apiUrl}api/maps/list?limit=${limit}`, {
       method: 'GET',
       headers: {
@@ -82,8 +79,6 @@ class MapService {
   };
   public getMapTypes = async ():Promise<Array<MapTypeModel>> => {
     try {
-
-      console.log('app config', apiUrl, process.env, publicRuntimeConfig);
       const res = await fetch(`${apiUrl}api/map-types`, {
         method: 'GET',
         headers: {

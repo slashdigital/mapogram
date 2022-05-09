@@ -62,8 +62,6 @@ const IndexPage = (props: IndexPageProps) => {
     }
   };
 
-  console.log(props.mapTypes);
-
   React.useEffect(() => {
     if (props.mapTypes.length && dataSource == "") {
       setDataSource(props.mapTypes[0].layout.toString());

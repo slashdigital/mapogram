@@ -104,7 +104,7 @@ export async function getServerSideProps(context) {
   // the component.
   const id = context.params.id;
   const map: MapModel = await MapService.getMapById(id);
-  console.log(map);
+  console.log('Fetched map', map);
   return { props: { map } };
 }
 

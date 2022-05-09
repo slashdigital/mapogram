@@ -79,7 +79,6 @@ export async function getServerSideProps() {
   // Don't forget to include the respective types for any props passed into
   // the component.
   const maps: MapModel[] = await MapService.getMapGallery(MAP_LIMIT);
-  console.log(maps);
   return { props: { maps } }
 }
 

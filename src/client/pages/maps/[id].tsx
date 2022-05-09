@@ -38,9 +38,4 @@ export async function getServerSideProps(context) {
   return { props: { map } };
 };
 
-// MapGenerationPage.getInitialProps = async (ctx) => {
-//  console.log(ctx);
-//   return { map: {}}
-// }
-
 export default withRouter(MapGenerationPage);

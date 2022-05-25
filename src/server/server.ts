@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import appRouter from "./routes/app.router";
 import apiRouter from "./routes/api.router";
 import pool from "./config/dbconnector";
+import path from 'path';
 import { app as nextApp, handler } from "./config/next.server";
 
 const PORT = parseInt(process.env.PORT) || 3000;
@@ -39,6 +40,7 @@ class Server {
       nextApp
         .prepare()
         .then(() => {
+          this.app.use(express.static(path.join(__dirname, './public')));
           this.app.get("*", (req, res) => {
             return handler(req, res);
           });

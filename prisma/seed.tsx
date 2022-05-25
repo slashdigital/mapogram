@@ -4,13 +4,13 @@ const prisma = new PrismaClient()
 
 const mapTypes: Prisma.MapTypeCreateInput[] = [
   {
-    name: 'Fire Disaster',
+    name: 'FIRMS Active Fire Disaster',
     layout: 'fire-disaster.layout',
   },
-  {
-    name: 'Flood Disaster',
-    layout: 'flood-disaster.layout',
-  },
+  // {
+  //   name: 'Flood Disaster',
+  //   layout: 'flood-disaster.layout',
+  // },
 ]
 
 async function main() {

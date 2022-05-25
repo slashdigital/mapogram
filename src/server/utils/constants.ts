@@ -20,9 +20,9 @@ const fireLayout: MapQGISParamsType = {
   output_filename: `{NAME}.${PA_QGIS_OUTPUT_EXT}`,
   az_blob_url: PA_AZ_BLOB_URL,
   az_blob_sas_token: PA_AZ_BLOB_TOKEN,
-  layout: "google",
+  layout: "MapogramView",
   extent: "100.115987583,107.564525181,13.88109101,22.4647531194 [EPSG:4326]",
-  project_name: "test-ian.qgz",
+  project_name: "Mapogram-FIRMS.qgz",
 };
 
 export const MapConfig = {

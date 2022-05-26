@@ -18,17 +18,16 @@ const worker = (arg: MapQGISParamsType, cb: done) => {
   requestMap(arg).then(async (result) => {
     // Update status of the map data
     console.log('Queue generate map success', result);
-    const id = result.result.url.replace(`${PA_AZ_BLOB_URL}/`, '').replace(`.${PA_QGIS_OUTPUT_EXT}`, '');
     const existing = await prisma.generation.findFirst({
       where: {
-        sessionId: id
+        sessionId: sessionId
       }
     });
     if (!existing) {
-      console.log(`There is no existing record finding by: {sessionId: ${id}}`);
+      console.log(`There is no existing record finding by: {sessionId: ${sessionId}}`);
     } else {
-      console.log(`Found record finding by: {sessionId: ${id}}`);
-      console.log(`Update record finding by: {sessionId: ${id}}`);
+      console.log(`Found record finding by: {sessionId: ${sessionId}}`);
+      console.log(`Update record finding by: {sessionId: ${sessionId}}`);
       existing.status = 'success';
       await prisma.generation.update({
         where: {
@@ -36,7 +35,7 @@ const worker = (arg: MapQGISParamsType, cb: done) => {
         },
         data: existing
       });
-      console.log(`Successfully save record finding by: {sessionId: ${id}}`);
+      console.log(`Successfully save record finding by: {sessionId: ${sessionId}}`);
     }
     cb(null);
   }).catch(async (e) => {

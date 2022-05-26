@@ -1,4 +1,4 @@
-const { PA_ATTEND_MODE } = process.env;
+const { PA_ATTEND_MODE, PA_ENABLED } = process.env;
 import { PowerautomateUrls, MapQGISParamsType } from "../utils/constants";
 export interface RequestMapParams {
   dataSource: String;
@@ -17,22 +17,30 @@ interface RequestMapResult {
   url: String;
 }
 
+const isPAEnabled = (): boolean => PA_ENABLED == "true";
+
 export const requestMap = async (
   input: MapQGISParamsType
 ): Promise<RequestMapResponse> => {
-  const mode = `${PA_ATTEND_MODE}`;
   let result;
-  if (mode == "attended") {
-    result = await requestMapAttended(input);
+  if (!isPAEnabled) {
+    
   } else {
-    console.log("attended");
-    result = await requestMapUnattended(input);
-  }
+    const mode = `${PA_ATTEND_MODE}`;
+    if (mode == "attended") {
+      result = await requestMapAttended(input);
+    } else {
+      console.log("attended");
+      result = await requestMapUnattended(input);
+    }
 
-
-  if (result.error) {
-    console.log(`${mode} call error, trying the run with other mode`);
-    result = mode == "attended" ? await requestMapUnattended(input) :await requestMapAttended(input)  ;
+    if (result.error) {
+      console.log(`${mode} call error, trying the run with other mode`);
+      result =
+        mode == "attended"
+          ? await requestMapUnattended(input)
+          : await requestMapAttended(input);
+    }
   }
 
   return result;

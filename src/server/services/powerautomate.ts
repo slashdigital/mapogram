@@ -1,5 +1,6 @@
 const { PA_ATTEND_MODE, PA_ENABLED } = process.env;
 import { PowerautomateUrls, MapQGISParamsType } from "../utils/constants";
+import { generateMapPowerShell } from './powershell/generate-map';
 export interface RequestMapParams {
   dataSource: String;
   zoomLevel: String;
@@ -24,7 +25,7 @@ export const requestMap = async (
 ): Promise<RequestMapResponse> => {
   let result;
   if (!isPAEnabled) {
-    
+    result = await generateMapPowerShell(input.extent.toString(), input.output_filename, input.project_name);
   } else {
     const mode = `${PA_ATTEND_MODE}`;
     if (mode == "attended") {

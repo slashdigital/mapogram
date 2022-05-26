@@ -2,7 +2,7 @@ import { spawn } from 'child_process';
 import path from 'path';
 // import { MapConfig } from '../../utils/constants';
 
-const { GQIS_MACHINE_PROJECT_PATH } = process.env;
+const { QGIS_MACHINE_PROJECT_PATH } = process.env;
 
 const publicFolder = path.join(__dirname, '../../public');
 
@@ -11,7 +11,7 @@ const generateMapPowerShell = (extent: string, fileName: string, projectName: st
     const stdData = [];
     const stdDataError = [];
 
-    const project = path.join(GQIS_MACHINE_PROJECT_PATH, projectName.toString());
+    const project = path.join(QGIS_MACHINE_PROJECT_PATH, projectName.toString());
     const output = path.join(publicFolder, fileName);
     const commandLine = `${__dirname}/generate-map.ps1 -Extent "${extent}" -Output "${output}" -Project "${project}"`;
     console.log('Command generate', commandLine);

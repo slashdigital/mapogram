@@ -21,9 +21,13 @@ const generateMapPowerShell = (extent: string, fileName: string, projectName: st
       stdData.push('Stdout:');
       stdData.push(stdData);
     });
-    child.stderr.on("data", function (data) {
+    child.stderr.on("data", function (data: string) {
       console.log("Powershell Errors: " + data);
-      stdDataError.push(`Error: ${data}`);
+      // Bypassing error
+      if (!(data.includes('Image is a null image') || data.includes('driver does not support update access to existing datasets.'))) {
+
+        stdDataError.push(`Error: ${data}`);
+      }
     });
     child.on("exit", function () {
 

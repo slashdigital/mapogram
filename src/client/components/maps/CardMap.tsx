@@ -70,7 +70,7 @@ export default function CardMap(props: PropType) {
       <CardMedia
         component="img"
         height="194"
-        image={`/maps/sizes/preview/${map.outputPath}`}
+        image={`/maps/sizes/preview${map.outputPath}`}
         alt={map.title.toString()}
       />
       <CardContent>

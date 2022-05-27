@@ -44,8 +44,8 @@ const MapListPage = (props: MapListPageProps) => {
           {maps.map((item) => (
             <ImageListItem key={item.id} sx={{  overflow: 'hidden', width: '100%'}}>
               <img
-                src={`maps/sizes/small/${item.outputPath}`}
-                srcSet={`maps/sizes/small/${item.outputPath}`}
+                src={`maps/sizes/small${item.outputPath}`}
+                srcSet={`maps/sizes/small${item.outputPath}`}
                 alt={item.title}
                 onError={(error) => {
                   console.log(error.currentTarget);

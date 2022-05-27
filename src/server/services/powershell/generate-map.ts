@@ -13,7 +13,7 @@ const generateMapPowerShell = (extent: string, fileName: string, projectName: st
 
     const project = path.join(QGIS_MACHINE_PROJECT_PATH, projectName.toString());
     const output = path.join(publicFolder, fileName);
-    const commandLine = `${__dirname}/generate-map.ps1 -Extent "${extent}" -Output "${output}" -Project "${project}"`;
+    const commandLine = `${__dirname}\\generate-map.ps1 -Extent "${extent}" -Output "${output}" -Project "${project}"`;
     console.log('Command generate', commandLine);
     const child = spawn('powershell.exe', [commandLine]);
     child.stdout.on("data", function (data) {

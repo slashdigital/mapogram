@@ -24,7 +24,7 @@ export const requestMap = async (
   input: MapQGISParamsType
 ): Promise<RequestMapResponse> => {
   let result;
-  if (!isPAEnabled) {
+  if (!isPAEnabled()) {
     result = await generateMapPowerShell(input.extent.toString(), input.output_filename.toString(), input.project_name.toString());
   } else {
     const mode = `${PA_ATTEND_MODE}`;

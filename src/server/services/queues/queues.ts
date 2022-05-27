@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { MapQGISParamsType } from "../../utils/constants";
 import { requestMap } from "../powerautomate";
+import { resizeImage } from "../image-processing";
 
 const {PA_QGIS_OUTPUT_EXT, PA_AZ_BLOB_URL, } = process.env;
 
@@ -26,6 +27,7 @@ const worker = (arg: MapQGISParamsType, cb: done) => {
     if (!existing) {
       console.log(`There is no existing record finding by: {sessionId: ${sessionId}}`);
     } else {
+      await resizeImage(sessionId);
       console.log(`Found record finding by: {sessionId: ${sessionId}}`);
       console.log(`Update record finding by: {sessionId: ${sessionId}}`);
       existing.status = 'success';

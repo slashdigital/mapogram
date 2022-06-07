@@ -3,8 +3,8 @@ import { withRouter, NextRouter, Router } from "next/router";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import Typography  from "@mui/material/Typography";
-import TextField  from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -81,10 +81,10 @@ const IndexPage = (props: IndexPageProps) => {
                   variant="h6"
                   sx={{ lineHeight: "2", fontWeight: "normal" }}
                 >
-                  Mapogram is a platform powered by <b>Cloud-based QGIS</b> and
-                  <b> PowerAutomate</b> to provide map generation service for
-                  the map they needed to deal with natural disaster like Forest
-                  fire, Flood event etc...
+                  Mapogram is a platform powered by <b>Cloud-based QGIS</b> on
+                  Azure VM to provide map generation service for the map they
+                  needed to deal with natural disaster like Forest fire, Flood
+                  event etc...
                 </Typography>
               </Grid>
               <Grid item xs={1} sx={{ alignItems: "center", display: "flex" }}>

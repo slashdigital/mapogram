@@ -14,10 +14,9 @@ const AboutPage = () => (
       </Typography>
       <Typography variant="body1">
         {" "}
-        Mapogram is a platform powered by <b>Cloud-based QGIS</b> and
-        <b> PowerAutomate</b> to provide map generation service for the map they
-        needed to deal with natural disaster like Forest fire, Flood event
-        etc...
+        Mapogram is a platform powered by <b>Cloud-based QGIS</b> on Azure VM to
+        provide map generation service for the map they needed to deal with
+        natural disaster like Forest fire, Flood event etc...
       </Typography>
       <Typography sx={{ mt: 3, mb: 2 }} variant="h5">
         References:
@@ -33,7 +32,7 @@ const AboutPage = () => (
           </Link>
         </li>
       </ul>
-      <br/>
+      <br />
       <Typography variant="body1">GIS Tools:</Typography>
 
       <br />
@@ -46,9 +45,7 @@ const AboutPage = () => (
         </li>
         <li>
           OSGeo4W:{" "}
-          <Link href="https://www.osgeo.org/">
-            https://www.osgeo.org/
-          </Link>
+          <Link href="https://www.osgeo.org/">https://www.osgeo.org/</Link>
         </li>
       </ul>
     </Container>

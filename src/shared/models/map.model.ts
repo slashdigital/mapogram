@@ -1,17 +1,14 @@
-
 class MapModel {
-  source: String;
-  location: String;
-  latLng: Array<Number>; 
-  startDate: String;
-  endDate: String;
-  staticMapUrl: String;
-  mapId: String;
-  status: Number;
+  source: String
+  location: String
+  latLng: Array<Number>
+  startDate: String
+  endDate: String
+  staticMapUrl: String
+  mapId: String
+  status: Number
 
-  constructor() {
-    
-  }
+  constructor() {}
 }
 
-export default MapModel;
+export default MapModel

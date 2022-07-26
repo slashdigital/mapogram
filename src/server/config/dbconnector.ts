@@ -1,6 +1,6 @@
-import { Pool } from 'pg';
+import { Pool } from 'pg'
 
-export default {};
+export default {}
 
 // export default new Pool ({
 //     max: 20,

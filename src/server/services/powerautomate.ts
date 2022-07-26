@@ -1,51 +1,55 @@
-const { PA_ATTEND_MODE, PA_ENABLED } = process.env;
-import { PowerautomateUrls, MapQGISParamsType } from "../utils/constants";
-import { generateMapPowerShell } from './powershell/generate-map';
+const { PA_ATTEND_MODE, PA_ENABLED } = process.env
+import { PowerautomateUrls, MapQGISParamsType } from '../utils/constants'
+import { generateMapPowerShell } from './powershell/generate-map'
 export interface RequestMapParams {
-  dataSource: String;
-  zoomLevel: String;
-  latLng: Array<Number>;
+  dataSource: String
+  zoomLevel: String
+  latLng: Array<Number>
 }
 export interface RequestOutputParams {
-  outputPath: String;
-  id: String;
+  outputPath: String
+  id: String
 }
 
 export interface RequestMapResponse {
-  result: RequestMapResult;
+  result: RequestMapResult
 }
 interface RequestMapResult {
-  url: String;
+  url: String
 }
 
-const isPAEnabled = (): boolean => PA_ENABLED == "true";
+const isPAEnabled = (): boolean => PA_ENABLED == 'true'
 
 export const requestMap = async (
   input: MapQGISParamsType
 ): Promise<RequestMapResponse> => {
-  let result;
+  let result
   if (!isPAEnabled()) {
-    result = await generateMapPowerShell(input.extent.toString(), input.output_filename.toString(), input.project_name.toString());
+    result = await generateMapPowerShell(
+      input.extent.toString(),
+      input.output_filename.toString(),
+      input.project_name.toString()
+    )
   } else {
-    const mode = `${PA_ATTEND_MODE}`;
-    if (mode == "attended") {
-      result = await requestMapAttended(input);
+    const mode = `${PA_ATTEND_MODE}`
+    if (mode == 'attended') {
+      result = await requestMapAttended(input)
     } else {
-      console.log("attended");
-      result = await requestMapUnattended(input);
+      console.log('attended')
+      result = await requestMapUnattended(input)
     }
 
     if (result.error) {
-      console.log(`${mode} call error, trying the run with other mode`);
+      console.log(`${mode} call error, trying the run with other mode`)
       result =
-        mode == "attended"
+        mode == 'attended'
           ? await requestMapUnattended(input)
-          : await requestMapAttended(input);
+          : await requestMapAttended(input)
     }
   }
 
-  return result;
-};
+  return result
+}
 
 /**
  *
@@ -55,18 +59,18 @@ export const requestMap = async (
 export const requestMapUnattended = async (
   input: MapQGISParamsType
 ): Promise<RequestMapResponse> => {
-  const url = PowerautomateUrls.MapGeneration.unattended;
+  const url = PowerautomateUrls.MapGeneration.unattended
   const res = await fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(input),
-  });
-  const data: RequestMapResponse = await res.json();
-  console.log("requestMap and wait result:", data);
-  return data;
-};
+  })
+  const data: RequestMapResponse = await res.json()
+  console.log('requestMap and wait result:', data)
+  return data
+}
 
 /**
  *
@@ -76,15 +80,15 @@ export const requestMapUnattended = async (
 export const requestMapAttended = async (
   input: MapQGISParamsType
 ): Promise<RequestMapResponse> => {
-  const url = PowerautomateUrls.MapGeneration.attended;
+  const url = PowerautomateUrls.MapGeneration.attended
   const res = await fetch(url, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(input),
-  });
-  const data: RequestMapResponse = await res.json();
-  console.log("requestMap and wait result:", data);
-  return data;
-};
+  })
+  const data: RequestMapResponse = await res.json()
+  console.log('requestMap and wait result:', data)
+  return data
+}

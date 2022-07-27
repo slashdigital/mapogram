@@ -1,43 +1,52 @@
-import https from 'https'
-import fs from 'fs'
-
+/* eslint-disable @typescript-eslint/ban-types */
 //Download file from URL function
 //Download zip files from NASA site to a temporary folder
 //After the download completed, Copy the temporary file to /data/Datasources folder
 
+import { request } from 'https';
+import fs from 'fs';
+import { dirname } from 'path';
+
 const dlFile = async (
   url: string,
-  tmpFileName: fs.PathLike,
-  dstFileName: fs.PathLike
+  tmpFileName: string,
+  dstFileName: string,
+  callback: Function
 ) => {
-  fs.mkdirSync(tmpFileName) //Make sure the directory exist / created
-  fs.mkdirSync(dstFileName) //Make sure the directory exist / created
+  //Make sure the directory exist / created relative to the project's root
+  fs.mkdirSync(dirname(tmpFileName), { recursive: true });
+  fs.mkdirSync(dirname(dstFileName), { recursive: true });
 
-  const req = https.request(url, res => {
-    console.log(`statusCode: ${res.statusCode}`)
+  console.log(url);
+
+  const req = request(url, res => {
+    console.log(`statusCode: ${res.statusCode}`);
+
     if (res.statusCode !== 200) {
-      throw new Error('Download error: ' + res.statusCode)
+      throw new Error('Download error: ' + res.statusCode);
     }
-  })
 
-  req.pipe(fs.createWriteStream(tmpFileName))
+    res.pipe(fs.createWriteStream(tmpFileName)).on('close', () => {
+      //Wait for the download to complete before copying temp file to datasource folder
+      fs.copyFile(tmpFileName, dstFileName, error => {
+        if (error) {
+          console.error('fs.copyFile Error: ' + error);
+          throw error;
+        }
+
+        console.log(tmpFileName + ' was copied to ' + dstFileName);
+
+        callback();
+      });
+    });
+  });
 
   req.on('error', error => {
-    throw error
-  })
+    console.error('reg.onError: ' + error);
+    throw error;
+  });
 
-  req.on('close', () => {
-    //Wait for the download to complete before copying temp file to datasource folder
-    fs.copyFile(tmpFileName, dstFileName, error => {
-      if (error) {
-        throw error
-      } else {
-        console.log(tmpFileName + ' was copied to ' + dstFileName)
-      }
-    })
-  })
+  req.end();
+};
 
-  req.end()
-}
-
-export default dlFile
+export default dlFile;

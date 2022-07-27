@@ -1,7 +1,8 @@
-const path = require('path')
-require('dotenv').config()
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+require('dotenv').config();
 
-const dev = process.env.NODE_ENV !== 'production'
+const dev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   dev,
@@ -13,4 +14,4 @@ module.exports = {
     // Will be available on both server and client
     apiUrl: process.env.API_URL,
   },
-}
+};

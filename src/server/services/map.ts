@@ -1,56 +1,56 @@
-const apiKey = process.env.GOOGLE_MAP_API_KEY
-import { v4 as uuidV4 } from 'uuid'
-import { MapConfig, MapQGISParamsType } from '../utils/constants'
+const apiKey = process.env.GOOGLE_MAP_API_KEY;
+import { v4 as uuidV4 } from 'uuid';
+import { MapConfig, MapQGISParamsType } from '../utils/constants';
 
-interface AddressComponent {
-  long_name: String
-  short_name: String
-  types: Array<String>
-}
-interface LatLng {
-  lat: Number
-  lng: Number
-}
-interface Bounds {
-  northeast: LatLng
-  southwest: LatLng
-}
-interface Geometry {
-  bounds: Bounds
-  location: LatLng
-  location_type: String
-  viewport: Bounds
-}
-interface Geolocation {
-  address_components: Array<AddressComponent>
-  formatted_address: String
-  geometry: Geometry
-  place_id: String
-  types: Array<String>
-}
+type AddressComponent = {
+  long_name: string;
+  short_name: string;
+  types: Array<string>;
+};
+type LatLng = {
+  lat: number;
+  lng: number;
+};
+type Bounds = {
+  northeast: LatLng;
+  southwest: LatLng;
+};
+type Geometry = {
+  bounds: Bounds;
+  location: LatLng;
+  location_type: string;
+  viewport: Bounds;
+};
+type Geolocation = {
+  address_components: Array<AddressComponent>;
+  formatted_address: string;
+  geometry: Geometry;
+  place_id: string;
+  types: Array<string>;
+};
 
-interface GeocodeResponse {
-  results: Array<Geolocation>
-  status: String
-}
+type GeocodeResponse = {
+  results: Array<Geolocation>;
+  status: string;
+};
 
 export const geocodeAddress = async (address): Promise<GeocodeResponse> => {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`
-  const res = await fetch(url)
-  const data: GeocodeResponse = await res.json()
-  return data
-}
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
+  const res = await fetch(url);
+  const data: GeocodeResponse = await res.json();
+  return data;
+};
 
 export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
   if (!geoResponse.results.length) {
-    throw new Error('No geo data')
+    throw new Error('No geo data');
   }
-  const val1 = geoResponse.results[0].geometry.viewport.northeast.lng
-  const val2 = geoResponse.results[0].geometry.viewport.southwest.lng
-  const val3 = geoResponse.results[0].geometry.viewport.northeast.lat
-  const val4 = geoResponse.results[0].geometry.viewport.southwest.lat
-  return `${val1},${val2},${val3},${val4} [EPSG:4326]`
-}
+  const val1 = geoResponse.results[0].geometry.viewport.northeast.lng;
+  const val2 = geoResponse.results[0].geometry.viewport.southwest.lng;
+  const val3 = geoResponse.results[0].geometry.viewport.northeast.lat;
+  const val4 = geoResponse.results[0].geometry.viewport.southwest.lat;
+  return `${val1},${val2},${val3},${val4} [EPSG:4326]`;
+};
 
 /**
  *
@@ -58,34 +58,34 @@ export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
  * @param layout
  */
 
-interface MapGenerationParamType {
-  payload: MapQGISParamsType
-  uniqueId: String
-}
+type MapGenerationParamType = {
+  payload: MapQGISParamsType;
+  uniqueId: string;
+};
 export const buildParameters = (
   geoResponse: GeocodeResponse,
   layout: string
 ): MapGenerationParamType => {
   try {
-    const outputName = uuidV4()
+    const outputName = uuidV4();
     const config: MapQGISParamsType = {
       ...MapConfig[layout],
-    }
-    const extent = getExtentEPSG4326(geoResponse)
+    };
+    const extent = getExtentEPSG4326(geoResponse);
     config.output_filename = config.output_filename.replace(
       '{NAME}',
       outputName
-    )
-    config.extent = extent
+    );
+    config.extent = extent;
 
     return {
       uniqueId: outputName,
       payload: config,
-    }
+    };
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-}
+};
 /*
 {
     "results": [

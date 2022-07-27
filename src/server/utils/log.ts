@@ -1,3 +1,3 @@
-import logger from 'loglevel'
+import logger from 'loglevel';
 
-export default logger
+export default logger;

@@ -1,50 +1,40 @@
 // This file for service to backend
+import MapTypeModel from '../models/MapType';
 
-import getConfig from 'next/config'
+const apiUrl = process.env.API_URL;
 
-import MapTypeModel from '../models/MapType'
+type RequestGenerateMapParams = {
+  token: string;
+  layout: string;
+  address: string;
+  zoom: string;
+};
 
-const { publicRuntimeConfig } = getConfig()
-
-const apiUrl = process.env.API_URL
-
-interface RequestGenerateMapParams {
-  token: String
-  layout: String
-  address: String
-  zoom: String
-}
-
-export interface MapModel {
-  id: Number
-  createdAt: Date
-  updatedAt: Date
-  title: String
-  outputPath: String
-  zoomLevel: String
-  command: String
-  layout: String
-  lat: String
-  lng: String
-  sessionId: String
-  submitted: boolean
-  status: String
-}
+export type MapModel = {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+  title: string;
+  outputPath: string;
+  zoomLevel: string;
+  command: string;
+  layout: string;
+  lat: string;
+  lng: string;
+  sessionId: string;
+  submitted: boolean;
+  status: string;
+};
 class MapModelResponse {
-  data?: MapModel
-  message?: String
-  error: boolean
-}
-class MapTypeResponse {
-  data?: MapTypeModel
-  message?: String
-  error: boolean
+  data?: MapModel;
+  message?: string;
+  error: boolean;
 }
 
 // TODO: update api call
 class MapService {
   public generateMap = async (
-    baseUrl: String = apiUrl,
+    baseUrl: string = apiUrl,
     params: RequestGenerateMapParams
   ): Promise<MapModelResponse> => {
     const res = await fetch(`${baseUrl}api/maps/generate`, {
@@ -53,33 +43,33 @@ class MapService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params),
-    })
-    const data = await res.json()
-    return data
-  }
+    });
+    const data = await res.json();
+    return data;
+  };
   public getMapById = async (
-    id: String,
-    baseUrl: String = apiUrl
+    id: string,
+    baseUrl: string = apiUrl
   ): Promise<MapModel> => {
     const res = await fetch(`${baseUrl}api/maps/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-    })
-    const data = await res.json()
-    return data.data
-  }
-  public getMapGallery = async (limit: Number): Promise<[MapModel]> => {
+    });
+    const data = await res.json();
+    return data.data;
+  };
+  public getMapGallery = async (limit: number): Promise<[MapModel]> => {
     const res = await fetch(`${apiUrl}api/maps/list?limit=${limit}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
-    })
-    const data = await res.json()
-    return data.data
-  }
+    });
+    const data = await res.json();
+    return data.data;
+  };
   public getMapTypes = async (): Promise<Array<MapTypeModel>> => {
     try {
       const res = await fetch(`${apiUrl}api/map-types`, {
@@ -87,13 +77,13 @@ class MapService {
         headers: {
           'Content-Type': 'application/json',
         },
-      })
-      const data = await res.json()
-      return data.data
+      });
+      const data = await res.json();
+      return data.data;
     } catch (e) {
-      return []
+      return [];
     }
-  }
+  };
 }
 
-export default new MapService()
+export default new MapService();

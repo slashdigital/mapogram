@@ -1,26 +1,31 @@
-import fs from 'fs'
-import jszip from 'jszip'
+import fs from 'fs';
+import jszip from 'jszip';
+import { dirname, basename, normalize } from 'path';
 
-const unzipFile = async (zipFileName: fs.PathLike, unzipPath: fs.PathLike) => {
-  const fileContent = fs.readFileSync(zipFileName)
-  const result = await jszip.loadAsync(fileContent)
-  const keys = Object.keys(result.files)
+const unzipFile = async (zipFileName: string, unzipPath: string) => {
+  fs.mkdirSync(dirname(unzipPath), { recursive: true });
+
+  const fileContent = fs.readFileSync(zipFileName);
+  const result = await jszip.loadAsync(fileContent);
+  const keys = Object.keys(result.files);
 
   for (const key of keys) {
-    const item = result.files[key]
-    if (item.dir) {
-      if (item.name) {
-        fs.mkdirSync(unzipPath + '/' + item.name)
-      } else {
-        fs.mkdirSync(unzipPath)
-      }
-    } else {
-      fs.writeFileSync(
-        unzipPath + '/' + item.name,
-        Buffer.from(await item.async('arraybuffer'))
-      )
-    }
-  }
-}
+    const item = result.files[key];
 
-export default unzipFile
+    const newItemDirName = dirname(item.name).toString().replace(/\.$/, '/');
+    const unzipDeployPath = normalize(
+      unzipPath + newItemDirName + basename(item.name)
+    );
+    console.log(unzipDeployPath);
+
+    fs.mkdirSync(dirname(unzipDeployPath), { recursive: true });
+    fs.writeFileSync(
+      unzipDeployPath,
+      Buffer.from(await item.async('arraybuffer'))
+    );
+  }
+
+  console.log('Downloaded files extracted successfully!');
+};
+
+export default unzipFile;

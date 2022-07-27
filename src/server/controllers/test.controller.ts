@@ -1,5 +1,3 @@
-import pool from '../config/dbconnector'
-
 class TestController {
   public async get(req, res) {
     try {
@@ -11,11 +9,11 @@ class TestController {
 
       // client.release();
 
-      res.send([])
+      res.send([]);
     } catch (error) {
-      res.status(400).send(error)
+      res.status(400).send(error);
     }
   }
 }
 
-export default TestController
+export default TestController;

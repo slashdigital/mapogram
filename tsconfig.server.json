@@ -7,5 +7,9 @@
     "isolatedModules": false,
     "noEmit": false
   },
-  "include": ["src/server/**/*.ts","src/server/**/*.tsx", "src/shared/**/*.tsx"]
+  "include": [
+    "src/server/**/*.ts",
+    "src/server/**/*.tsx",
+    "src/shared/**/*.tsx"
+  ]
 }

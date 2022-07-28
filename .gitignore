@@ -32,9 +32,14 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+*.bak
 
 # vercel
 .vercel
 .next
 
 package-lock.json
+
+/data
+node_modules
+dist

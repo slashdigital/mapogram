@@ -1,38 +1,38 @@
 const apiKey = process.env.GOOGLE_MAP_API_KEY;
-import { v4 as uuidV4 } from "uuid";
-import { MapConfig, MapQGISParamsType } from "../utils/constants";
+import { v4 as uuidV4 } from 'uuid';
+import { MapConfig, MapQGISParamsType } from '../utils/constants';
 
-interface AddressComponent {
-  long_name: String;
-  short_name: String;
-  types: Array<String>;
-}
-interface LatLng {
-  lat: Number;
-  lng: Number;
-}
-interface Bounds {
+type AddressComponent = {
+  long_name: string;
+  short_name: string;
+  types: Array<string>;
+};
+type LatLng = {
+  lat: number;
+  lng: number;
+};
+type Bounds = {
   northeast: LatLng;
   southwest: LatLng;
-}
-interface Geometry {
+};
+type Geometry = {
   bounds: Bounds;
   location: LatLng;
-  location_type: String;
+  location_type: string;
   viewport: Bounds;
-}
-interface Geolocation {
+};
+type Geolocation = {
   address_components: Array<AddressComponent>;
-  formatted_address: String;
+  formatted_address: string;
   geometry: Geometry;
-  place_id: String;
-  types: Array<String>;
-}
+  place_id: string;
+  types: Array<string>;
+};
 
-interface GeocodeResponse {
+type GeocodeResponse = {
   results: Array<Geolocation>;
-  status: String;
-}
+  status: string;
+};
 
 export const geocodeAddress = async (address): Promise<GeocodeResponse> => {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
@@ -43,7 +43,7 @@ export const geocodeAddress = async (address): Promise<GeocodeResponse> => {
 
 export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
   if (!geoResponse.results.length) {
-    throw new Error("No geo data");
+    throw new Error('No geo data');
   }
   const val1 = geoResponse.results[0].geometry.viewport.northeast.lng;
   const val2 = geoResponse.results[0].geometry.viewport.southwest.lng;
@@ -58,10 +58,10 @@ export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
  * @param layout
  */
 
-interface MapGenerationParamType {
+type MapGenerationParamType = {
   payload: MapQGISParamsType;
-  uniqueId: String;
-}
+  uniqueId: string;
+};
 export const buildParameters = (
   geoResponse: GeocodeResponse,
   layout: string
@@ -73,7 +73,7 @@ export const buildParameters = (
     };
     const extent = getExtentEPSG4326(geoResponse);
     config.output_filename = config.output_filename.replace(
-      "{NAME}",
+      '{NAME}',
       outputName
     );
     config.extent = extent;

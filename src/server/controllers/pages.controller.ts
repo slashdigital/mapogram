@@ -1,9 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { RequestHandler } from 'next/dist/server/next';
-import MapModel from '../../shared/models/map.model';
-import { MapStatus } from '../utils/constants';
 import logger from '../utils/log';
-
-
 
 class PagesController {
   handler: RequestHandler;
@@ -27,7 +24,7 @@ class PagesController {
   };
   public showMapGenerationStatus = (req, res) => {
     logger.info('Pages::map generation status page - render');
-    
+
     return this.handler(req, res);
   };
   public showMapListPage = (req, res) => {

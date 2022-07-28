@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 import MapGenerationController from '../controllers/maps-generation.controller';
 import { handler, render } from '../config/next.server';
 

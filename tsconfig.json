@@ -17,6 +17,12 @@
     "emitDecoratorMetadata": true,
     "sourceMap": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/server", "src/shared/models/map.model.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/server",
+    "src/shared/models/map.model.ts"
+  ],
   "exclude": ["node_modules"]
 }

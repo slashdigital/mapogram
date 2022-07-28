@@ -1,17 +1,15 @@
-
+/* eslint-disable @typescript-eslint/no-empty-function */
 class MapModel {
-  source: String;
-  location: String;
-  latLng: Array<Number>; 
-  startDate: String;
-  endDate: String;
-  staticMapUrl: String;
-  mapId: String;
-  status: Number;
+  source: string;
+  location: string;
+  latLng: Array<number>;
+  startDate: string;
+  endDate: string;
+  staticMapUrl: string;
+  mapId: string;
+  status: number;
 
-  constructor() {
-    
-  }
+  constructor() {}
 }
 
 export default MapModel;

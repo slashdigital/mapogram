@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 import PageController from '../controllers/pages.controller';
 import { handler, render } from '../config/next.server';
 

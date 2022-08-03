@@ -17,7 +17,7 @@ const syncDsTask = async () => {
 };
 
 schedule.scheduleJob(rule, syncDsTask);
-console.warn('[Cron] Datasources sync job is scheduled for every 4 hours');
+console.warn('[node-schedule] Datasources sync job is scheduled for every 4 hours');
 
 //Test download
 // const testSyncDsTask = async () => {

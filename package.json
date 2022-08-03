@@ -1,5 +1,36 @@
 {
+  "name": "mapogram",
+  "productName": "Mapogram",
+  "version": "1.0.0",
+  "description": "Mapogram by Slash Pte Ltd",
   "private": true,
+  "license": "GPL-3.0-or-later",
+  "repository": "https://bitbucket.org/slashdigital/mapogram-web-app/src/master",
+  "bugs": {
+    "url": "https://bitbucket.org/slashdigital/mapogram-web-app/jira"
+  },
+  "contributors": [
+    {
+      "name": "Alex Lossing",
+      "email": "alex@slash.co",
+      "url": "https://slash.co"
+    },
+    {
+      "name": "Promsopeak Sean Nuon",
+      "email": "sean@slash.co",
+      "url": "https://slash.co"
+    },
+    {
+      "name": "Vengleab So",
+      "email": "vengleab@slash.co",
+      "url": "https://slash.co"
+    },
+    {
+      "name": "Ardian Asah",
+      "email": "ardian@slash.co",
+      "url": "https://slash.co"
+    }
+  ],
   "scripts": {
     "lint": "eslint --ignore-path .gitignore --fix --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",

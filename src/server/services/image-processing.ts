@@ -1,5 +1,6 @@
 import sharp from 'sharp';
 import path from 'path';
+import fs from 'fs';
 
 const { PA_QGIS_OUTPUT_EXT } = process.env;
 
@@ -22,13 +23,14 @@ const resizeImage = async (imageId: string) => {
       outputPath,
       `sizes/preview/${imageId}.${PA_QGIS_OUTPUT_EXT}`
     );
-
+    fs.mkdirSync(path.dirname(previewPath), { recursive: true });
     await image.toFile(previewPath);
     console.log('Start resize image', previewPath);
     const smallPath = path.join(
       outputPath,
       `sizes/small/${imageId}.${PA_QGIS_OUTPUT_EXT}`
     );
+    fs.mkdirSync(path.dirname(smallPath), { recursive: true });
     await image.resize(400).toFile(smallPath);
   } catch (e) {
     console.log(e);

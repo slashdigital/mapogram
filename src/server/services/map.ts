@@ -1,6 +1,13 @@
-const apiKey = process.env.GOOGLE_MAP_API_KEY;
 import { v4 as uuidV4 } from 'uuid';
-import { MapConfig, MapQGISParamsType } from '../utils/constants';
+import {
+  MapConfig,
+  MapQGISParamsType,
+  GIS_DEFAULT_PARAMS,
+  GIS_SERVER_URL,
+} from '../utils/constants';
+
+const { PA_QGIS_OUTPUT_EXT } = process.env;
+const apiKey = process.env.GOOGLE_MAP_API_KEY;
 
 type AddressComponent = {
   long_name: string;
@@ -37,6 +44,7 @@ type GeocodeResponse = {
 export const geocodeAddress = async (address): Promise<GeocodeResponse> => {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
   const res = await fetch(url);
+
   const data: GeocodeResponse = await res.json();
   return data;
 };
@@ -50,6 +58,24 @@ export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
   const val3 = geoResponse.results[0].geometry.viewport.northeast.lat;
   const val4 = geoResponse.results[0].geometry.viewport.southwest.lat;
   return `${val1},${val2},${val3},${val4} [EPSG:4326]`;
+};
+
+export const buildGISServerParams = (
+  geoResponse: GeocodeResponse,
+  layout: string
+) => {
+  const uniqueId = uuidV4();
+  const mapQGISParams = {
+    ...GIS_DEFAULT_PARAMS[layout],
+    // TODO: To retrieve extends from geo coding
+  };
+
+  return {
+    uniqueId,
+    serverUrl: GIS_SERVER_URL[layout],
+    outputPath: `/${uniqueId}.${PA_QGIS_OUTPUT_EXT}`,
+    payload: mapQGISParams,
+  };
 };
 
 /**

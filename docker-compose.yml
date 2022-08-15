@@ -30,6 +30,7 @@ services:
         target: /data
     environment:
       - QGIS_PROJECT_FILE=/data/${QGIS_MAPOGRAM_FIRE_FILE}
+      - QGIS_SERVER_IGNORE_BAD_LAYERS=1
   web-server:
     image: nginx:1.13
     volumes:

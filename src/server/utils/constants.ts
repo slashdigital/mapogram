@@ -11,17 +11,13 @@ export const PUBLIC_FOLDER = path.join(__dirname, '../public');
 export const GIS_DEFAULT_PARAMS = {
   'fire-disaster.layout': {
     SERVICE: 'WMS',
-    VERSION: '1.3.0',
     REQUEST: 'GetPrint',
-    CRS: 'EPSG:3857',
+    CRS: 'EPSG:4326',
     FORMAT: 'jpg',
     TEMPLATE: 'MapogramView',
     'map0:LAYERS':
-      'Google Satellite Hybrid,MODIS 24h Confidence (80-95),MODIS 24h Confidence (>= 95)',
-    'map0:ROTATION': '0',
-    'map0:GRID_INTERVAL_X': '0',
-    'map0:GRID_INTERVAL_Y': '0',
-    'map0:EXTENT': '8571182,-3773207,17443267,2519429', // TODO: to get from geo response
+      'Google Satellite Hybrid,MODIS 24h Confidence (<80),MODIS 24h Confidence (80-95),MODIS 24h Confidence (>= 95)',
+    'map0:EXTENT': '11.3466,104.2199,12.15,105.1276', // TODO: to get from geo response
   },
 };
 

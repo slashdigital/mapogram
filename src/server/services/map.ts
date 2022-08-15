@@ -1,10 +1,5 @@
 import { v4 as uuidV4 } from 'uuid';
-import {
-  MapConfig,
-  MapQGISParamsType,
-  GIS_DEFAULT_PARAMS,
-  GIS_SERVER_URL,
-} from '../utils/constants';
+import { MapConfig, MapQGISParamsType, GIS_DEFAULT_PARAMS, GIS_SERVER_URL } from '../utils/constants';
 
 const { PA_QGIS_OUTPUT_EXT } = process.env;
 const apiKey = process.env.GOOGLE_MAP_API_KEY;
@@ -49,16 +44,31 @@ export const geocodeAddress = async (address): Promise<GeocodeResponse> => {
   return data;
 };
 
-export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
+const getNortheastSouthwestLatLng = (geoResponse: GeocodeResponse) => {
   if (!geoResponse.results.length) {
     throw new Error('No geo data');
   }
-  const val1 = geoResponse.results[0].geometry.viewport.northeast.lng;
-  const val2 = geoResponse.results[0].geometry.viewport.southwest.lng;
-  const val3 = geoResponse.results[0].geometry.viewport.northeast.lat;
-  const val4 = geoResponse.results[0].geometry.viewport.southwest.lat;
+
+  const viewport = geoResponse.results[0].geometry.viewport;
+  return {
+    northeast: viewport.northeast,
+    southwest: viewport.southwest,
+  }
+};
+export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
+  const {northeast, southwest} = getNortheastSouthwestLatLng(geoResponse);
+
+  const val1 = northeast.lng;
+  const val2 = southwest.lng;
+  const val3 = northeast.lat;
+  const val4 = southwest.lat;
   return `${val1},${val2},${val3},${val4} [EPSG:4326]`;
 };
+
+export const getExtentEPSG4326GISServerFormat = (geoResponse: GeocodeResponse) => {
+  const {northeast, southwest} = getNortheastSouthwestLatLng(geoResponse);
+  return `${southwest.lat},${southwest.lng},${northeast.lat},${northeast.lng}`;
+}
 
 export const buildGISServerParams = (
   geoResponse: GeocodeResponse,
@@ -67,7 +77,7 @@ export const buildGISServerParams = (
   const uniqueId = uuidV4();
   const mapQGISParams = {
     ...GIS_DEFAULT_PARAMS[layout],
-    // TODO: To retrieve extends from geo coding
+    'map0:EXTENT': getExtentEPSG4326GISServerFormat(geoResponse),
   };
 
   return {

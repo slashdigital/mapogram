@@ -1,5 +1,10 @@
 import { v4 as uuidV4 } from 'uuid';
-import { MapConfig, MapQGISParamsType, GIS_DEFAULT_PARAMS, GIS_SERVER_URL } from '../utils/constants';
+import {
+  MapConfig,
+  MapQGISParamsType,
+  GIS_DEFAULT_PARAMS,
+  GIS_SERVER_URL,
+} from '../utils/constants';
 
 const { PA_QGIS_OUTPUT_EXT } = process.env;
 const apiKey = process.env.GOOGLE_MAP_API_KEY;
@@ -39,7 +44,6 @@ type GeocodeResponse = {
 export const geocodeAddress = async (address): Promise<GeocodeResponse> => {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${apiKey}`;
   const res = await fetch(url);
-
   const data: GeocodeResponse = await res.json();
   return data;
 };
@@ -53,22 +57,26 @@ const getNortheastSouthwestLatLng = (geoResponse: GeocodeResponse) => {
   return {
     northeast: viewport.northeast,
     southwest: viewport.southwest,
-  }
+  };
 };
-export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
-  const {northeast, southwest} = getNortheastSouthwestLatLng(geoResponse);
 
+export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
+  const { northeast, southwest } = getNortheastSouthwestLatLng(geoResponse);
   const val1 = northeast.lng;
   const val2 = southwest.lng;
   const val3 = northeast.lat;
   const val4 = southwest.lat;
+
   return `${val1},${val2},${val3},${val4} [EPSG:4326]`;
 };
 
-export const getExtentEPSG4326GISServerFormat = (geoResponse: GeocodeResponse) => {
-  const {northeast, southwest} = getNortheastSouthwestLatLng(geoResponse);
+export const getExtentEPSG4326GISServerFormat = (
+  geoResponse: GeocodeResponse
+) => {
+  const { northeast, southwest } = getNortheastSouthwestLatLng(geoResponse);
+
   return `${southwest.lat},${southwest.lng},${northeast.lat},${northeast.lng}`;
-}
+};
 
 export const buildGISServerParams = (
   geoResponse: GeocodeResponse,

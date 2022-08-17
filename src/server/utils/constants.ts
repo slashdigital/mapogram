@@ -1,4 +1,29 @@
-const { PA_QGIS_OUTPUT_EXT, PA_AZ_BLOB_URL, PA_AZ_BLOB_TOKEN } = process.env;
+import path from 'path';
+const {
+  QGIS_MAPOGRAM_FIRE_SERVER_URL,
+  QGIS_MAPOGRAM_FIRE_LAYERS,
+  PA_QGIS_OUTPUT_EXT,
+  PA_AZ_BLOB_URL,
+  PA_AZ_BLOB_TOKEN,
+} = process.env;
+
+export const PUBLIC_FOLDER = path.join(__dirname, '../public');
+
+export const GIS_DEFAULT_PARAMS = {
+  'fire-disaster.layout': {
+    SERVICE: 'WMS',
+    REQUEST: 'GetPrint',
+    CRS: 'EPSG:4326',
+    FORMAT: 'jpg',
+    TEMPLATE: 'MapogramView',
+    'map0:LAYERS': QGIS_MAPOGRAM_FIRE_LAYERS,
+    'map0:EXTENT': '11.3466,104.2199,12.15,105.1276', // TODO: to get from geo response
+  },
+};
+
+export const GIS_SERVER_URL = {
+  'fire-disaster.layout': QGIS_MAPOGRAM_FIRE_SERVER_URL,
+};
 
 export type MapQGISParamsType = {
   output_filename: string;

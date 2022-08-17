@@ -8,9 +8,12 @@ import { PrismaClient } from '@prisma/client';
 
 import logger from '../utils/log';
 import response from '../utils/response';
-import { geocodeAddress, buildParameters } from '../services/map';
+import { geocodeAddress, buildParameters, buildGISServerParams } from '../services/map';
 import { verifyRecaptcha } from '../services/recaptcha';
-import { pushQueue } from '../services/queues/queues';
+import { URLSearchParams } from 'url';
+import { downloadFile } from '../utils/downloader';
+import { PUBLIC_FOLDER } from '../utils/constants';
+import { resizeImage } from '../services/image-processing';
 
 dayjs.extend(utc);
 
@@ -44,17 +47,22 @@ class MapGenerationController {
       }
       const data = await geocodeAddress(params.address);
 
-      const mapParams = await buildParameters(data, params.layout);
+      const mapParams = await buildGISServerParams(data, params.layout);
       console.log(mapParams);
 
-      pushQueue(mapParams.payload);
+      await downloadFile(
+        `${mapParams.serverUrl}/?${new URLSearchParams(mapParams.payload).toString()}`,
+        `${PUBLIC_FOLDER}${mapParams.outputPath}`
+      );
+      await resizeImage(mapParams.uniqueId.toString());
+
       const currentDate = dayjs.utc().toDate();
       const output = await prisma.generation.create({
         data: {
           createdAt: currentDate,
           updatedAt: currentDate,
           title: params.address,
-          outputPath: `${mapParams.payload.az_blob_url}/${mapParams.payload.output_filename}`,
+          outputPath: mapParams.outputPath,
           zoomLevel: 'default',
           command: JSON.stringify(mapParams.payload),
           layout: params.layout,
@@ -62,7 +70,7 @@ class MapGenerationController {
           lng: '',
           sessionId: mapParams.uniqueId.toString(),
           submitted: true,
-          status: 'pending',
+          status: 'success',
         },
       });
       return response.success(res, output);

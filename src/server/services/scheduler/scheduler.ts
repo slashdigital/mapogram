@@ -2,7 +2,7 @@
 //After the download completed, Copy the temporary file to /data/Datasources folder
 
 import schedule from 'node-schedule';
-import dlFile from './downloader';
+import dlFile from '../../utils/downloader';
 import unzipFile from './unzipper';
 import { rule, viirsFiles, modisFiles } from './config';
 

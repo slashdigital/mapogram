@@ -3,7 +3,8 @@
 //Download zip files from NASA site to a temporary folder
 //After the download completed, Copy the temporary file to /data/Datasources folder
 
-import { request } from 'https';
+import https, { request } from 'https';
+import http from 'http';
 import fs from 'fs';
 import { dirname } from 'path';
 
@@ -48,5 +49,21 @@ const dlFile = async (
 
   req.end();
 };
+
+export function downloadFile(url: string, filepath) {
+  const client = url.startsWith('http://') ? http : https;
+  fs.mkdirSync(dirname(url), { recursive: true });
+  return new Promise((done, throwError) =>
+    client.get(url, res => {
+      if (res.statusCode < 200 || res.statusCode >= 400) {
+        throwError('Download error: ' + res.statusCode);
+      }
+      res
+        .pipe(fs.createWriteStream(filepath))
+        .on('close', done)
+        .on('error', throwError);
+    })
+  );
+}
 
 export default dlFile;

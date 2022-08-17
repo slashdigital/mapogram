@@ -1,7 +1,7 @@
 import absPath from './path';
 
 const Configs = {
-  rule: process.env.SCHEDULER_RULE || '* */4 * * *',
+  rule: process.env.SCHEDULER_RULE || '0 */4 * * *',
   viirsSrcFile:
     process.env.SCHEDULER_VIIRS_SRC_FILE ||
     'https://firms.modaps.eosdis.nasa.gov/data/active_fire/suomi-npp-viirs-c2/shapes/zips/SUOMI_VIIRS_C2_Global_24h.zip',

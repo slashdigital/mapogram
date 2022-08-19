@@ -6,7 +6,7 @@ const dev = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   dev,
-  distDir: 'build',
+  distDir: '../../dist/src/client/.next', //! Warning: this path is relative to dir path
   dir: path.resolve(__dirname, '../../src/client'), // changing page client directory
   config: require('../../tsconfig.json'),
 

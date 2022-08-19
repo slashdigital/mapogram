@@ -79,3 +79,37 @@ If the `.env` file seems right to you, do this command:
 docker-compose up 
 ```
 Let's waiting for the process, and voila!
+
+# Server Installation
+
+## Docker installation
+Please refer to this [Official Link](https://docs.docker.com/engine/install/ubuntu/)
+
+To run docker command without sudo:
+```bash
+sudo usermod -a -G docker [user] #Where [user] is your login user
+newgrp docker
+```
+
+## Create folder to store gis data and generated image
+
+
+## New Installation step
+1. Clone the project to local
+1. Checkout to develop/master branch
+1. Create `.env` file and paste environment variable
+1. Run: docker compose up -d
+1. Run database migration inside web-app container
+```bash
+docker exec -it mapogram-web-app-mapogram-1 sh
+npm run migrate:deploy
+npm run seed
+exit
+```
+
+# Update new changes
+```bash
+git pull
+docker compose build
+docker compose down && docker compose up -d
+```

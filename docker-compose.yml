@@ -12,6 +12,8 @@ services:
     environment:
       - API_URL=${API_URL}
       - PORT=${PORT}
+    volumes:
+      - "${MAPOGRAM_DOWNLOAD_DIR}:/usr/src/app/dist/src/server/public"
   db:
     image: postgres
     restart: always

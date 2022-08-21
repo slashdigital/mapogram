@@ -79,5 +79,5 @@ pipelines:
           script:
             - curl -L https://github.com/docker/compose/releases/download/2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
             - chmod +x /usr/local/bin/docker-compose
-            - docker-compose up --help
-            - DOCKER_HOST=ssh://ubuntu@13.250.17.55 docker-compose up -d
+            - /usr/local/bin/docker-compose up --help
+            - DOCKER_HOST=ssh://ubuntu@13.250.17.55 /usr/local/bin/docker-compose up -d

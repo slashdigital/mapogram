@@ -61,7 +61,7 @@ pipelines:
           - export IMAGE_NAME_LATEST=$DOCKER_REGISTRY_SERVER_URL/gis-server:latest
           - export IMAGE_NAME_BUILD=$DOCKER_REGISTRY_SERVER_URL/gis-server:$BUILD_ID
           # build the Docker image (this will use the Dockerfile in the root of the repo)
-          - docker build -t $IMAGE_NAME_BUILD .
+          - docker build -t $IMAGE_NAME_BUILD ./docker/qgis
           - docker tag $IMAGE_NAME_BUILD $IMAGE_NAME_LATEST
           # authenticate with the Docker Hub registry
           - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD

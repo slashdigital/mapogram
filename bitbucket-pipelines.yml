@@ -70,7 +70,8 @@ pipelines:
           - docker push $IMAGE_NAME_LATEST
     deployment:
       - step:
-          image: docker/compose:1.25.4
+          services:
+            - docker
           name: Build docker
           deployment: testbuild
           size: "2x"

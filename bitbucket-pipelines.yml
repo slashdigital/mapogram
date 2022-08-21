@@ -74,5 +74,5 @@ pipelines:
           deployment: testbuild
           size: "2x"
           script:
-            - docker compose up --help
+            - docker-compose up --help
             - DOCKER_HOST=ssh://ubuntu@13.250.17.55 docker compose up -d

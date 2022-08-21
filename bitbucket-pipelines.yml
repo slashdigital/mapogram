@@ -13,7 +13,6 @@ definitions:
     yarn: /usr/local/share/.cache/yarn
   services:
     docker:
-      image: docker/compose
       memory: 2048  # reduce memory for docker-in-docker from 1GB to 512MB
 
 pipelines:
@@ -71,6 +70,7 @@ pipelines:
           - docker push $IMAGE_NAME_LATEST
     deployment:
       - step:
+          image: docker/compose:1.25.4
           name: Build docker
           deployment: testbuild
           size: "2x"

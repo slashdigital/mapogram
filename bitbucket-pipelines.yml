@@ -73,6 +73,7 @@ pipelines:
           services:
             - docker
           name: Build docker
+          image: atlassian/default-image:2
           deployment: testbuild
           size: "2x"
           script:

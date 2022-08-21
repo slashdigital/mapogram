@@ -68,3 +68,10 @@ pipelines:
           # push the new Docker image to the Docker registry
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
+    deployment:
+      - step:
+          name: Build docker
+          deployment: testbuild
+          size: "2x"
+          script:
+            - DOCKER_HOST=ssh://ubuntu@13.250.17.55 docker compose up -d

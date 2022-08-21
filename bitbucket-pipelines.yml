@@ -50,4 +50,21 @@ pipelines:
                 DOCKER_REGISTRY_SERVER_USER: $DOCKER_REGISTRY_SERVER_USER
                 DOCKER_REGISTRY_SERVER_PASSWORD: $DOCKER_REGISTRY_SERVER_PASSWORD
                 DEBUG: 'true'
-    
+  custom:
+    build-gis-server-image:
+      - step:
+          size: 2x 
+          name: Build docker
+          deployment: testbuild
+          script:
+          - export BUILD_ID=dev-$BITBUCKET_BUILD_NUMBER
+          - export IMAGE_NAME_LATEST=$DOCKER_REGISTRY_SERVER_URL/gis-server:latest
+          - export IMAGE_NAME_BUILD=$DOCKER_REGISTRY_SERVER_URL/gis-server:$BUILD_ID
+          # build the Docker image (this will use the Dockerfile in the root of the repo)
+          - docker build -t $IMAGE_NAME_BUILD .
+          - docker tag $IMAGE_NAME_BUILD $IMAGE_NAME_LATEST
+          # authenticate with the Docker Hub registry
+          - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
+          # push the new Docker image to the Docker registry
+          - docker push $IMAGE_NAME_BUILD
+          - docker push $IMAGE_NAME_LATEST

@@ -71,7 +71,7 @@ pipelines:
     deployment:
       - step:
           name: Build docker
-          deployment: testbuild
+          deployment: Test
           size: "2x"
           script: 
             - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD

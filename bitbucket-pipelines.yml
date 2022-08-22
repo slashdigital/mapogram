@@ -35,6 +35,16 @@ pipelines:
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
       - step:
+          name: Build docker
+          deployment: Test
+          size: "2x"
+          script: 
+            - scp ./docker/qgis/nginx.conf ubuntu@52.221.213.110:/home/ubuntu/project-data/ngnix
+            - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
+            - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+            - chmod +x /usr/local/bin/docker-compose
+            - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps   
+      - step:
           name: Deploy Application to Azure
           deployment: test
           script:
@@ -69,13 +79,3 @@ pipelines:
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
     deployment:
-      - step:
-          name: Build docker
-          deployment: Test
-          size: "2x"
-          script: 
-            - scp ./docker/qgis/nginx.conf ubuntu@52.221.213.110:/home/ubuntu/project-data/ngnix
-            - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
-            - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-            - chmod +x /usr/local/bin/docker-compose
-            - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps   

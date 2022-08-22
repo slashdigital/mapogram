@@ -44,18 +44,18 @@ pipelines:
             - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
             - chmod +x /usr/local/bin/docker-compose
             - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps
-            - pipe: microsoft/azure-web-apps-containers-deploy:1.0.2
-              variables:
-                AZURE_APP_ID: $AZURE_APP_ID
-                AZURE_PASSWORD: $AZURE_PASSWORD
-                AZURE_TENANT_ID: $AZURE_TENANT_ID
-                AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
-                AZURE_APP_NAME: $AZURE_APP_NAME
-                DOCKER_CUSTOM_IMAGE_NAME: $DOCKER_REGISTRY_SERVER_URL/$DOCKER_CUSTOM_IMAGE_NAME:latest
-                DOCKER_REGISTRY_SERVER_URL: $DOCKER_REGISTRY_SERVER_URL
-                DOCKER_REGISTRY_SERVER_USER: $DOCKER_REGISTRY_SERVER_USER
-                DOCKER_REGISTRY_SERVER_PASSWORD: $DOCKER_REGISTRY_SERVER_PASSWORD
-                DEBUG: 'true'
+            # - pipe: microsoft/azure-web-apps-containers-deploy:1.0.2
+            #   variables:
+            #     AZURE_APP_ID: $AZURE_APP_ID
+            #     AZURE_PASSWORD: $AZURE_PASSWORD
+            #     AZURE_TENANT_ID: $AZURE_TENANT_ID
+            #     AZURE_RESOURCE_GROUP: $AZURE_RESOURCE_GROUP
+            #     AZURE_APP_NAME: $AZURE_APP_NAME
+            #     DOCKER_CUSTOM_IMAGE_NAME: $DOCKER_REGISTRY_SERVER_URL/$DOCKER_CUSTOM_IMAGE_NAME:latest
+            #     DOCKER_REGISTRY_SERVER_URL: $DOCKER_REGISTRY_SERVER_URL
+            #     DOCKER_REGISTRY_SERVER_USER: $DOCKER_REGISTRY_SERVER_USER
+            #     DOCKER_REGISTRY_SERVER_PASSWORD: $DOCKER_REGISTRY_SERVER_PASSWORD
+            #     DEBUG: 'true'
   custom:
     build-gis-server-image:
       - step:

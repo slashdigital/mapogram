@@ -35,7 +35,7 @@ pipelines:
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
       - step:
-          name: Deploy to server
+          name: Deploy Application to Azure and VPS
           deployment: Test
           size: "2x"
           script: 
@@ -43,11 +43,7 @@ pipelines:
             - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
             - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
             - chmod +x /usr/local/bin/docker-compose
-            - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps   
-      - step:
-          name: Deploy Application to Azure
-          deployment: test
-          script:
+            - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps
             - pipe: microsoft/azure-web-apps-containers-deploy:1.0.2
               variables:
                 AZURE_APP_ID: $AZURE_APP_ID
@@ -70,7 +66,6 @@ pipelines:
           - export BUILD_ID=dev-$BITBUCKET_BUILD_NUMBER
           - export IMAGE_NAME_LATEST=$DOCKER_REGISTRY_SERVER_URL/gis-server:latest
           - export IMAGE_NAME_BUILD=$DOCKER_REGISTRY_SERVER_URL/gis-server:$BUILD_ID
-          # build the Docker image (this will use the Dockerfile in the root of the repo)
           - docker build -t $IMAGE_NAME_BUILD ./docker/qgis
           - docker tag $IMAGE_NAME_BUILD $IMAGE_NAME_LATEST
           # authenticate with the Docker Hub registry

@@ -2,6 +2,7 @@ version: "3"
 services:
   mapogram:
     restart: always
+    pull_policy: always
     ports:
       - ${PORT}:${PORT}
     image: $DOCKER_REGISTRY_SERVER_URL/$DOCKER_CUSTOM_IMAGE_NAME
@@ -25,6 +26,7 @@ services:
   qgis-mapogram-fire-server:
     image: $DOCKER_REGISTRY_SERVER_URL/gis-server
     restart: always
+    pull_policy: always
     volumes:
       - type: bind
         source: ${QGIS_MAPOGRAM_FIRE_DIR}

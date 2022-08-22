@@ -24,6 +24,7 @@ services:
       - db-data:/var/lib/postgresql/data
   qgis-mapogram-fire-server:
     image: $DOCKER_REGISTRY_SERVER_URL/gis-server
+    restart: always
     volumes:
       - type: bind
         source: ${QGIS_MAPOGRAM_FIRE_DIR}
@@ -34,6 +35,8 @@ services:
   web-server:
     image: nginx:1.13
     restart: always
+    depends_on:
+      - qgis-mapogram-fire-server
     volumes:
       - type: bind
         source: ./docker/qgis/nginx.conf

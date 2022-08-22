@@ -39,7 +39,7 @@ services:
       - qgis-mapogram-fire-server
     volumes:
       - type: bind
-        source: ./docker/qgis/nginx.conf
+        source: /home/ubuntu/project-data/ngnix/nginx.conf
         target: /etc/nginx/conf.d/default.conf
 
 volumes:

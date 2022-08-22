@@ -4,9 +4,7 @@ services:
     restart: always
     ports:
       - ${PORT}:${PORT}
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: $DOCKER_REGISTRY_SERVER_URL/$DOCKER_CUSTOM_IMAGE_NAME
     depends_on:
       - db
     environment:
@@ -25,9 +23,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
   qgis-mapogram-fire-server:
-    build:
-      context: ./docker/qgis
-      dockerfile: Dockerfile
+    image: $DOCKER_REGISTRY_SERVER_URL/gis-server
     volumes:
       - type: bind
         source: ${QGIS_MAPOGRAM_FIRE_DIR}

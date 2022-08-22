@@ -35,7 +35,7 @@ pipelines:
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
       - step:
-          name: Build docker
+          name: Deploy to server
           deployment: Test
           size: "2x"
           script: 

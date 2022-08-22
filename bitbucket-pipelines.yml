@@ -74,6 +74,7 @@ pipelines:
           deployment: Test
           size: "2x"
           script: 
+            - cat /opt/atlassian/pipelines/agent/ssh/id_rsa
             - ssh ubuntu@52.221.213.110 "echo Hello world"
             - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
             - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose

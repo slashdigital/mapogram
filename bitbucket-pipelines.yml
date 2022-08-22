@@ -78,4 +78,3 @@ pipelines:
           # push the new Docker image to the Docker registry
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
-    deployment:

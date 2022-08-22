@@ -78,5 +78,4 @@ pipelines:
             - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
             - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
             - chmod +x /usr/local/bin/docker-compose
-            - docker-compose pull && docker image rm -f $(docker images -f dangling=true -q)
             - /usr/local/bin/docker-compose up -d

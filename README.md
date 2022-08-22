@@ -103,6 +103,12 @@ mkdir -p /home/ubuntu/project-data/public
 scp -i ~/mapogram-key.pem data ubuntu@@13.250.17.55:home/ubuntu/project-data/gis-data
 ```
 
+# Enable pipeline can access VPS
+1. Go to SSH key tab in repository setting
+1. Add private key from mapogram-key.pem
+1. Add public key from generate from: `ssh-keygen -f ~/mapogram-key.pem -y`
+1. Below the SSH key, fetch fingerprint by input VPS IP, and add to Known Hosts
+
 ## New Installation step
 1. Run database migration inside web-app container
 ```bash

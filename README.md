@@ -91,25 +91,31 @@ sudo usermod -a -G docker [user] #Where [user] is your login user
 newgrp docker
 ```
 
-## Create folder to store gis data and generated image
+## Create folder to store nginx config, gis data and generated image
+```bash
+mkdir -p /home/ubuntu/project-data/gis-data
+mkdir -p /home/ubuntu/project-data/nginx
+mkdir -p /home/ubuntu/project-data/public
+```
 
+## Copy mapogram data to created folder
+```bash
+scp -i ~/mapogram-key.pem data ubuntu@@13.250.17.55:home/ubuntu/project-data/gis-data
+```
 
 ## New Installation step
-1. Clone the project to local
-1. Checkout to develop/master branch
-1. Create `.env` file and paste environment variable
-1. Run: docker compose up -d
 1. Run database migration inside web-app container
 ```bash
-docker exec -it mapogram-web-app-mapogram-1 sh
+docker exec -it [mapogram-web-container-id] sh
 npm run migrate:deploy
 npm run seed
 exit
 ```
 
-# Update new changes
+# Migration
+1. ssh to the server
+1. Run database migration inside web-app container
 ```bash
-git pull
-docker compose build
-docker compose down && docker compose up -d
+docker exec -it [mapogram-web-container-id] sh
+npm run migrate:deploy
 ```

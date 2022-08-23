@@ -35,15 +35,9 @@ pipelines:
           - docker push $IMAGE_NAME_BUILD
           - docker push $IMAGE_NAME_LATEST
       - step:
-          name: Deploy Application to Azure and VPS
-          deployment: Test
-          size: "2x"
+          name: Deploy Application to VPS
+          deployment: test
           script: 
-            - scp ./docker/qgis/nginx.conf ubuntu@$HOST_IP:/home/ubuntu/project-data/ngnix
-            - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
-            - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-            - chmod +x /usr/local/bin/docker-compose
-            - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps
             # - pipe: microsoft/azure-web-apps-containers-deploy:1.0.2
             #   variables:
             #     AZURE_APP_ID: $AZURE_APP_ID
@@ -56,6 +50,11 @@ pipelines:
             #     DOCKER_REGISTRY_SERVER_USER: $DOCKER_REGISTRY_SERVER_USER
             #     DOCKER_REGISTRY_SERVER_PASSWORD: $DOCKER_REGISTRY_SERVER_PASSWORD
             #     DEBUG: 'true'
+            - scp ./docker/qgis/nginx.conf ubuntu@$HOST_IP:/home/ubuntu/project-data/ngnix
+            - docker login $DOCKER_REGISTRY_SERVER_URL --username $DOCKER_REGISTRY_SERVER_USER --password $DOCKER_REGISTRY_SERVER_PASSWORD
+            - curl -L https://github.com/docker/compose/releases/download/v2.10.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+            - chmod +x /usr/local/bin/docker-compose
+            - /usr/local/bin/docker-compose up -d --remove-orphans --always-recreate-deps
   custom:
     build-gis-server-image:
       - step:

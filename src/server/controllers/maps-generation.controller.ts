@@ -8,7 +8,7 @@ import { PrismaClient } from '@prisma/client';
 
 import logger from '../utils/log';
 import response from '../utils/response';
-import { geocodeAddress, buildParameters, buildGISServerParams } from '../services/map';
+import { geocodeAddress, buildGISServerParams } from '../services/map';
 import { verifyRecaptcha } from '../services/recaptcha';
 import { URLSearchParams } from 'url';
 import { downloadFile } from '../utils/downloader';
@@ -50,12 +50,6 @@ class MapGenerationController {
       const mapParams = await buildGISServerParams(data, params.layout);
       console.log(mapParams);
 
-      await downloadFile(
-        `${mapParams.serverUrl}/?${new URLSearchParams(mapParams.payload).toString()}`,
-        `${PUBLIC_FOLDER}${mapParams.outputPath}`
-      );
-      await resizeImage(mapParams.uniqueId.toString());
-
       const currentDate = dayjs.utc().toDate();
       const output = await prisma.generation.create({
         data: {
@@ -70,9 +64,39 @@ class MapGenerationController {
           lng: '',
           sessionId: mapParams.uniqueId.toString(),
           submitted: true,
-          status: 'success',
+          status: 'pending',
         },
       });
+
+      console.log(`Start downloading map of Id: ${output.id} to local `);
+      downloadFile(
+        `${mapParams.serverUrl}/?${new URLSearchParams(
+          mapParams.payload
+        ).toString()}`,
+        `${PUBLIC_FOLDER}${mapParams.outputPath}`
+      )
+        .then(() => {
+          console.log(`Start resizing image of Id: ${output.id}`);
+          return resizeImage(mapParams.uniqueId.toString());
+        })
+        .then(() => {
+          console.log(`generate map success of Id: ${output.id}`);
+          output.status = 'success';
+          return prisma.generation.update({
+            where: { id: output.id },
+            data: output,
+          });
+        })
+        .catch(reason => {
+          console.error(`Fail to generate map of Id: ${output.id}`);
+          console.error(reason);
+          output.status = 'failed';
+          return prisma.generation.update({
+            where: { id: output.id },
+            data: output,
+          });
+        });
+
       return response.success(res, output);
     } catch (e) {
       console.log(e);

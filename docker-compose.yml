@@ -2,14 +2,38 @@ version: "3"
 services:
   mapogram:
     restart: always
+    pull_policy: always
     ports:
       - ${PORT}:${PORT}
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: $DOCKER_REGISTRY_SERVER_URL/$DOCKER_CUSTOM_IMAGE_NAME
+    depends_on:
+      - db
     environment:
       - API_URL=${API_URL}
       - PORT=${PORT}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - DB_SCHEMA=${DB_SCHEMA}
+      - DATABASE_URL=${DATABASE_URL}
+      - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
+      - GOOGLE_MAP_API_KEY=${GOOGLE_MAP_API_KEY}
+      - DOCKER_REGISTRY_SERVER_URL=${DOCKER_REGISTRY_SERVER_URL}
+      - DOCKER_CUSTOM_IMAGE_NAME=${DOCKER_CUSTOM_IMAGE_NAME}
+      - QGIS_MACHINE_PROJECT_PATH=${QGIS_MACHINE_PROJECT_PATH}
+      - PA_ENABLED=${PA_ENABLED}
+      - PA_ATTEND_MODE=${PA_ATTEND_MODE}
+      - PA_QGIS_OUTPUT_EXT=${PA_QGIS_OUTPUT_EXT}
+      - PA_AZ_BLOB_URL=${PA_AZ_BLOB_URL}
+      - PA_AZ_BLOB_TOKEN=${PA_AZ_BLOB_TOKE}
+      - QGIS_MAPOGRAM_FIRE_DIR=${QGIS_MAPOGRAM_FIRE_DIR}
+      - QGIS_MAPOGRAM_FIRE_FILE=${QGIS_MAPOGRAM_FIRE_FILE}
+      - QGIS_MAPOGRAM_FIRE_SERVER_URL=${QGIS_MAPOGRAM_FIRE_SERVER_URL}
+      - QGIS_MAPOGRAM_FIRE_LAYERS=${QGIS_MAPOGRAM_FIRE_LAYER}
+      - MAPOGRAM_DOWNLOAD_DIR=${MAPOGRAM_DOWNLOAD_DIR}
+    volumes:
+      - "${MAPOGRAM_DOWNLOAD_DIR}:/usr/src/app/dist/src/server/public"
   db:
     image: postgres
     restart: always
@@ -18,12 +42,12 @@ services:
       - "POSTGRES_DB=${POSTGRES_DB}"
       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
       - "POSTGRES_HOST_AUTH_METHOD=trust"
-    ports:
-      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
   qgis-mapogram-fire-server:
-    build:
-      context: ./docker/qgis
-      dockerfile: Dockerfile
+    image: $DOCKER_REGISTRY_SERVER_URL/gis-server
+    restart: always
+    pull_policy: always
     volumes:
       - type: bind
         source: ${QGIS_MAPOGRAM_FIRE_DIR}
@@ -34,9 +58,12 @@ services:
   web-server:
     image: nginx:1.13
     restart: always
-    ports:
-      - "${QGIS_MAPOGRAM_FIRE_SERVER_PORT}:80"
+    depends_on:
+      - qgis-mapogram-fire-server
     volumes:
       - type: bind
-        source: ./docker/qgis/nginx.conf
+        source: /home/ubuntu/project-data/ngnix/nginx.conf
         target: /etc/nginx/conf.d/default.conf
+
+volumes:
+  db-data:

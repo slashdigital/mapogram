@@ -10,6 +10,8 @@
   "include": [
     "src/server/**/*.ts",
     "src/server/**/*.tsx",
+    "config/next/index.js",
+    "src/client/.next/*",
     "src/shared/**/*.tsx"
   ]
 }

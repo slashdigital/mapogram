@@ -52,7 +52,7 @@ const dlFile = async (
 
 export function downloadFile(url: string, filepath) {
   const client = url.startsWith('http://') ? http : https;
-  fs.mkdirSync(dirname(url), { recursive: true });
+  fs.mkdirSync(dirname(filepath), { recursive: true });
   return new Promise((done, throwError) =>
     client.get(url, res => {
       if (res.statusCode < 200 || res.statusCode >= 400) {

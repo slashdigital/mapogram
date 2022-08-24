@@ -5,7 +5,7 @@ const nextConfig = require('../config/next');
 const { NODE_ENV } = process.env;
 nextBuild(
   nextConfig.dir,
-  nextConfig.config,
+  nextConfig,
   NODE_ENV == 'production',
   true,
   false

@@ -54,15 +54,17 @@ export function downloadFile(url: string, filepath) {
   const client = url.startsWith('http://') ? http : https;
   fs.mkdirSync(dirname(filepath), { recursive: true });
   return new Promise((done, throwError) =>
-    client.get(url, res => {
-      if (res.statusCode < 200 || res.statusCode >= 400) {
-        throwError('Download error: ' + res.statusCode);
-      }
-      res
-        .pipe(fs.createWriteStream(filepath))
-        .on('close', done)
-        .on('error', throwError);
-    })
+    client
+      .get(url, res => {
+        if (res.statusCode < 200 || res.statusCode >= 400) {
+          throwError('Download error: ' + res.statusCode);
+        }
+        res
+          .pipe(fs.createWriteStream(filepath))
+          .on('close', done)
+          .on('error', throwError);
+      })
+      .on('error', throwError)
   );
 }
 

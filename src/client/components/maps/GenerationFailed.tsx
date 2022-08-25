@@ -4,7 +4,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { red } from '@mui/material/colors';
 
 type PropType = {
-  id: String
+  id: string
 }
 
 const GenerationFailed = (props: PropType) => {

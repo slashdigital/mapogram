@@ -1,14 +1,13 @@
-import { withRouter, NextRouter, Router } from 'next/router'
+import { withRouter, NextRouter } from 'next/router'
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 import Container from '@mui/material/Container';
-import Layout from "../../components/Layout";
-import { MapModel } from "../../services/MapService";
-import { GetStaticProps } from "next";
-import MapService from "../../services/MapService";
+import Layout from '../../components/Layout';
+import { MapModel } from '../../services/MapService';
+import MapService from '../../services/MapService';
 import Ribbon from '../../components/Ribbon';
 
 

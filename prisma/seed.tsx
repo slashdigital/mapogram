@@ -14,14 +14,14 @@ const mapTypes: Prisma.MapTypeCreateInput[] = [
 ]
 
 async function main() {
-  console.log(`Start seeding ...`)
+  console.log('Start seeding ...')
   for (const item of mapTypes) {
     const mapType = await prisma.mapType.create({
       data: item,
     })
     console.log(`Created map type with id: ${mapType.id}`)
   }
-  console.log(`Seeding finished.`)
+  console.log('Seeding finished.')
 }
 
 main()

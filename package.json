@@ -3,6 +3,8 @@
   "scripts": {
     "lint": "eslint --ignore-path .gitignore --fix --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "localstack": "docker compose -f docker-compose.local.yml up",
+    "localstack:build": "docker compose -f docker-compose.local.yml build",
     "dev": "nodemon",
     "build": "yarn build:client && yarn build:server && yarn build:server:copies",
     "build:client": "node --unhandled-rejections=strict scripts/build.js",

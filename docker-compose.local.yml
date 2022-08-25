@@ -4,9 +4,17 @@ services:
     restart: always
     ports:
       - ${PORT}:${PORT}
-    build:
+    build: 
       context: ./
       dockerfile: Dockerfile
+    volumes: # To prevent overriding node_modules folder, which OS dependent, and there is no "exclude" option, we have to bind folder one by one
+      - type: bind
+        source: ./src
+        target: /usr/src/app/src
+      - type: bind
+        source: ./.env
+        target: /usr/src/app/.env
+    command: ["yarn", "dev"]
     depends_on:
       - db
     environment:

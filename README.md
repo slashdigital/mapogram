@@ -73,6 +73,7 @@ Run `yarn dev` to start the application.
 
 ### 5. Rebuild the docker image ( skip this if you run directly on local machine)
 
+*If container does not reflect your change, you can rebuild image to reflect latest changes*
 Run following command
 ```bash
 yarn localstack:build

@@ -1,11 +1,11 @@
-import * as React from "react";
-import { NextRouter, useRouter } from "next/router";
-import LinearProgress from "@mui/material/LinearProgress";
-import Styles from "./GenerationProgress.module.css";
-import { Typography } from "@mui/material";
+import * as React from 'react';
+import { NextRouter } from 'next/router';
+import LinearProgress from '@mui/material/LinearProgress';
+import Styles from './GenerationProgress.module.css';
+import { Typography } from '@mui/material';
 
 type Props = {
-  mapId: String;
+  mapId: string;
   router: NextRouter;
 };
 const GenerationProgress = (props: Props) => {
@@ -13,13 +13,13 @@ const GenerationProgress = (props: Props) => {
     <div>
       <div className={Styles.GenerationProgress}>
         <div>
-          <Typography variant="h5" sx={{ color: "grey" }}>
+          <Typography variant="h5" sx={{ color: 'grey' }}>
             <span className={Styles.GenerationProgress_header}>
               Hold on tight, we are generating the map for you....
             </span>
           </Typography>
 
-          <Typography variant="body1" sx={{ color: "grey" }}>
+          <Typography variant="body1" sx={{ color: 'grey' }}>
             <span className={Styles.GenerationProgress_subheader}>
               Please wait
             </span>

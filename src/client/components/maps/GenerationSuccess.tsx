@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 import Styles from './GenerationSuccess.module.css';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import { green } from '@mui/material/colors';

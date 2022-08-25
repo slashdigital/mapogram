@@ -1,21 +1,17 @@
-import * as React from "react";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import Autocomplete from "@mui/material/Autocomplete";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import parse from "autosuggest-highlight/parse";
+import * as React from 'react';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 type PropType = {
   open: boolean,
-  title: String,
-  description: String,
-  onClose: Function
+  title: string,
+  description: string,
+  onClose: () => void,
 }
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -27,6 +23,7 @@ const style = {
 };
 
 export default function ErrorModal(props: PropType)  {
+  console.log('Error modal');
   const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {

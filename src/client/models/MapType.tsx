@@ -1,8 +1,8 @@
 
 interface MapTypeModel {
-  id: Number;
-  name: String;
-  layout: String;
+  id: number;
+  name: string;
+  layout: string;
 }
 
 export default MapTypeModel;

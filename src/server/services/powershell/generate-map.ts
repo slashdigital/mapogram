@@ -1,6 +1,5 @@
 import { spawn } from 'child_process';
 import path from 'path';
-// import { MapConfig } from '../../utils/constants';
 
 const { QGIS_MACHINE_PROJECT_PATH } = process.env;
 

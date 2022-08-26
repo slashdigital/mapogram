@@ -1,5 +1,5 @@
 class TestController {
-  public async get(req, res) {
+  public async get(_req, res) {
     try {
       // const client = await pool.connect();
 

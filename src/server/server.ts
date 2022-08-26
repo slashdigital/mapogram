@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import express, { Application, Router } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import appRouter from './routes/app.router';
 import apiRouter from './routes/api.router';

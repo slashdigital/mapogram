@@ -1,14 +1,11 @@
 import { withRouter, NextRouter } from 'next/router';
-
 import Layout from '../../../components/Layout';
 import GenerationFailed from '../../../components/maps/GenerationFailed';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Ribbon from '../../../components/Ribbon';
-
-import { MapModel } from '../../../services/MapService';
-import MapService from '../../../services/MapService';
+import MapService, { MapModel } from '../../../services/MapService';
 
 import Styles from './status.module.css';
 

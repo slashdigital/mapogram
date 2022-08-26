@@ -9,7 +9,9 @@ class MapModel {
   mapId: string;
   status: number;
 
-  constructor() {}
+  constructor() {
+    // This is intended
+  }
 }
 
 export default MapModel;

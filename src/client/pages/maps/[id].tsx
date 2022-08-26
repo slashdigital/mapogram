@@ -1,8 +1,7 @@
 import { withRouter, NextRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import Container from '@mui/material/Container';
-import { MapModel } from '../../services/MapService';
-import MapService from '../../services/MapService';
+import MapService, { MapModel } from '../../services/MapService';
 import Ribbon from '../../components/Ribbon';
 import CardMap from '../../components/maps/CardMap';
 

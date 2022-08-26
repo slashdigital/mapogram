@@ -47,7 +47,7 @@ class MapGenerationController {
       }
       const data = await geocodeAddress(params.address);
 
-      const mapParams = await buildGISServerParams(data, params.layout);
+      const mapParams = buildGISServerParams(data, params.layout);
       console.log(mapParams);
 
       const currentDate = dayjs.utc().toDate();
@@ -131,7 +131,7 @@ class MapGenerationController {
     return response.success(res, listing);
   };
 
-  public getMapTypes = async (req, res) => {
+  public getMapTypes = async (_req, res) => {
     const mapTypes = await prisma.mapType.findMany();
     console.log('Created map type with id:', mapTypes);
     return response.success(res, mapTypes);

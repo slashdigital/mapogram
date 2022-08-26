@@ -44,8 +44,7 @@ class MapService {
       },
       body: JSON.stringify(params)
     });
-    const data = await res.json();
-    return data;
+    return res.json();
   };
   public getMapById = async (id: string, baseUrl: string = apiUrl): Promise<MapModel> => {
     const res = await fetch(`${baseUrl}api/maps/${id}`, {

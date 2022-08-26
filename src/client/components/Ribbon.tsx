@@ -15,9 +15,9 @@ const Ribbon = () => {
         <Grid container spacing={2}>
           <Grid item xs={10}>
             <Typography variant="body2">
-              Mapogram is a platform powered by <b>Cloud-based QGIS</b> on Azure
-              VM to provide map generation service for the map they needed to
-              deal with natural disaster like Forest fire, Flood event etc...
+              Mapogram is a platform powered by <b>Cloud-based QGIS</b> on Azure VM to provide map
+              generation service for the map they needed to deal with natural disaster like Forest
+              fire, Flood event etc...
             </Typography>
           </Grid>
           <Grid
@@ -27,7 +27,7 @@ const Ribbon = () => {
               justifyContent: 'flex-end',
               alignItems: 'center',
               display: 'flex',
-              textAlign: 'right',
+              textAlign: 'right'
             }}
           >
             <Link href="/">

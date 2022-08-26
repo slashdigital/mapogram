@@ -9,8 +9,16 @@
     // "standard"
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "next",
+    "next/core-web-vitals"
   ],
+  "settings": {
+    "next": {
+      "rootDir": "src/client"
+    }
+  },
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -29,6 +37,7 @@
         "caughtErrorsIgnorePattern": "^_"
       }
     ],
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "@next/next/no-html-link-for-pages": ["error", "src/client/pages"]
   }
 }

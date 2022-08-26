@@ -7,7 +7,7 @@ export const useInputWhiteStyles = makeStyles(_theme => ({
       borderTopRightRadius: '4px',
       borderBottomRightRadius: '4px',
       borderTopLeftRadius: '0px',
-      borderBottomLeftRadius: '0px',
-    },
-  },
+      borderBottomLeftRadius: '0px'
+    }
+  }
 }));

@@ -13,16 +13,11 @@ const unzipFile = async (zipFileName: string, unzipPath: string) => {
     const item = result.files[key];
 
     const newItemDirName = dirname(item.name).toString().replace(/\.$/, '/');
-    const unzipDeployPath = normalize(
-      unzipPath + newItemDirName + basename(item.name)
-    );
+    const unzipDeployPath = normalize(unzipPath + newItemDirName + basename(item.name));
     console.log(unzipDeployPath);
 
     fs.mkdirSync(dirname(unzipDeployPath), { recursive: true });
-    fs.writeFileSync(
-      unzipDeployPath,
-      Buffer.from(await item.async('arraybuffer'))
-    );
+    fs.writeFileSync(unzipDeployPath, Buffer.from(await item.async('arraybuffer')));
   }
 
   console.log('Downloaded files extracted successfully!');

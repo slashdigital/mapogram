@@ -45,20 +45,20 @@ declare module '@mui/material/TextField' {
 
 export default createTheme({
   status: {
-    danger: '#e53e3e',
+    danger: '#e53e3e'
   },
   palette: {
     primary: {
       main: '#0971f1',
-      darker: '#053e85',
+      darker: '#053e85'
     },
     neutral: {
       main: '#64748B',
-      contrastText: '#fff',
+      contrastText: '#fff'
     },
     contrast: {
       main: '#fff',
-      contrastText: '#0971f1',
-    },
-  },
+      contrastText: '#0971f1'
+    }
+  }
 });

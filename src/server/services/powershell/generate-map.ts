@@ -6,19 +6,12 @@ const { QGIS_MACHINE_PROJECT_PATH } = process.env;
 
 const publicFolder = path.join(__dirname, '../../public');
 
-const generateMapPowerShell = (
-  extent: string,
-  fileName: string,
-  projectName: string
-) => {
+const generateMapPowerShell = (extent: string, fileName: string, projectName: string) => {
   return new Promise((resolve, reject) => {
     const stdData = [];
     const stdDataError = [];
 
-    const project = path.join(
-      QGIS_MACHINE_PROJECT_PATH,
-      projectName.toString()
-    );
+    const project = path.join(QGIS_MACHINE_PROJECT_PATH, projectName.toString());
     const output = path.join(publicFolder, fileName);
     const commandLine = `${__dirname}\\generate-map.ps1 -Extent "${extent}" -Output "${output}" -Project "${project}"`;
     console.log('Command generate', commandLine);
@@ -34,9 +27,7 @@ const generateMapPowerShell = (
       if (
         !(
           data.includes('Image is a null image') ||
-          data.includes(
-            'driver does not support update access to existing datasets.'
-          )
+          data.includes('driver does not support update access to existing datasets.')
         )
       ) {
         stdDataError.push(`Error: ${data}`);

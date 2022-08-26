@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import React, { ReactNode } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
@@ -30,10 +31,7 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
       <header>
         <Box className={styles.header}>
@@ -41,11 +39,7 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <Link href="/">
-                  <Image
-                    src={Logo}
-                    alt="mapogram logo"
-                    className={styles.header__left_image}
-                  />
+                  <Image src={Logo} alt="mapogram logo" className={styles.header__left_image} />
                 </Link>
               </Grid>
               <Grid
@@ -55,7 +49,7 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
                   justifyContent: 'flex-end',
                   alignItems: 'center',
                   display: 'flex',
-                  textAlign: 'right',
+                  textAlign: 'right'
                 }}
               >
                 <Link href="/about">
@@ -63,8 +57,7 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
                 </Link>
                 <Link href="/maps" as="/maps">
                   <MainButton color="primary" sx={{ ml: 2 }}>
-                    Visit Map Gallery{' '}
-                    <ArrowForwardIosOutlinedIcon fontSize="small" />
+                    Visit Map Gallery <ArrowForwardIosOutlinedIcon fontSize="small" />
                   </MainButton>
                 </Link>
               </Grid>
@@ -84,7 +77,7 @@ const Layout = ({ children, title = 'Mapogram' }: Props) => (
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  justifyItems: 'center',
+                  justifyItems: 'center'
                 }}
               >
                 <span className={styles.footer__text}>

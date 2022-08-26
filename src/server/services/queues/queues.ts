@@ -14,22 +14,18 @@ const worker = (arg: MapQGISParamsType, cb: done) => {
   const sessionId = arg.output_filename
     .replace(`${PA_AZ_BLOB_URL}/`, '')
     .replace(`.${PA_QGIS_OUTPUT_EXT}`, '');
-  console.log(
-    `Adding queue to generate map by: Payload: ${JSON.stringify(arg)}}`
-  );
+  console.log(`Adding queue to generate map by: Payload: ${JSON.stringify(arg)}}`);
   requestMap(arg)
     .then(async result => {
       // Update status of the map data
       console.log('Queue generate map success', result);
       const existing = await prisma.generation.findFirst({
         where: {
-          sessionId: sessionId,
-        },
+          sessionId: sessionId
+        }
       });
       if (!existing) {
-        console.log(
-          `There is no existing record finding by: {sessionId: ${sessionId}}`
-        );
+        console.log(`There is no existing record finding by: {sessionId: ${sessionId}}`);
       } else {
         await resizeImage(sessionId);
         console.log(`Found record finding by: {sessionId: ${sessionId}}`);
@@ -37,13 +33,11 @@ const worker = (arg: MapQGISParamsType, cb: done) => {
         existing.status = 'success';
         await prisma.generation.update({
           where: {
-            id: existing.id,
+            id: existing.id
           },
-          data: existing,
+          data: existing
         });
-        console.log(
-          `Successfully save record finding by: {sessionId: ${sessionId}}`
-        );
+        console.log(`Successfully save record finding by: {sessionId: ${sessionId}}`);
       }
       cb(null);
     })
@@ -52,15 +46,15 @@ const worker = (arg: MapQGISParamsType, cb: done) => {
       console.log('Queue generate map error');
       const existing = await prisma.generation.findFirst({
         where: {
-          sessionId: sessionId,
-        },
+          sessionId: sessionId
+        }
       });
       existing.status = 'failed';
       await prisma.generation.update({
         where: {
-          id: existing.id,
+          id: existing.id
         },
-        data: existing,
+        data: existing
       });
       cb(null);
     });

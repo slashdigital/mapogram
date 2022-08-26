@@ -13,8 +13,8 @@ const GenerationFailed = (props: PropType) => {
     <div>
       <div className={Styles.GenerationFailed}>
         <p className={Styles.GenerationFailed_header}>
-          <CancelOutlinedIcon sx={{ fontSize: 50, color: red[900] }} /> Sorry,
-          there is a problem in generating the maps
+          <CancelOutlinedIcon sx={{ fontSize: 50, color: red[900] }} /> Sorry, there is a problem in
+          generating the maps
         </p>
         <p className={Styles.GenerationFailed_req_id}>Request ID: {props.id}</p>
       </div>

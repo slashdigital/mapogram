@@ -41,7 +41,7 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
         props.router.push(`/maps/${map.id}/error`);
       }
       MapService.getMapById(map.id.toString(), '/')
-        .then((result) => {
+        .then(result => {
           if (result.status == 'failed') {
             clearInterval(timeout);
             props.router.push(`/maps/${map.id}/error`);
@@ -80,7 +80,9 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
                     router={props.router}
                   />
                 )}
-                {map.status == 'failed' && <GenerationFailed id={map.sessionId}/>}
+                {map.status == 'failed' && (
+                  <GenerationFailed id={map.sessionId} />
+                )}
                 {map.status == 'success' && <GenerationSuccess />}
               </Container>
             </Grid>

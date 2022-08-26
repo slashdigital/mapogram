@@ -1,36 +1,35 @@
 .GenerationProgress {
-    /* height: 108vh;
+  /* height: 108vh;
     display: flex;
     align-items: center; */
 }
 
 .GenerationProgress_header {
-    color: #3BA9E7;
-    
+  color: #3ba9e7;
 }
 
 .GenerationProgress_subheader {
-    color: #B5B5B5;
+  color: #b5b5b5;
 }
 
 .GenerationProgress_req_id {
-    color: #B5B5B5;
+  color: #b5b5b5;
 }
 
 .GenerationProgress_loading_bar {
-    width: 100%;
-    height: 18px;
-    background-color: #EAEAEA;
-    margin: 36px 0 26px 0;
+  width: 100%;
+  height: 18px;
+  background-color: #eaeaea;
+  margin: 36px 0 26px 0;
 }
 
 .GenerationProgress_progress {
-    width: 1%;
-    height: 18px;
-    background-color: #3BA9E7;
+  width: 1%;
+  height: 18px;
+  background-color: #3ba9e7;
 }
 
 .GenerationProgress_refresh {
-    color: #3BA9E7;
-    text-align: center;
+  color: #3ba9e7;
+  text-align: center;
 }

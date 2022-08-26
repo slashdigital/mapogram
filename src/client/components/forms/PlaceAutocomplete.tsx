@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -68,7 +69,7 @@ export default function PlaceAutocomplete(props: Props) {
           request: { input: string },
           callback: (results?: readonly PlaceType[]) => void
         ) => {
-          (autocompleteService.current as any).getPlacePredictions(
+          (autocompleteService.current).getPlacePredictions(
             request,
             callback
           );
@@ -132,12 +133,12 @@ export default function PlaceAutocomplete(props: Props) {
       includeInputInList
       filterSelectedOptions
       value={value}
-      onChange={(event: any, newValue: PlaceType | null) => {
+      onChange={(_event: any, newValue: PlaceType | null) => {
         setOptions(newValue ? [newValue, ...options] : options);
         setValue(newValue);
         props.onChange(newValue);
       }}
-      onInputChange={(event, newInputValue) => {
+      onInputChange={(_event, newInputValue) => {
         setInputValue(newInputValue);
       }}
       renderInput={params => (
@@ -151,7 +152,7 @@ export default function PlaceAutocomplete(props: Props) {
           fullWidth
         />
       )}
-      renderOption={(props, option) => {
+      renderOption={(propsRenderOption, option) => {
         const matches =
           option.structured_formatting.main_text_matched_substrings;
         const parts = parse(
@@ -163,7 +164,7 @@ export default function PlaceAutocomplete(props: Props) {
         );
 
         return (
-          <li {...props}>
+          <li {...propsRenderOption}>
             <Grid container alignItems="center">
               <Grid item>
                 <Box

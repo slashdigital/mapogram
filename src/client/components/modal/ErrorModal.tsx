@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 type PropType = {
-  open: boolean,
-  title: string,
-  description: string,
-  onClose: () => void,
-}
+  open: boolean;
+  title: string;
+  description: string;
+  onClose: () => void;
+};
 
 const style = {
   position: 'absolute',
@@ -22,32 +22,34 @@ const style = {
   p: 4,
 };
 
-export default function ErrorModal(props: PropType)  {
+export default function ErrorModal(props: PropType) {
   console.log('Error modal');
   const [isOpen, setIsOpen] = React.useState(false);
 
   React.useEffect(() => {
     setIsOpen(props.open);
-  }, [props])
+  }, [props]);
 
   const handleClose = () => {
     setIsOpen(false);
     props.onClose();
-  }
+  };
 
-  return (<Modal
-    open={isOpen}
-    onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-        {props.title}
-      </Typography>
-      <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-        {props.description}
-      </Typography>
-    </Box>
-  </Modal>);
-};
+  return (
+    <Modal
+      open={isOpen}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={style}>
+        <Typography id="modal-modal-title" variant="h6" component="h2">
+          {props.title}
+        </Typography>
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {props.description}
+        </Typography>
+      </Box>
+    </Modal>
+  );
+}

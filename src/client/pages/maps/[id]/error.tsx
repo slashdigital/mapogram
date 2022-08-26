@@ -1,9 +1,7 @@
-
-
-import { withRouter, NextRouter } from 'next/router'
+import { withRouter, NextRouter } from 'next/router';
 
 import Layout from '../../../components/Layout';
-import GenerationFailed from '../../../components/maps/GenerationFailed'
+import GenerationFailed from '../../../components/maps/GenerationFailed';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
@@ -15,20 +13,16 @@ import MapService from '../../../services/MapService';
 import Styles from './status.module.css';
 
 interface WithRouterProps {
-  router: NextRouter
+  router: NextRouter;
 }
 
 interface MapStatusPageProps extends WithRouterProps {
-
   map: MapModel;
-  
 }
 
 const MapGenerationErrorPage = (props: MapStatusPageProps) => {
   return (
     <Layout title="Map Generating Error">
-      
-
       <Ribbon />
 
       <Box className={Styles.status_page}>
@@ -42,14 +36,11 @@ const MapGenerationErrorPage = (props: MapStatusPageProps) => {
           </Grid>
         </Container>
       </Box>
-      
     </Layout>
   );
 };
 
-
 export async function getServerSideProps(context) {
-  
   const id = context.params.id;
   const map: MapModel = await MapService.getMapById(id);
   return { props: { map } };

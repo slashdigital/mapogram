@@ -1,4 +1,3 @@
-
 interface MapTypeModel {
   id: number;
   name: string;

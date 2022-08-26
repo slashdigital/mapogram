@@ -1,4 +1,4 @@
-import { withRouter, NextRouter } from 'next/router'
+import { withRouter, NextRouter } from 'next/router';
 import Layout from '../../components/Layout';
 import Container from '@mui/material/Container';
 import { MapModel } from '../../services/MapService';
@@ -7,13 +7,12 @@ import Ribbon from '../../components/Ribbon';
 import CardMap from '../../components/maps/CardMap';
 
 interface WithRouterProps {
-  router: NextRouter
+  router: NextRouter;
 }
 
 interface MapPageProps extends WithRouterProps {
-
-  map: MapModel,
-  items: []
+  map: MapModel;
+  items: [];
 }
 
 const MapGenerationPage = (props: MapPageProps) => {
@@ -21,7 +20,7 @@ const MapGenerationPage = (props: MapPageProps) => {
   return (
     <Layout title={`${map.title} - Mapogram`}>
       <Ribbon />
-      <Container sx={{mt: 10, mb: 10}} maxWidth="sm">
+      <Container sx={{ mt: 10, mb: 10 }} maxWidth="sm">
         <CardMap map={map} />
       </Container>
     </Layout>
@@ -36,6 +35,6 @@ export async function getServerSideProps(context) {
   const id = context.params.id;
   const map: MapModel = await MapService.getMapById(id);
   return { props: { map } };
-};
+}
 
 export default withRouter(MapGenerationPage);

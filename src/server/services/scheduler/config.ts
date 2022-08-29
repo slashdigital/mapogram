@@ -35,3 +35,6 @@ export const modisFiles = {
   dst: absPath(Configs.modisDstFile),
   unzipPath: absPath(Configs.modisUnzipPath)
 };
+
+export const MAX_FILES = 10;
+export const MAX_SIZE = 1000000000; // 1 GB

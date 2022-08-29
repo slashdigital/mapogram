@@ -14,7 +14,9 @@ const generateMapPowerShell = (extent: string, fileName: string, projectName: st
     const output = path.join(publicFolder, fileName);
     const commandLine = `${__dirname}\\generate-map.ps1 -Extent "${extent}" -Output "${output}" -Project "${project}"`;
     console.log('Command generate', commandLine);
-    const child = spawn('powershell.exe', [commandLine]);
+    const child = spawn('C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', [
+      commandLine
+    ]);
     child.stdout.on('data', function (data) {
       console.log('Powershell Data: ' + data);
       stdData.push('Stdout:');
@@ -44,8 +46,5 @@ const generateMapPowerShell = (extent: string, fileName: string, projectName: st
     child.stdin.end();
   });
 };
-
-// const firmsData = MapConfig['fire-disaster.layout'];
-// generateMapPowerShell(firmsData.extent.toString(), path.join(publicFolder, 'tset.jpg'), path.join(projPath, firmsData.project_name.toString()));
 
 export { generateMapPowerShell };

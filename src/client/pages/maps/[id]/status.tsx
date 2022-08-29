@@ -52,7 +52,6 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
           }
         })
         .catch(() => {
-          // delay = delay * 2;
           setTimeWaited(timeWaited + delay);
         });
     }, delay);
@@ -87,13 +86,6 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
     </Layout>
   );
 };
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: false,
-//   };
-// }
 
 export async function getServerSideProps(context) {
   // Example for including static props in a Next.js function component page.

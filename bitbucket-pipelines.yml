@@ -13,11 +13,22 @@ definitions:
     yarn: /usr/local/share/.cache/yarn
   services:
     docker:
-      memory: 2048  # reduce memory for docker-in-docker from 1GB to 512MB
+      memory: 3072  # reduce memory for docker-in-docker from 1GB to 512MB
+  steps:
+    - step: &step-sonarcloud-scan
+        name: Analyze on SonarCloud
+        caches:
+          - sonar
+        script:
+          - pipe: sonarsource/sonarcloud-scan:1.4.0
+            variables:
+              SONAR_TOKEN: ${SONAR_TOKEN}
+              EXTRA_ARGS: '-Dsonar.login=$SONAR_LOGIN -Dproject.settings=sonar-project.properties'
 
 pipelines:
   branches:
     develop:
+      - step: *step-sonarcloud-scan
       - step:
           size: 2x 
           name: Build docker

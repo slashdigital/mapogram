@@ -34,8 +34,8 @@ class MapModelResponse {
 // TODO: update api call
 class MapService {
   public generateMap = async (
-    baseUrl: string = apiUrl,
-    params: RequestGenerateMapParams
+    params: RequestGenerateMapParams,
+    baseUrl: string = apiUrl
   ): Promise<MapModelResponse> => {
     const res = await fetch(`${baseUrl}api/maps/generate`, {
       method: 'POST',

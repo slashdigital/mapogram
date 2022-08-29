@@ -48,12 +48,15 @@ const IndexPage = (props: IndexPageProps) => {
     }
     // get value from input
     // pass as params
-    const data = await MapService.generateMap('', {
-      layout: dataSource,
-      zoom: zoomLevel,
-      address: address,
-      token: token
-    });
+    const data = await MapService.generateMap(
+      {
+        layout: dataSource,
+        zoom: zoomLevel,
+        address: address,
+        token: token
+      },
+      ''
+    );
     if (!data.error && data.data && data.data.id) {
       // redirect to the loading page
       props.router.push(`/maps/${data.data.id}/status`);

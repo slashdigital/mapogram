@@ -427,7 +427,7 @@
         "suggestions": [
           {
             "desc": "Add dependencies array: [props.mapTypes, dataSource]",
-            "fix": { "range": [2441, 2441], "text": ", [props.mapTypes, dataSource]" }
+            "fix": { "range": [2369, 2369], "text": ", [props.mapTypes, dataSource]" }
           }
         ],
         "suppressions": [{ "kind": "directive", "justification": "" }]
@@ -478,7 +478,7 @@
         "suggestions": [
           {
             "desc": "Update the dependencies array to be: [map, queryMap]",
-            "fix": { "range": [2007, 2012], "text": "[map, queryMap]" }
+            "fix": { "range": [1943, 1948], "text": "[map, queryMap]" }
           }
         ],
         "suppressions": [{ "kind": "directive", "justification": "" }]

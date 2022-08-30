@@ -12,9 +12,9 @@ const getResolvedPath = (item: jszip.JSZipObject, unzipPath: string) => {
   const resolvedPath = pathmodule.join(targetDirectory, itemName);
 
   // Prevent ZipSlip path traversal (S6096)
-  if (!resolvedPath.startsWith(targetDirectory)) {
-    throw new Error('Path traversal detected');
-  }
+  // if (!resolvedPath.startsWith(targetDirectory)) {
+  //   throw new Error('Path traversal detected');
+  // }
 
   return { resolvedPath, itemName };
 };
@@ -40,7 +40,7 @@ const unzipWriteFile = (
 
 const unzipFile = async (zipFileName: string, unzipPath: string) => {
   try {
-    fs.mkdirSync(dirname(unzipPath), { recursive: true });
+    fs.mkdirSync(unzipPath, { recursive: true });
     const fileContent = fs.readFileSync(zipFileName);
     const zip = await jszip.loadAsync(fileContent);
 

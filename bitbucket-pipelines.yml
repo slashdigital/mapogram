@@ -15,6 +15,15 @@ definitions:
     docker:
       memory: 3072  # reduce memory for docker-in-docker from 1GB to 512MB
   steps:
+    - step: &test
+        name: Test source code
+        caches:
+          - node
+        script:
+          - yarn install
+          - yarn lint
+          - cat eslint-report.json
+          # - yarn unit-test
     - step: &step-sonarcloud-scan
         name: Analyze on SonarCloud
         caches:
@@ -22,13 +31,23 @@ definitions:
         script:
           - pipe: sonarsource/sonarcloud-scan:1.4.0
             variables:
-              SONAR_TOKEN: ${SONAR_TOKEN}
-              EXTRA_ARGS: '-Dsonar.login=$SONAR_LOGIN -Dproject.settings=sonar-project.properties'
-
+              SONAR_TOKEN: "$SONAR_TOKEN"
+              EXTRA_ARGS: '-Dproject.settings=sonar-project.properties'
+    - step: &check-quality-gate-sonarcloud
+        size: 2x
+        name: Check the Quality Gate on SonarCloud
+        caches:
+          - sonar
+        script:
+          - pipe: sonarsource/sonarcloud-quality-gate:0.1.6
+            variables:
+              SONAR_TOKEN: "$SONAR_TOKEN"
 pipelines:
   branches:
     develop:
+      - step: *test
       - step: *step-sonarcloud-scan
+      # - step: *check-quality-gate-sonarcloud
       - step:
           size: 2x 
           name: Build docker

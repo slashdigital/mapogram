@@ -43,3 +43,4 @@ package-lock.json
 /data
 node_modules
 dist
+/.scannerwork

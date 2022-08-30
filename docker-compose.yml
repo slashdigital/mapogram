@@ -44,6 +44,8 @@ services:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
     volumes:
       - db-data:/var/lib/postgresql/data
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
   qgis-mapogram-fire-server:
     image: $DOCKER_REGISTRY_SERVER_URL/gis-server
     restart: always

@@ -1,0 +1,937 @@
+[
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\config\\next\\index.js",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/no-var-requires",
+        "severity": 2,
+        "message": "Require statement not part of import statement.",
+        "line": 2,
+        "column": 14,
+        "nodeType": "CallExpression",
+        "messageId": "noVarReqs",
+        "endLine": 2,
+        "endColumn": 29,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-var-requires",
+        "severity": 2,
+        "message": "Require statement not part of import statement.",
+        "line": 3,
+        "column": 1,
+        "nodeType": "CallExpression",
+        "messageId": "noVarReqs",
+        "endLine": 3,
+        "endColumn": 18,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\next-env.d.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\postcss.config.js",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\prisma\\seed.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\scripts\\build.js",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/no-var-requires",
+        "severity": 2,
+        "message": "Require statement not part of import statement.",
+        "line": 2,
+        "column": 19,
+        "nodeType": "CallExpression",
+        "messageId": "noVarReqs",
+        "endLine": 2,
+        "endColumn": 45,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-var-requires",
+        "severity": 2,
+        "message": "Require statement not part of import statement.",
+        "line": 3,
+        "column": 20,
+        "nodeType": "CallExpression",
+        "messageId": "noVarReqs",
+        "endLine": 3,
+        "endColumn": 45,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\Layout.tsx",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@next/next/no-page-custom-font",
+        "severity": 1,
+        "message": "Custom fonts not added in `pages/_document.js` will only load for a single page. This is discouraged. See: https://nextjs.org/docs/messages/no-page-custom-font",
+        "line": 30,
+        "column": 9,
+        "nodeType": "JSXOpeningElement",
+        "endLine": 33,
+        "endColumn": 11,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\List.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\ListDetail.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\ListItem.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\Ribbon.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\forms\\ButtonWithCaptcha.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\forms\\PlaceAutocomplete.tsx",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 1,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 76,
+        "column": 52,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 76,
+        "endColumn": 55,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [2270, 2273], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [2270, 2273], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 1,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 77,
+        "column": 52,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 77,
+        "endColumn": 55,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [2336, 2339], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [2336, 2339], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 1,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 123,
+        "column": 26,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 123,
+        "endColumn": 29,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [3405, 3408], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [3405, 3408], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/no-explicit-any",
+        "severity": 1,
+        "message": "Unexpected any. Specify a different type.",
+        "line": 146,
+        "column": 31,
+        "nodeType": "TSAnyKeyword",
+        "messageId": "unexpectedAny",
+        "endLine": 146,
+        "endColumn": 34,
+        "suggestions": [
+          {
+            "messageId": "suggestUnknown",
+            "fix": { "range": [4216, 4219], "text": "unknown" },
+            "desc": "Use `unknown` instead, this will force you to explicitly, and safely assert the type is correct."
+          },
+          {
+            "messageId": "suggestNever",
+            "fix": { "range": [4216, 4219], "text": "never" },
+            "desc": "Use `never` instead, this is useful when instantiating generic type parameters that you don't need to know the type of."
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\maps\\CardMap.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\maps\\GenerationFailed.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\maps\\GenerationProgress.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\maps\\GenerationSuccess.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\components\\modal\\ErrorModal.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\interfaces\\index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\models\\MapType.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\next-env.d.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\_app.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\about.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\api\\users\\index.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\index.tsx",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "react-hooks/exhaustive-deps",
+        "severity": 1,
+        "message": "React Hook useEffect contains a call to 'setDataSource'. Without a list of dependencies, this can lead to an infinite chain of updates. To fix this, pass [props.mapTypes, dataSource] as a second argument to the useEffect Hook.",
+        "line": 69,
+        "column": 3,
+        "nodeType": "MemberExpression",
+        "endLine": 69,
+        "endColumn": 18,
+        "suggestions": [
+          {
+            "desc": "Add dependencies array: [props.mapTypes, dataSource]",
+            "fix": { "range": [2441, 2441], "text": ", [props.mapTypes, dataSource]" }
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\maps\\[id].tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\maps\\[id]\\error.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\maps\\[id]\\status.tsx",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "react-hooks/exhaustive-deps",
+        "severity": 1,
+        "message": "React Hook React.useEffect has a missing dependency: 'queryMap'. Either include it or remove the dependency array.",
+        "line": 65,
+        "column": 6,
+        "nodeType": "ArrayExpression",
+        "endLine": 65,
+        "endColumn": 11,
+        "suggestions": [
+          {
+            "desc": "Update the dependencies array to be: [map, queryMap]",
+            "fix": { "range": [2007, 2012], "text": "[map, queryMap]" }
+          }
+        ],
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\pages\\maps\\index.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\services\\MapService.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\themes\\button.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\themes\\input.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\themes\\theme.tsx",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\utils\\constant.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\client\\utils\\sample-data.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\config\\next.server.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/no-var-requires",
+        "severity": 2,
+        "message": "Require statement not part of import statement.",
+        "line": 5,
+        "column": 18,
+        "nodeType": "CallExpression",
+        "messageId": "noVarReqs",
+        "endLine": 5,
+        "endColumn": 49,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Function` as a type. The `Function` type accepts any function-like value.\nIt provides no type safety when calling the function, which can be a common source of bugs.\nIt also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.\nIf you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
+        "line": 8,
+        "column": 15,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 8,
+        "endColumn": 23,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\controllers\\maps-generation.controller.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Function` as a type. The `Function` type accepts any function-like value.\nIt provides no type safety when calling the function, which can be a common source of bugs.\nIt also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.\nIf you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
+        "line": 31,
+        "column": 11,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 31,
+        "endColumn": 19,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Function` as a type. The `Function` type accepts any function-like value.\nIt provides no type safety when calling the function, which can be a common source of bugs.\nIt also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.\nIf you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
+        "line": 32,
+        "column": 50,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 32,
+        "endColumn": 58,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\controllers\\pages.controller.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Function` as a type. The `Function` type accepts any function-like value.\nIt provides no type safety when calling the function, which can be a common source of bugs.\nIt also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.\nIf you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
+        "line": 7,
+        "column": 11,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 7,
+        "endColumn": 19,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Function` as a type. The `Function` type accepts any function-like value.\nIt provides no type safety when calling the function, which can be a common source of bugs.\nIt also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.\nIf you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
+        "line": 8,
+        "column": 50,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 8,
+        "endColumn": 58,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\controllers\\test.controller.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\routes\\api.router.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\routes\\app.router.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\server.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Object` as a type. The `Object` type actually means \"any non-nullish value\", so it is marginally better than `unknown`.\n- If you want a type meaning \"any object\", you probably want `Record<string, unknown>` instead.\n- If you want a type meaning \"any value\", you probably want `unknown` instead.",
+        "line": 46,
+        "column": 32,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 46,
+        "endColumn": 38,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      },
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Object` as a type. The `Object` type actually means \"any non-nullish value\", so it is marginally better than `unknown`.\n- If you want a type meaning \"any object\", you probably want `Record<string, unknown>` instead.\n- If you want a type meaning \"any value\", you probably want `unknown` instead.",
+        "line": 48,
+        "column": 22,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 48,
+        "endColumn": 28,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\image-processing.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\map.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\powerautomate.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\powershell\\generate-map.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\queues\\queues.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\recaptcha.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\scheduler\\config.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\scheduler\\path.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\scheduler\\scheduler.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\services\\scheduler\\unzipper.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\utils\\constants.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\utils\\downloader.ts",
+    "messages": [],
+    "suppressedMessages": [
+      {
+        "ruleId": "@typescript-eslint/ban-types",
+        "severity": 2,
+        "message": "Don't use `Function` as a type. The `Function` type accepts any function-like value.\nIt provides no type safety when calling the function, which can be a common source of bugs.\nIt also accepts things like class declarations, which will throw at runtime as they will not be called with `new`.\nIf you are expecting the function to accept certain arguments, you should explicitly define the function shape.",
+        "line": 15,
+        "column": 13,
+        "nodeType": "Identifier",
+        "messageId": "bannedTypeMessage",
+        "endLine": 15,
+        "endColumn": 21,
+        "suppressions": [{ "kind": "directive", "justification": "" }]
+      }
+    ],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\utils\\log.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\server\\utils\\response.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\src\\shared\\models\\map.model.ts",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  },
+  {
+    "filePath": "F:\\Documents\\Slash Sources\\Mapogram\\mapogram-web-app\\tailwind.config.js",
+    "messages": [],
+    "suppressedMessages": [],
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0,
+    "usedDeprecatedRules": []
+  }
+]

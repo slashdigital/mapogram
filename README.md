@@ -1,5 +1,15 @@
 # Mapogram Project
 
+## Architecture Diagram
+
+![Arctechtire](.docs/MapogramDiagram.jpg)
+
+In this project, we use:
+- `frontend` and `backend api` for serving web application
+- `QGIS server` is used to open GGIS project and generate flood information on specify area
+- `nginx`: to serve http request which required for QGIS Server
+- `Geocoding`: to get latitude and longitude from google api
+
 ## Setup local development
 
 ### 0. Install dependencies

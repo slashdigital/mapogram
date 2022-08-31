@@ -44,3 +44,5 @@ package-lock.json
 node_modules
 dist
 /.scannerwork
+/.vscode
+eslint-report.json

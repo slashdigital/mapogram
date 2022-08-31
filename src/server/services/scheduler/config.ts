@@ -37,4 +37,4 @@ export const modisFiles = {
 };
 
 export const MAX_FILES = 10;
-export const MAX_SIZE = 1000000000; // 1 GB
+export const MAX_SIZE = 1_000_000_000; // 1 GB

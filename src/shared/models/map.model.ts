@@ -8,10 +8,6 @@ class MapModel {
   staticMapUrl: string;
   mapId: string;
   status: number;
-
-  constructor() {
-    // This is intended
-  }
 }
 
 export default MapModel;

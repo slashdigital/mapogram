@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "description": "Mapogram Web Application",
+  "homepage": "https://bitbucket.org/slashdigital/mapogram-web-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/slashdigital/mapogram-web-app.git"
+  },
   "license": "MIT",
-  "author": "Slash Pte Ltd",
+  "author": "Slash Digital Pte Ltd",
   "scripts": {
     "build": "yarn build:client && yarn build:server && yarn build:server:copies",
     "build:client": "node --unhandled-rejections=strict scripts/build.js",

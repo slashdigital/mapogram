@@ -18,6 +18,7 @@
     "dev": "nodemon",
     "format": "prettier --ignore-path .gitignore --write **/*.{tsx,ts,js,css,json} && npx sort-package-json",
     "lint": "eslint --ignore-path .gitignore --fix --ext .js,.ts,.tsx -o eslint-report.json -f json src . || exit 1",
+    "lint2": "eslint --ignore-path .gitignore --fix --ext .js,.ts,.tsx .",
     "localstack": "docker compose -f docker-compose.local.yml up",
     "localstack:build": "docker compose -f docker-compose.local.yml build",
     "migrate": "prisma migrate dev",

@@ -9,7 +9,7 @@ import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
 
 import { useInputWhiteStyles } from '../../themes/input';
-import { GOOGLE_MAPS_API_KEY } from '../../utils/constant';
+import { GOOGLE_MAP_API_KEY } from '../../utils/constant';
 
 function loadScript(src: string, position: HTMLElement | null, id: string) {
   if (!position) {
@@ -52,7 +52,7 @@ export default function PlaceAutocomplete(props: Props) {
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAP_API_KEY}&libraries=places`,
         document.querySelector('head'),
         'google-maps'
       );

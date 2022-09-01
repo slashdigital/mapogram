@@ -38,6 +38,8 @@ const unzipWriteFile = (
     });
 };
 
+const dlFileTypeList = ['cpg', 'dbf', 'prj', 'shp', 'shx'];
+
 const unzipFile = async (zipFileName: string, unzipPath: string) => {
   try {
     fs.mkdirSync(unzipPath, { recursive: true });
@@ -63,7 +65,10 @@ const unzipFile = async (zipFileName: string, unzipPath: string) => {
       if (!zip.file(itemName)) {
         fs.mkdirSync(resolvedPath, { recursive: true });
       } else {
-        unzipWriteFile(zip, resolvedPath, itemName, totalSize);
+        const unzippedFileType = itemName.split('.').pop();
+        if (dlFileTypeList.includes(unzippedFileType)) {
+          unzipWriteFile(zip, resolvedPath, itemName, totalSize);
+        }
       }
     }
   } catch (error) {

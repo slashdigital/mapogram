@@ -1,7 +1,0 @@
-{
-  "sonarlint.analyzerProperties": {},
-  "sonarlint.connectedMode.project": {
-    "connectionId": "slash-foundry",
-    "projectKey": "mapogram-webapp"
-  }
-}

@@ -22,7 +22,7 @@ const schema = Joi.object({
 
   layout: Joi.string(),
   address: Joi.string(),
-  zoom: Joi.string(),
+  zoom: Joi.string()
 });
 
 const prisma = new PrismaClient();
@@ -47,7 +47,7 @@ class MapGenerationController {
       }
       const data = await geocodeAddress(params.address);
 
-      const mapParams = await buildGISServerParams(data, params.layout);
+      const mapParams = buildGISServerParams(data, params.layout);
       console.log(mapParams);
 
       const currentDate = dayjs.utc().toDate();
@@ -64,15 +64,13 @@ class MapGenerationController {
           lng: '',
           sessionId: mapParams.uniqueId.toString(),
           submitted: true,
-          status: 'pending',
-        },
+          status: 'pending'
+        }
       });
 
       console.log(`Start downloading map of Id: ${output.id} to local `);
       downloadFile(
-        `${mapParams.serverUrl}/?${new URLSearchParams(
-          mapParams.payload
-        ).toString()}`,
+        `${mapParams.serverUrl}/?${new URLSearchParams(mapParams.payload).toString()}`,
         `${PUBLIC_FOLDER}${mapParams.outputPath}`
       )
         .then(() => {
@@ -84,7 +82,7 @@ class MapGenerationController {
           output.status = 'success';
           return prisma.generation.update({
             where: { id: output.id },
-            data: output,
+            data: output
           });
         })
         .catch(reason => {
@@ -93,7 +91,7 @@ class MapGenerationController {
           output.status = 'failed';
           return prisma.generation.update({
             where: { id: output.id },
-            data: output,
+            data: output
           });
         });
 
@@ -107,8 +105,8 @@ class MapGenerationController {
     logger.info('API::map - get generated map');
     const output = await prisma.generation.findFirst({
       where: {
-        id: req.params.id * 1,
-      },
+        id: req.params.id * 1
+      }
     });
     return response.success(res, output);
   };
@@ -122,18 +120,18 @@ class MapGenerationController {
       where: {
         status: 'success',
         createdAt: {
-          gte: lastDay,
-        },
+          gte: lastDay
+        }
       },
       take: limit,
       orderBy: {
-        createdAt: 'desc',
-      },
+        createdAt: 'desc'
+      }
     });
     return response.success(res, listing);
   };
 
-  public getMapTypes = async (req, res) => {
+  public getMapTypes = async (_req, res) => {
     const mapTypes = await prisma.mapType.findMany();
     console.log('Created map type with id:', mapTypes);
     return response.success(res, mapTypes);

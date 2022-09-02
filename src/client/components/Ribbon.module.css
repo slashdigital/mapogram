@@ -1,16 +1,15 @@
 .Ribbon {
-    display: flex;
-    background-color: #3BA9E7;
-    height: 100px;
-    font-size: 14px;
-    color: white;
-    align-items: center;
+  display: flex;
+  background-color: #3ba9e7;
+  height: 100px;
+  font-size: 14px;
+  color: white;
+  align-items: center;
 }
 
 .Ribbon_right_button {
-    background-color: white;
-    color: #55B4EA;
-    width: 139px;
-    height: 35px;
-    ;
+  background-color: white;
+  color: #55b4ea;
+  width: 139px;
+  height: 35px;
 }

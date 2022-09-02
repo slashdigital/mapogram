@@ -59,10 +59,7 @@ export function downloadFile(url: string, filepath) {
         if (res.statusCode < 200 || res.statusCode >= 400) {
           throwError('Download error: ' + res.statusCode);
         }
-        res
-          .pipe(fs.createWriteStream(filepath))
-          .on('close', done)
-          .on('error', throwError);
+        res.pipe(fs.createWriteStream(filepath)).on('close', done).on('error', throwError);
       })
       .on('error', throwError)
   );

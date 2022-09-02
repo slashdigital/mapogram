@@ -3,7 +3,7 @@ import {
   MapConfig,
   MapQGISParamsType,
   GIS_DEFAULT_PARAMS,
-  GIS_SERVER_URL,
+  GIS_SERVER_URL
 } from '../utils/constants';
 
 const { PA_QGIS_OUTPUT_EXT } = process.env;
@@ -56,7 +56,7 @@ const getNortheastSouthwestLatLng = (geoResponse: GeocodeResponse) => {
   const viewport = geoResponse.results[0].geometry.viewport;
   return {
     northeast: viewport.northeast,
-    southwest: viewport.southwest,
+    southwest: viewport.southwest
   };
 };
 
@@ -70,29 +70,24 @@ export const getExtentEPSG4326 = (geoResponse: GeocodeResponse) => {
   return `${val1},${val2},${val3},${val4} [EPSG:4326]`;
 };
 
-export const getExtentEPSG4326GISServerFormat = (
-  geoResponse: GeocodeResponse
-) => {
+export const getExtentEPSG4326GISServerFormat = (geoResponse: GeocodeResponse) => {
   const { northeast, southwest } = getNortheastSouthwestLatLng(geoResponse);
 
   return `${southwest.lat},${southwest.lng},${northeast.lat},${northeast.lng}`;
 };
 
-export const buildGISServerParams = (
-  geoResponse: GeocodeResponse,
-  layout: string
-) => {
+export const buildGISServerParams = (geoResponse: GeocodeResponse, layout: string) => {
   const uniqueId = uuidV4();
   const mapQGISParams = {
     ...GIS_DEFAULT_PARAMS[layout],
-    'map0:EXTENT': getExtentEPSG4326GISServerFormat(geoResponse),
+    'map0:EXTENT': getExtentEPSG4326GISServerFormat(geoResponse)
   };
 
   return {
     uniqueId,
     serverUrl: GIS_SERVER_URL[layout],
     outputPath: `/${uniqueId}.${PA_QGIS_OUTPUT_EXT}`,
-    payload: mapQGISParams,
+    payload: mapQGISParams
   };
 };
 
@@ -113,18 +108,15 @@ export const buildParameters = (
   try {
     const outputName = uuidV4();
     const config: MapQGISParamsType = {
-      ...MapConfig[layout],
+      ...MapConfig[layout]
     };
     const extent = getExtentEPSG4326(geoResponse);
-    config.output_filename = config.output_filename.replace(
-      '{NAME}',
-      outputName
-    );
+    config.output_filename = config.output_filename.replace('{NAME}', outputName);
     config.extent = extent;
 
     return {
       uniqueId: outputName,
-      payload: config,
+      payload: config
     };
   } catch (e) {
     console.log(e);

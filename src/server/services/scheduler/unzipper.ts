@@ -2,7 +2,7 @@
 import fs from 'fs';
 import jszip from 'jszip';
 import pathmodule, { dirname, basename } from 'path';
-import { MAX_FILES, MAX_SIZE } from './config';
+import { MAX_FILES, MAX_SIZE, dlFileTypeList } from './config';
 
 const getResolvedPath = (item: jszip.JSZipObject, unzipPath: string) => {
   const newItemDirName = dirname(item.name).toString().replace(/\.$/, '/');
@@ -37,8 +37,6 @@ const unzipWriteFile = (
       fs.writeFileSync(resolvedPath, content);
     });
 };
-
-const dlFileTypeList = ['cpg', 'dbf', 'prj', 'shp', 'shx'];
 
 const unzipFile = async (zipFileName: string, unzipPath: string) => {
   try {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import express, { Application, Router } from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import appRouter from './routes/app.router';
 import apiRouter from './routes/api.router';
@@ -17,19 +17,11 @@ class Server {
     this.app = express();
     this.config();
     this.routerConfig();
-    // this.dbConnect();
   }
 
   private config() {
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json({ limit: '1mb' })); // 100kb default
-  }
-
-  private dbConnect() {
-    // pool.connect(function (err, client, done) {
-    //   if (err) throw new Error();
-    //   console.log("Connected");
-    // });
   }
 
   private routerConfig() {

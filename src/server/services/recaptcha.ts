@@ -11,7 +11,7 @@ export const verifyRecaptcha = async (token: string): Promise<boolean> => {
     const res = await fetch(recaptchaUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: formData.toString(),
+      body: formData.toString()
     });
     const data = await res.json();
     console.log('recaptcha verification:', data);

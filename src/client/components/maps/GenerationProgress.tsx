@@ -20,17 +20,13 @@ const GenerationProgress = (props: Props) => {
           </Typography>
 
           <Typography variant="body1" sx={{ color: 'grey' }}>
-            <span className={Styles.GenerationProgress_subheader}>
-              Please wait
-            </span>
+            <span className={Styles.GenerationProgress_subheader}>Please wait</span>
           </Typography>
 
           <Typography variant="caption">Request ID: {props.mapId}</Typography>
           <LinearProgress />
           <div className={Styles.GenerationProgress_refresh}>
-            <Typography variant="caption">
-              Refresh if you don’t see progress
-            </Typography>
+            <Typography variant="caption">Refresh if you don’t see progress</Typography>
           </div>
         </div>
       </div>

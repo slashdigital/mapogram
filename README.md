@@ -1,5 +1,7 @@
 # Mapogram Project
 
+**Mapogram** is a platform powered by containerized QGIS server, which supported by any container infrastructure, to provide map generation service for the map they needed to deal with natural disaster like Forest fire, Flood event etc...
+
 ## Architecture Diagram
 
 ![Arctechtire](.docs/MapogramDiagram.jpg)

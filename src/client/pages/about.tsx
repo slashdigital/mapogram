@@ -1,6 +1,7 @@
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import Introduction from '../components/Introduction';
 import Layout from '../components/Layout';
 
 const AboutPage = () => (
@@ -10,10 +11,7 @@ const AboutPage = () => (
         About Mapogram
       </Typography>
       <Typography variant="body1">
-        {' '}
-        Mapogram is a platform powered by <b>Cloud-based QGIS</b> on Azure VM to provide map
-        generation service for the map they needed to deal with natural disaster like Forest fire,
-        Flood event etc...
+        <Introduction />
       </Typography>
       <Typography sx={{ mt: 3, mb: 2 }} variant="h5">
         References:

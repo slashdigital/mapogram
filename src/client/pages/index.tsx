@@ -18,6 +18,7 @@ import ButtonWithCaptcha from '../components/forms/ButtonWithCaptcha';
 import { RECAPTCHA_SITE_KEY } from '../utils/constant';
 import { useInputWhiteStyles } from '../themes/input';
 import ErrorModal from '../components/modal/ErrorModal';
+import Introduction from '../components/Introduction';
 
 interface WithRouterProps {
   router: NextRouter;
@@ -82,9 +83,7 @@ const IndexPage = (props: IndexPageProps) => {
             <Grid container spacing={2}>
               <Grid item xs={6} sx={{ alignItems: 'center', display: 'flex' }}>
                 <Typography variant="h6" sx={{ lineHeight: '2', fontWeight: 'normal' }}>
-                  Mapogram is a platform powered by <b>Cloud-based QGIS</b> on Azure VM to provide
-                  map generation service for the map they needed to deal with natural disaster like
-                  Forest fire, Flood event etc...
+                  <Introduction />
                 </Typography>
               </Grid>
               <Grid item xs={1} sx={{ alignItems: 'center', display: 'flex' }}>

@@ -12,18 +12,6 @@ import throttle from 'lodash/throttle';
 import { useInputWhiteStyles } from '../../themes/input';
 import { GOOGLE_MAP_API_KEY } from '../../utils/constant';
 
-function loadScript(src: string, position: HTMLElement | null, id: string) {
-  if (!position) {
-    return;
-  }
-
-  const script = document.createElement('script');
-  script.setAttribute('async', '');
-  script.setAttribute('id', id);
-  script.src = src;
-  position.appendChild(script);
-}
-
 const autocompleteService = { current: null };
 
 interface MainTextMatchedSubstrings {

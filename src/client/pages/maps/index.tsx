@@ -1,7 +1,6 @@
 import { withRouter, NextRouter } from 'next/router';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
-import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
@@ -42,18 +41,21 @@ const MapListPage = (props: MapListPageProps) => {
         <ImageList sx={{ mt: 5 }} cols={3} gap={45}>
           {maps.map(item => (
             <ImageListItem key={item.id} sx={{ overflow: 'hidden', width: '100%' }}>
-              <Image
-                src={`maps/sizes/small${item.outputPath}`}
-                alt={item.title}
-                onError={error => {
-                  console.log(error.currentTarget);
-                  const { currentTarget } = error;
-                  currentTarget.onerror = null; // prevents looping
-                  currentTarget.src = Placeholder.src;
-                  currentTarget.srcset = Placeholder.src;
-                }}
-                loading="lazy"
-              />
+              <picture>
+                <img
+                  src={`maps/sizes/small${item.outputPath}`}
+                  srcSet={`maps/sizes/small${item.outputPath}`}
+                  alt={item.title}
+                  onError={error => {
+                    console.log(error.currentTarget);
+                    const { currentTarget } = error;
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = Placeholder.src;
+                    currentTarget.srcset = Placeholder.src;
+                  }}
+                  loading="lazy"
+                />
+              </picture>
               <ImageListItemBar
                 sx={{
                   whiteSpace: 'wordwrap'

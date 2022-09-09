@@ -1,25 +1,26 @@
-import React, { ReactNode } from "react";
-import { ThemeProvider } from "@mui/material/styles";
-import Link from "next/link";
-import Head from "next/head";
-import Image from "next/image";
+/* eslint-disable @next/next/no-page-custom-font */
+import React, { ReactNode } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import Link from 'next/link';
+import Head from 'next/head';
+import Image from 'next/image';
 
-import Container from "@mui/material/Container";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import { MainButton } from "../themes/button";
-import Logo from "../assets/logo.png";
-import styles from "./Layout.module.css";
+import Container from '@mui/material/Container';
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import { MainButton } from '../themes/button';
+import Logo from '../assets/logo.png';
+import styles from './Layout.module.css';
 
-import theme from "../themes/theme";
+import theme from '../themes/theme';
 
 type Props = {
   children?: ReactNode;
   title?: string;
 };
 
-const Layout = ({ children, title = "Mapogram" }: Props) => (
+const Layout = ({ children, title = 'Mapogram' }: Props) => (
   <ThemeProvider theme={theme}>
     <div>
       <Head>
@@ -30,10 +31,7 @@ const Layout = ({ children, title = "Mapogram" }: Props) => (
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
         />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
       <header>
         <Box className={styles.header}>
@@ -41,21 +39,17 @@ const Layout = ({ children, title = "Mapogram" }: Props) => (
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <Link href="/">
-                  <Image
-                    src={Logo}
-                    alt="mapogram logo"
-                    className={styles.header__left_image}
-                  />
+                  <Image src={Logo} alt="mapogram logo" className={styles.header__left_image} />
                 </Link>
               </Grid>
               <Grid
                 item
                 xs={4}
                 sx={{
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  display: "flex",
-                  textAlign: "right",
+                  justifyContent: 'flex-end',
+                  alignItems: 'center',
+                  display: 'flex',
+                  textAlign: 'right'
                 }}
               >
                 <Link href="/about">
@@ -63,8 +57,7 @@ const Layout = ({ children, title = "Mapogram" }: Props) => (
                 </Link>
                 <Link href="/maps" as="/maps">
                   <MainButton color="primary" sx={{ ml: 2 }}>
-                    Visit Map Gallery{" "}
-                    <ArrowForwardIosOutlinedIcon fontSize="small" />
+                    Visit Map Gallery <ArrowForwardIosOutlinedIcon fontSize="small" />
                   </MainButton>
                 </Link>
               </Grid>
@@ -76,15 +69,15 @@ const Layout = ({ children, title = "Mapogram" }: Props) => (
       <footer className={styles.footer}>
         <hr className={styles.footer__line} />
         <Box className={styles.header}>
-          <Container maxWidth="lg" sx={{ display: "flex" }}>
+          <Container maxWidth="lg" sx={{ display: 'flex' }}>
             <Grid container spacing={2}>
               <Grid
                 item
                 xs={12}
                 sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyItems: "center",
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyItems: 'center'
                 }}
               >
                 <span className={styles.footer__text}>

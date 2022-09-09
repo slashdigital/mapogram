@@ -1,12 +1,7 @@
-
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Button, { ButtonProps } from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import { purple } from '@mui/material/colors';
 
-export const WhiteMainButton = styled(Button)<ButtonProps>(({ theme }) => ({
- 
+export const WhiteMainButton = styled(Button)<ButtonProps>(({ theme: _theme }) => ({
   backgroundColor: '#2697d7',
   borderColor: '#2697d7',
   border: '1px solid',
@@ -14,16 +9,16 @@ export const WhiteMainButton = styled(Button)<ButtonProps>(({ theme }) => ({
   '&:hover': {
     backgroundColor: '#2697d7',
     borderColor: '#fff',
-    boxShadow: 'none',
+    boxShadow: 'none'
   },
   '&:active': {
     boxShadow: 'none',
     backgroundColor: '#2697d7',
-    borderColor: '#fff',
+    borderColor: '#fff'
   },
   '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-  },
+    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+  }
 }));
 
 export const MainButton = styled(Button)({
@@ -34,14 +29,15 @@ export const MainButton = styled(Button)({
     backgroundColor: '#3da6e2',
     borderColor: '#2697d7',
     color: '#fff',
-    boxShadow: 'none',
+    boxShadow: 'none'
   },
   '&:active': {
     boxShadow: 'none',
-    backgroundColor: '#3da6e2',color: '#fff',
-    borderColor: '#2697d7',
+    backgroundColor: '#3da6e2',
+    color: '#fff',
+    borderColor: '#2697d7'
   },
   '&:focus': {
-    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-  },
+    boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+  }
 });

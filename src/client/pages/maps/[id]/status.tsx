@@ -1,19 +1,18 @@
-import React from "react";
-import { withRouter, NextRouter, Router } from "next/router";
+import React from 'react';
+import { withRouter, NextRouter } from 'next/router';
 
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 
-import Layout from "../../../components/Layout";
-import { MapModel } from "../../../services/MapService";
-import MapService from "../../../services/MapService";
-import GenerationProgress from "../../../components/maps/GenerationProgress";
-import GenerationFailed from "../../../components/maps/GenerationFailed";
-import GenerationSuccess from "../../../components/maps/GenerationSuccess";
-import Ribbon from "../../../components/Ribbon";
+import Layout from '../../../components/Layout';
+import MapService, { MapModel } from '../../../services/MapService';
+import GenerationProgress from '../../../components/maps/GenerationProgress';
+import GenerationFailed from '../../../components/maps/GenerationFailed';
+import GenerationSuccess from '../../../components/maps/GenerationSuccess';
+import Ribbon from '../../../components/Ribbon';
 
-import Styles from "./status.module.css";
+import Styles from './status.module.css';
 
 interface WithRouterProps {
   router: NextRouter;
@@ -27,7 +26,7 @@ interface MapStatusPageProps extends WithRouterProps {
 const MapGenerationStatusPage = (props: MapStatusPageProps) => {
   const { map } = props;
   const [timeWaited, setTimeWaited] = React.useState(0);
-  let delay = 7000;
+  const delay = 7000;
   let timeout = null;
 
   const queryMap = () => {
@@ -40,29 +39,29 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
         clearInterval(timeout);
         props.router.push(`/maps/${map.id}/error`);
       }
-      MapService.getMapById(map.id.toString(), "/")
-        .then((result) => {
-          if (result.status == "failed") {
+      MapService.getMapById(map.id.toString(), '/')
+        .then(result => {
+          if (result.status == 'failed') {
             clearInterval(timeout);
             props.router.push(`/maps/${map.id}/error`);
-          } else if (result.status == "success") {
+          } else if (result.status == 'success') {
             clearInterval(timeout);
             props.router.push(`/maps/${map.id}`);
           } else {
             setTimeWaited(timeWaited + delay);
           }
         })
-        .catch((e) => {
-          // delay = delay * 2;
+        .catch(() => {
           setTimeWaited(timeWaited + delay);
         });
     }, delay);
   };
 
   React.useEffect(() => {
-    if (map.status == "pending") {
+    if (map.status == 'pending') {
       queryMap();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map]);
 
   return (
@@ -72,16 +71,13 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
       <Box className={Styles.status_page}>
         <Container maxWidth="lg">
           <Grid container spacing={2}>
-            <Grid item xs={12} sx={{ alignItems: "center", display: "flex" }}>
+            <Grid item xs={12} sx={{ alignItems: 'center', display: 'flex' }}>
               <Container maxWidth="lg">
-                {map.status == "pending" && (
-                  <GenerationProgress
-                    mapId={map.sessionId}
-                    router={props.router}
-                  />
+                {map.status == 'pending' && (
+                  <GenerationProgress mapId={map.sessionId} router={props.router} />
                 )}
-                {map.status == "failed" && <GenerationFailed id={map.sessionId}/>}
-                {map.status == "success" && <GenerationSuccess />}
+                {map.status == 'failed' && <GenerationFailed id={map.sessionId} />}
+                {map.status == 'success' && <GenerationSuccess />}
               </Container>
             </Grid>
           </Grid>
@@ -90,13 +86,6 @@ const MapGenerationStatusPage = (props: MapStatusPageProps) => {
     </Layout>
   );
 };
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: false,
-//   };
-// }
 
 export async function getServerSideProps(context) {
   // Example for including static props in a Next.js function component page.

@@ -5,12 +5,18 @@
     "node": true
   },
   "extends": [
-    // "plugin:react/recommended",
-    // "standard"
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "next",
+    "next/core-web-vitals"
   ],
+  "settings": {
+    "next": {
+      "rootDir": "src/client"
+    }
+  },
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -21,7 +27,16 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
-    "@typescript-eslint/consistent-type-definitions": ["error", "type"]
+    "react/no-children-prop": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "quotes": ["error", "single"],
+    "@next/next/no-html-link-for-pages": ["error", "src/client/pages"]
   }
 }

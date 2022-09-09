@@ -3,9 +3,14 @@
   "productName": "Mapogram",
   "version": "1.0.0",
   "description": "Mapogram by Slash Pte Ltd",
+  "homepage": "https://bitbucket.org/slashdigital/mapogram-web-app#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/slashdigital/mapogram-web-app.git"
+  },
+  "license": "MIT",
+  "author": "Slash Digital Pte Ltd",
   "private": true,
-  "license": "GPL-3.0-or-later",
-  "repository": "https://bitbucket.org/slashdigital/mapogram-web-app/src/master",
   "bugs": {
     "url": "https://bitbucket.org/slashdigital/mapogram-web-app/jira"
   },
@@ -32,19 +37,34 @@
     }
   ],
   "scripts": {
-    "lint": "eslint --ignore-path .gitignore --fix --ext .js,.ts .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "dev": "nodemon",
     "build": "yarn build:client && yarn build:server && yarn build:server:copies",
     "build:client": "node --unhandled-rejections=strict scripts/build.js",
     "build:server": "tsc --project tsconfig.server.json",
-    "build:server:copies": "copyfiles -u 1 src/server/services/powershell/*.ps1 dist && copyfiles -u 1 src/server/public/** dist",
-    "start": "cross-env NODE_ENV=production node dist/server/server.js",
-    "type-check": "tsc",
-    "prisma:generate": "prisma generate",
+    "build:server:copies": "copyfiles -u 0 src/server/services/powershell/*.ps1 dist && copyfiles -u 1 src/server/public/** dist",
+    "dev": "nodemon",
+    "format": "prettier --ignore-path .gitignore --write **/*.{tsx,ts,js,css,json} && npx sort-package-json",
+    "lint": "eslint --ignore-path .gitignore --fix --ext .js,.ts,.tsx -o eslint-report.json -f json src . || exit 1",
+    "lint2": "eslint --ignore-path .gitignore --fix --ext .js,.ts,.tsx .",
+    "localstack": "docker compose -f docker-compose.local.yml up",
+    "localstack:build": "docker compose -f docker-compose.local.yml build",
     "migrate": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
-    "seed": "prisma db seed"
+    "prisma:generate": "prisma generate",
+    "seed": "prisma db seed",
+    "start": "cross-env NODE_ENV=production node dist/src/server/server.js",
+    "type-check": "tsc"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.9.0",
@@ -89,10 +109,12 @@
     "autoprefixer": "^10.4.4",
     "copyfiles": "^2.4.1",
     "eslint": "^8.0.1",
+    "eslint-config-next": "^12.2.5",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-next": "^0.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
     "nodemon": "^2.0.16",
@@ -102,7 +124,8 @@
     "prisma": "^3.12.0",
     "tailwindcss": "^3.0.23",
     "ts-node": "^10.7.0",
-    "typescript": "4.6.3"
+    "typescript": "4.6.3",
+    "web-vitals": "^3.0.0"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.tsx"

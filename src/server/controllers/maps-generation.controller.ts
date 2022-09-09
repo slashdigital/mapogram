@@ -8,9 +8,12 @@ import { PrismaClient } from '@prisma/client';
 
 import logger from '../utils/log';
 import response from '../utils/response';
-import { geocodeAddress, buildParameters } from '../services/map';
+import { geocodeAddress, buildGISServerParams } from '../services/map';
 import { verifyRecaptcha } from '../services/recaptcha';
-import { pushQueue } from '../services/queues/queues';
+import { URLSearchParams } from 'url';
+import { downloadFile } from '../utils/downloader';
+import { PUBLIC_FOLDER } from '../utils/constants';
+import { resizeImage } from '../services/image-processing';
 
 dayjs.extend(utc);
 
@@ -19,7 +22,7 @@ const schema = Joi.object({
 
   layout: Joi.string(),
   address: Joi.string(),
-  zoom: Joi.string(),
+  zoom: Joi.string()
 });
 
 const prisma = new PrismaClient();
@@ -44,17 +47,16 @@ class MapGenerationController {
       }
       const data = await geocodeAddress(params.address);
 
-      const mapParams = await buildParameters(data, params.layout);
+      const mapParams = buildGISServerParams(data, params.layout);
       console.log(mapParams);
 
-      pushQueue(mapParams.payload);
       const currentDate = dayjs.utc().toDate();
       const output = await prisma.generation.create({
         data: {
           createdAt: currentDate,
           updatedAt: currentDate,
           title: params.address,
-          outputPath: `${mapParams.payload.az_blob_url}/${mapParams.payload.output_filename}`,
+          outputPath: mapParams.outputPath,
           zoomLevel: 'default',
           command: JSON.stringify(mapParams.payload),
           layout: params.layout,
@@ -62,9 +64,37 @@ class MapGenerationController {
           lng: '',
           sessionId: mapParams.uniqueId.toString(),
           submitted: true,
-          status: 'pending',
-        },
+          status: 'pending'
+        }
       });
+
+      console.log(`Start downloading map of Id: ${output.id} to local `);
+      downloadFile(
+        `${mapParams.serverUrl}/?${new URLSearchParams(mapParams.payload).toString()}`,
+        `${PUBLIC_FOLDER}${mapParams.outputPath}`
+      )
+        .then(() => {
+          console.log(`Start resizing image of Id: ${output.id}`);
+          return resizeImage(mapParams.uniqueId.toString());
+        })
+        .then(() => {
+          console.log(`generate map success of Id: ${output.id}`);
+          output.status = 'success';
+          return prisma.generation.update({
+            where: { id: output.id },
+            data: output
+          });
+        })
+        .catch(reason => {
+          console.error(`Fail to generate map of Id: ${output.id}`);
+          console.error(reason);
+          output.status = 'failed';
+          return prisma.generation.update({
+            where: { id: output.id },
+            data: output
+          });
+        });
+
       return response.success(res, output);
     } catch (e) {
       console.log(e);
@@ -75,8 +105,8 @@ class MapGenerationController {
     logger.info('API::map - get generated map');
     const output = await prisma.generation.findFirst({
       where: {
-        id: req.params.id * 1,
-      },
+        id: req.params.id * 1
+      }
     });
     return response.success(res, output);
   };
@@ -90,18 +120,18 @@ class MapGenerationController {
       where: {
         status: 'success',
         createdAt: {
-          gte: lastDay,
-        },
+          gte: lastDay
+        }
       },
       take: limit,
       orderBy: {
-        createdAt: 'desc',
-      },
+        createdAt: 'desc'
+      }
     });
     return response.success(res, listing);
   };
 
-  public getMapTypes = async (req, res) => {
+  public getMapTypes = async (_req, res) => {
     const mapTypes = await prisma.mapType.findMany();
     console.log('Created map type with id:', mapTypes);
     return response.success(res, mapTypes);

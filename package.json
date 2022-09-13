@@ -1,8 +1,8 @@
 {
-  "name": "mapogram-web-app",
+  "name": "mapogram",
+  "productName": "Mapogram",
   "version": "1.0.0",
-  "private": true,
-  "description": "Mapogram Web Application",
+  "description": "Mapogram by Slash Pte Ltd",
   "homepage": "https://bitbucket.org/slashdigital/mapogram-web-app#readme",
   "repository": {
     "type": "git",
@@ -10,6 +10,32 @@
   },
   "license": "MIT",
   "author": "Slash Digital Pte Ltd",
+  "private": true,
+  "bugs": {
+    "url": "https://bitbucket.org/slashdigital/mapogram-web-app/jira"
+  },
+  "contributors": [
+    {
+      "name": "Alex Lossing",
+      "email": "alex@slash.co",
+      "url": "https://slash.co"
+    },
+    {
+      "name": "Promsopeak Sean Nuon",
+      "email": "sean@slash.co",
+      "url": "https://slash.co"
+    },
+    {
+      "name": "Vengleab So",
+      "email": "vengleab@slash.co",
+      "url": "https://slash.co"
+    },
+    {
+      "name": "Ardian Asah",
+      "email": "ardian@slash.co",
+      "url": "https://slash.co"
+    }
+  ],
   "scripts": {
     "build": "yarn build:client && yarn build:server && yarn build:server:copies",
     "build:client": "node --unhandled-rejections=strict scripts/build.js",

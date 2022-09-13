@@ -33,9 +33,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
   qgis-mapogram-fire-server:
-    build:
-      context: ./docker/qgis
-      dockerfile: Dockerfile
+    image: mapogram/qgis-server
     volumes:
       - type: bind
         source: ${QGIS_MAPOGRAM_FIRE_DIR}

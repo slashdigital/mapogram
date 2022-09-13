@@ -56,7 +56,7 @@ services:
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
   qgis-mapogram-fire-server:
-    image: $DOCKER_REGISTRY_SERVER_URL/gis-server
+    image: mapogram/qgis-server
     restart: always
     pull_policy: always
     volumes:

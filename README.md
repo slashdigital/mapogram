@@ -115,9 +115,9 @@ Take this example from this [example link](https://mapogram-examples.s3.ap-south
 Extract the zip and you will see for this example:
 
 - `Example-QGIS` folder and inside with:
-  - `\Mapogram-FIRMS.qgz`: The Mapogram Project
-  - `\Datasources\MODIS_C6_1_Global_24h`: The data folder for MODIS
-  - `\Datasources\SUOMI_VIIRS_C2_Global_24h`: The data folder for VIIRS
+    - `\Mapogram-FIRMS.qgz`: The Mapogram Project
+    - `\Datasources\MODIS_C6_1_Global_24h`: The data folder for MODIS
+    - `\Datasources\SUOMI_VIIRS_C2_Global_24h`: The data folder for VIIRS
 
 - Copy the content of `Example-QGIS` to the folder `./data` of the project
 

@@ -20,6 +20,7 @@ services:
     environment:
       - API_URL=${API_URL}
       - PORT=${PORT}
+      - HOST=${HOST}
   db:
     image: postgres
     restart: always

@@ -8,7 +8,8 @@ import path from 'path';
 import { app as nextApp, handler } from './config/next.server';
 import './services/scheduler/scheduler';
 
-const PORT = parseInt(process.env.PORT) || 3000;
+const PORT = parseInt(process.env.PORT);
+const HOST = process.env.HOST;
 
 class Server {
   private app;
@@ -29,7 +30,7 @@ class Server {
     this.app.use('/', appRouter);
   }
 
-  public start = (port: number) => {
+  public start = (port: number, host: string) => {
     return new Promise((resolve, reject) => {
       nextApp
         .prepare()
@@ -40,7 +41,7 @@ class Server {
           });
 
           this.app
-            .listen(port, () => {
+            .listen(port, host, () => {
               resolve(port);
             })
             .on('error', (err: Object) => reject(err));
@@ -50,6 +51,6 @@ class Server {
   };
 }
 const server = new Server();
-server.start(PORT);
+server.start(PORT, HOST);
 
 export default server;

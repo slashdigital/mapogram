@@ -1,6 +1,6 @@
 FROM node:17.8-alpine
 
-ENV PORT 1337
+ENV PORT ${PORT}
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -18,7 +18,7 @@ RUN yarn prisma:generate
 # Building app
 RUN yarn build
 
-EXPOSE 80 1337
+EXPOSE 80 ${PORT}
 
 # Running the app
 CMD ["yarn", "start"]

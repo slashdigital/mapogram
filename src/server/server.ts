@@ -51,6 +51,8 @@ class Server {
   };
 }
 const server = new Server();
-server.start(PORT, HOST);
+server.start(PORT, HOST).then(() => {
+  console.log(`Running server at ${HOST}:${PORT}`);
+}).catch(err => console.log(err));
 
 export default server;
